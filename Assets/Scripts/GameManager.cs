@@ -7,9 +7,14 @@ using System.IO;
 
 public class GameManager : MonoBehaviour {
 
+    // Save profile settings
     int saveProfileNumber;
     string characterGender;
     string characterName;
+
+    // Game settings
+    bool muteMusic;
+    bool muteSounds;
 
     public static GameManager gameManager;
 
