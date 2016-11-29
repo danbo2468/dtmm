@@ -667,7 +667,7 @@ MonoBehaviour:
     m_Font: {fileID: 12800000, guid: cf8be26301a7d80479612b33c8d46e0d, type: 3}
     m_FontSize: 32
     m_FontStyle: 0
-    m_BestFit: 1
+    m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 40
     m_Alignment: 1
@@ -1428,3 +1428,4 @@ MonoBehaviour:
   - {fileID: 1930151505}
   - {fileID: 91059267}
   - {fileID: 1976068467}
+  saveProfileDeleteButtons: []

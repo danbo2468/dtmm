@@ -26,20 +26,30 @@ public class GameManager : MonoBehaviour {
         }
 	}
 
-    public void setCharacterName(string characterName)
+    // Set the save profile number
+    public void SetSaveProfileNumber(int saveProfileNumber)
     {
-        this.characterName = characterName;
+        this.saveProfileNumber = saveProfileNumber;
     }
 
-    public void setCharacterGender(string characterGender)
+    // Set the characters gender
+    public void SetCharacterGender(string characterGender)
     {
         this.characterGender = characterGender;
     }
 
-    public void Save(int saveProfileNumber)
+    // Set the characters name
+    public void SetCharacterName(string characterName)
+    {
+        this.characterName = characterName;
+    }
+
+
+    // Save the game status
+    public void Save()
     {
         BinaryFormatter formatter = new BinaryFormatter();
-        FileStream file = File.Create(Application.persistentDataPath + "/saveProfile" + saveProfileNumber + ".dat");
+        FileStream file = File.Create(Application.persistentDataPath + "/saveProfile" + this.saveProfileNumber + ".dat");
 
         SaveData saveData = new SaveData(this.saveProfileNumber, this.characterGender, this.characterName);
 
@@ -47,6 +57,7 @@ public class GameManager : MonoBehaviour {
         file.Close();
     }
 
+    // Load the character's name of a certain profile
     public string LoadSaveProfileName(int saveProfileNumber)
     {
         if (File.Exists(Application.persistentDataPath + "/saveProfile" + saveProfileNumber + ".dat"))
@@ -64,6 +75,7 @@ public class GameManager : MonoBehaviour {
         }
     }
 
+    // Load a certain profile into the game manager
     public void LoadSaveProfile(int saveProfileNumber)
     {
         if (File.Exists(Application.persistentDataPath + "/saveProfile" + saveProfileNumber + ".dat"))
@@ -78,7 +90,14 @@ public class GameManager : MonoBehaviour {
             this.characterName = saveData.GetCharacterName();
         }
     }
+
+    // Delete a certain profile
+    public void DeleteSaveProfile(int saveProfileNumber)
+    {
+        File.Delete(Application.persistentDataPath + "/saveProfile" + saveProfileNumber + ".dat");
+    }
 }
+
 
 [Serializable]
 class SaveData
