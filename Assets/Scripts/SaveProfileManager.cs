@@ -1,31 +1,34 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.UI;
 using System.IO;
 
 public class SaveProfileManager : MonoBehaviour {
 
-    public Text saveProfile1Text;
-    public Text saveProfile2Text;
-    public Text saveProfile3Text;
-    public Text saveProfile4Text;
-    private Text[4] saveProfilesText;
+    public bool emptyProfileClickable;
+    public List<Button> saveProfileButtons = new List<Button>();
 
     // Use this for initialization
     void Start () {
-        saveProfilesText[1] = saveProfile1Text;
-        saveProfilesText[2] = saveProfile1Text;
-        saveProfilesText[3] = saveProfile1Text;
-        saveProfilesText[4] = saveProfile1Text;
-
-        string saveProfileName = GameManager.gameManager.LoadSaveProfileName(1);
-
-        if (saveProfileName != null)
+        int i = 1;
+        foreach(Button profileButton in saveProfileButtons)
         {
-            saveProfile1Text.text = saveProfileName;
-        } else
-        {
-            saveProfile1Text.text = "Empty";
+            string saveProfileName = GameManager.gameManager.LoadSaveProfileName(i);
+
+            if (saveProfileName != null)
+            {
+                profileButton.GetComponentInChildren<Text>().text = saveProfileName;
+            }
+            else
+            {
+                profileButton.GetComponentInChildren<Text>().text = "Empty";
+                if (!emptyProfileClickable)
+                {
+                    profileButton.interactable = false;
+                }
+            }
+            i++;
         }
 	}
 	

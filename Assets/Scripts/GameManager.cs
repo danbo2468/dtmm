@@ -56,11 +56,26 @@ public class GameManager : MonoBehaviour {
             SaveData saveData = (SaveData)formatter.Deserialize(file);
             file.Close();
 
-            return saveData.getCharacterName();
+            return saveData.GetCharacterName();
         }
         else
         {
             return null;
+        }
+    }
+
+    public void LoadSaveProfile(int saveProfileNumber)
+    {
+        if (File.Exists(Application.persistentDataPath + "/saveProfile" + saveProfileNumber + ".dat"))
+        {
+            BinaryFormatter formatter = new BinaryFormatter();
+            FileStream file = File.Open(Application.persistentDataPath + "/saveProfile" + saveProfileNumber + ".dat", FileMode.Open);
+            SaveData saveData = (SaveData)formatter.Deserialize(file);
+            file.Close();
+
+            this.saveProfileNumber = saveData.GetSaveProfileNumber();
+            this.characterGender = saveData.GetCharacterGender();
+            this.characterName = saveData.GetCharacterName();
         }
     }
 }
@@ -83,7 +98,17 @@ class SaveData
         this.characterName = characterName;
     }
 
-    public string getCharacterName()
+    public int GetSaveProfileNumber()
+    {
+        return this.saveProfileNumber;
+    }
+
+    public string GetCharacterGender()
+    {
+        return this.characterGender;
+    }
+
+    public string GetCharacterName()
     {
         return this.characterName;
     }

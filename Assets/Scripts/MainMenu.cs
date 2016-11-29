@@ -27,14 +27,21 @@ public class MainMenu : MonoBehaviour {
         GameManager.gameManager.setCharacterGender(gender);
     }
 
-    public void SaveData()
+    public void SetName()
     {
         GameManager.gameManager.setCharacterName(nameInputField.text);
-        GameManager.gameManager.Save(1);
+        SceneManager.LoadScene("Save As");
     }
 
-    public void LoadLevel()
+    public void SaveData(int saveProfile)
     {
+        GameManager.gameManager.Save(saveProfile);
+        SceneManager.LoadScene("Tutorial");
+    }
+
+    public void LoadGame(int saveProfile)
+    {
+        GameManager.gameManager.LoadSaveProfile(saveProfile);
         SceneManager.LoadScene("Tutorial");
     }
 
