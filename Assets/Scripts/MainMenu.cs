@@ -5,19 +5,19 @@ using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour {
 
-    public InputField nameField;
+    public InputField nameInputField;
 
-    public void ChooseGame()
+    public void SwitchToSaveProfileScene()
     {
-        SceneManager.LoadScene("Choose Saveprofile");
+        SceneManager.LoadScene("Choose Save Profile");
     }
 
-    public void ChooseGender()
+    public void SwitchToGenderSelectionScene()
     {
         SceneManager.LoadScene("Gender Selection");
     }
 
-    public void ChooseName()
+    public void SwitchToNameSelectionScene()
     {
         SceneManager.LoadScene("Name Selection");
     }
@@ -27,10 +27,14 @@ public class MainMenu : MonoBehaviour {
         GameManager.gameManager.setCharacterGender(gender);
     }
 
+    public void SaveData()
+    {
+        GameManager.gameManager.setCharacterName(nameInputField.text);
+        GameManager.gameManager.Save(1);
+    }
+
     public void LoadLevel()
     {
-        GameManager.gameManager.setCharacterName(nameField.text);
-        GameManager.gameManager.Save(1);
         SceneManager.LoadScene("Tutorial");
     }
 
