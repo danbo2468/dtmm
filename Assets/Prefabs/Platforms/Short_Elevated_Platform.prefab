@@ -21,7 +21,7 @@ GameObject:
   - 4: {fileID: 4000010253837382}
   - 212: {fileID: 212000010228339716}
   - 61: {fileID: 61000011023645190}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Short_Elevated_Platform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
