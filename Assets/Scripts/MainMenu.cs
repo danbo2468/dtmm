@@ -13,6 +13,12 @@ public class MainMenu : MonoBehaviour {
         SceneManager.LoadScene("Choose Save Profile");
     }
 
+    // Go to the Save As scene
+    public void SwitchToSaveAsScene()
+    {
+        SceneManager.LoadScene("Save As");
+    }
+
     // Go to the Gender Selection scene
     public void SwitchToGenderSelectionScene()
     {
@@ -22,7 +28,7 @@ public class MainMenu : MonoBehaviour {
     // Set the chosen gender
     public void SetGender(string gender)
     {
-        GameManager.gameManager.SetCharacterGender(gender);
+        GameManager.gameManager.characterGender = gender;
     }
 
     // Go to the Name Selection scene
@@ -34,16 +40,20 @@ public class MainMenu : MonoBehaviour {
     // Set the chosen name
     public void SetName()
     {
-        GameManager.gameManager.SetCharacterName(nameInputField.text);
-        SceneManager.LoadScene("Save As");
+        GameManager.gameManager.characterName = nameInputField.text;
     }
 
     // Save the player data
-    public void SaveData(int saveProfile)
+    public void SaveData()
     {
-        GameManager.gameManager.SetSaveProfileNumber(saveProfile);
         GameManager.gameManager.Save();
         SceneManager.LoadScene("Tutorial");
+    }
+
+    // Set save profile number
+    public void SetSaveProfile(int saveProfile)
+    {
+        GameManager.gameManager.saveProfileNumber = saveProfile;
     }
     
     // Load the player data

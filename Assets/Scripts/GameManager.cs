@@ -8,13 +8,13 @@ using System.IO;
 public class GameManager : MonoBehaviour {
 
     // Save profile settings
-    int saveProfileNumber;
-    string characterGender;
-    string characterName;
+    public int saveProfileNumber;
+    public string characterGender;
+    public string characterName;
 
     // Game settings
-    bool muteMusic;
-    bool muteSounds;
+    public bool muteMusic;
+    public bool muteSounds;
 
     public static GameManager gameManager;
 
@@ -30,24 +30,6 @@ public class GameManager : MonoBehaviour {
             Destroy(gameObject);
         }
 	}
-
-    // Set the save profile number
-    public void SetSaveProfileNumber(int saveProfileNumber)
-    {
-        this.saveProfileNumber = saveProfileNumber;
-    }
-
-    // Set the characters gender
-    public void SetCharacterGender(string characterGender)
-    {
-        this.characterGender = characterGender;
-    }
-
-    // Set the characters name
-    public void SetCharacterName(string characterName)
-    {
-        this.characterName = characterName;
-    }
 
 
     // Save the game status
@@ -72,7 +54,7 @@ public class GameManager : MonoBehaviour {
             SaveData saveData = (SaveData)formatter.Deserialize(file);
             file.Close();
 
-            return saveData.GetCharacterName();
+            return saveData.characterName;
         }
         else
         {
@@ -90,9 +72,9 @@ public class GameManager : MonoBehaviour {
             SaveData saveData = (SaveData)formatter.Deserialize(file);
             file.Close();
 
-            this.saveProfileNumber = saveData.GetSaveProfileNumber();
-            this.characterGender = saveData.GetCharacterGender();
-            this.characterName = saveData.GetCharacterName();
+            this.saveProfileNumber = saveData.saveProfileNumber;
+            this.characterGender = saveData.characterGender;
+            this.characterName = saveData.characterName;
         }
     }
 
@@ -107,9 +89,9 @@ public class GameManager : MonoBehaviour {
 [Serializable]
 class SaveData
 {
-    int saveProfileNumber;
-    string characterGender;
-    string characterName;
+    public int saveProfileNumber;
+    public string characterGender;
+    public string characterName;
 
     float coins;
     IDictionary<int, float> levelHighscore;
@@ -120,20 +102,5 @@ class SaveData
         this.saveProfileNumber = saveProfileNumber;
         this.characterGender = characterGender;
         this.characterName = characterName;
-    }
-
-    public int GetSaveProfileNumber()
-    {
-        return this.saveProfileNumber;
-    }
-
-    public string GetCharacterGender()
-    {
-        return this.characterGender;
-    }
-
-    public string GetCharacterName()
-    {
-        return this.characterName;
     }
 }

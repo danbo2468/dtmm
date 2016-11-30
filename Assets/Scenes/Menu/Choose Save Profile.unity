@@ -1882,7 +1882,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1942123196}
-        m_MethodName: SwitchToGenderSelectionScene
+        m_MethodName: SwitchToSaveAsScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -10,10 +10,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Menu/Choose Save Profile.unity
   - enabled: 1
+    path: Assets/Scenes/Menu/Save As.unity
+  - enabled: 1
     path: Assets/Scenes/Menu/Gender Selection.unity
   - enabled: 1
     path: Assets/Scenes/Menu/Name Selection.unity
-  - enabled: 1
-    path: Assets/Scenes/Menu/Save As.unity
   - enabled: 1
     path: Assets/Scenes/Levels/Tutorial.unity
