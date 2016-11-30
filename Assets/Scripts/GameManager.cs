@@ -13,8 +13,8 @@ public class GameManager : MonoBehaviour {
     public string characterName;
 
     // Game settings
-    public bool muteMusic;
-    public bool muteSounds;
+    public bool backgroundMusic;
+    public bool soundEffects;
 
     public static GameManager gameManager;
 
@@ -31,6 +31,41 @@ public class GameManager : MonoBehaviour {
         }
 	}
 
+    // Load the Player Prefs
+    void Start()
+    {
+        if (PlayerPrefs.HasKey("Background Music"))
+        {
+            if (PlayerPrefs.GetInt("Background Music") == 1)
+            {
+                backgroundMusic = true;
+            }
+            else
+            {
+                backgroundMusic = false;
+            }
+        }
+        else
+        {
+            backgroundMusic = true;
+        }
+
+        if (PlayerPrefs.HasKey("Sound Effects"))
+        {
+            if (PlayerPrefs.GetInt("Sound Effects") == 1)
+            {
+                soundEffects = true;
+            }
+            else
+            {
+                soundEffects = false;
+            }
+        }
+        else
+        {
+            soundEffects = true;
+        }
+    } 
 
     // Save the game status
     public void Save()

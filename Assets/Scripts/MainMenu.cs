@@ -71,6 +71,18 @@ public class MainMenu : MonoBehaviour {
         SceneManager.LoadScene(scene, LoadSceneMode.Single);
     }
 
+    // Go to the Settings Scene
+    public void SwitchToSettingsScene()
+    {
+        SceneManager.LoadScene("Settings");
+    }
+
+    // Save the game settings
+    public void SaveSettings()
+    {
+        SceneManager.LoadScene("Welcome Screen");
+    }
+
 
     // Exit the game
     public void QuitGame()
