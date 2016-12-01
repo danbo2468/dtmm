@@ -27,6 +27,7 @@ public class EnemyController : MonoBehaviour {
         health -= damage;
         if (health <= 0)
         {
+            ScoreManager.scoreManager.AddToScore(killingScore);
             GetComponent<Animator>().SetBool("Killed", true);
             GetComponent<BoxCollider2D>().enabled = false;
             GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
