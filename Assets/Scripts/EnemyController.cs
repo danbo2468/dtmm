@@ -7,6 +7,7 @@ public class EnemyController : MonoBehaviour {
     public float speed;
     public float health;
     public float touchDamage;
+    public float killingScore;
 
     // Dying
     public float timeAfterDeath;

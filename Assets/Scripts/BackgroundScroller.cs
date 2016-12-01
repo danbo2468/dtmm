@@ -9,6 +9,7 @@ public class BackgroundScroller : MonoBehaviour {
 
     Transform cameraTransform;
     float spriteWidth;
+    public float imageWidth;
 
     // Use this for initialization
     void Start () {
@@ -31,7 +32,7 @@ public class BackgroundScroller : MonoBehaviour {
         if ((transform.position.x + spriteWidth + 10) < cameraTransform.position.x)
         {
             Vector3 newPos = transform.position;
-            newPos.x += 73;
+            newPos.x += imageWidth;
             transform.position = newPos;
         }
     }
