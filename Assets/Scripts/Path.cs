@@ -58,9 +58,15 @@ public class Path : MonoBehaviour {
         return reachableNodes;
     }
 
-    public List<Transform> GetNextUnreachableNode()
+    public Transform GetNextUnreachableNode()
     {
-        return coreNodes;
+        List<Transform> temp = GetAllCoreNodes();
+        //bool found = false;
+        for (int i = 0; i < temp.Count; i++)
+            if (temp[i].tag == "LevelUnreachable")
+                return temp[i];
+
+        return null;
     }
 
     public List<Transform> GetPathNodesFromCoreNode(Transform coreNode)
@@ -74,5 +80,10 @@ public class Path : MonoBehaviour {
         return pathNodes;
     }
 
+    public Transform GetParentNode(Transform pathNode)
+    {
+        Debug.Log(pathNode.transform.parent);
+        return pathNode.transform.parent;
+    }
 
 }
