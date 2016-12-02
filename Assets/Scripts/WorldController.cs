@@ -10,25 +10,34 @@ public class WorldController : MonoBehaviour {
 
     public Path script;
     public bool isMoving;
+    public Transform playerIsAtNode;
 
 	// Use this for initialization
 	void Start () {
-        // Ask GameManager for all level completions and highscores.
+        // Ask GameManager for all level completions, highscores and last player location.
         script = path.GetComponent<Path>();
         HandleMovement();
         isMoving = false;
+        playerIsAtNode = script.GetFirstNodeOfScene();
     }
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+    {
+        //List<Touch> touches = InputHelper.GetTouches();
+        //foreach (Touch touch in touches)
+            //HandleInput(touch);
+
+        //if(Input.touchCount > 0)
+        //HandleTouchEvents(Input.GetTouch(0));
         // Listen for input
 
         // if player tapped a node and the character is already moving, stop moving when next node is reached.
 
         // if the player is still moving, don't call any node calculations
-	}
+    }
 
-    public void HandleInput()
+    public void HandleInput(Touch touch)
     {
         // handle touch events
     }
@@ -53,6 +62,8 @@ public class WorldController : MonoBehaviour {
 
         Transform lastUnreachableNode = script.GetNextUnreachableNode();
         Debug.Log(lastUnreachableNode);
+
+        Debug.Log(script.GetFirstNodeOfScene());
     }
 
     

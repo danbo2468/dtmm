@@ -8,6 +8,7 @@ public class Path : MonoBehaviour {
     private List<Transform> coreNodes;
     private List<Transform> reachableNodes;
     private List<Transform> pathNodes;
+    private Transform firstNode;
 
     // This is just for unity, drawing the line on the worldmap.
     private void OnDrawGizmosSelected()
@@ -67,6 +68,17 @@ public class Path : MonoBehaviour {
                 return temp[i];
 
         return null;
+    }
+
+    public Transform GetFirstNodeOfScene()
+    {
+        coreNodes = new List<Transform>();
+        Transform[] nodeTransforms = GetComponentsInChildren<Transform>();
+        for (int i = 0; i < nodeTransforms.Length; i++)
+            if (nodeTransforms[i] != transform && nodeTransforms[i].tag != "Path")
+                return nodeTransforms[i];
+
+        return null; // No nodes found.
     }
 
     public List<Transform> GetPathNodesFromCoreNode(Transform coreNode)
