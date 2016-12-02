@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 public class Path : MonoBehaviour {
-    // https://www.youtube.com/watch?v=Lo5PPqHmsIM
     public Color lineColor;
 
     private List<Transform> drawNodes;
@@ -64,9 +63,14 @@ public class Path : MonoBehaviour {
         return coreNodes;
     }
 
-    public List<Transform> GetPathNodesFromCoreNode(Transform node)
+    public List<Transform> GetPathNodesFromCoreNode(Transform coreNode)
     {
         pathNodes = new List<Transform>();
+        Transform[] nodeTransforms = coreNode.GetComponentsInChildren<Transform>();
+        for (int i = 0; i < nodeTransforms.Length; i++)
+            if (nodeTransforms[i].tag == "Path")
+                pathNodes.Add(nodeTransforms[i]);
+   
         return pathNodes;
     }
 
