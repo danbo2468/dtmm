@@ -10,6 +10,7 @@ public class WorldController : MonoBehaviour {
 
     public Path script;
     public bool isMoving;
+    public Transform targetPosition;
     public Transform playerIsAtNode;
 
 	// Use this for initialization
@@ -24,11 +25,12 @@ public class WorldController : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        //List<Touch> touches = InputHelper.GetTouches();
-        //foreach (Touch touch in touches)
-            //HandleInput(touch);
-
-        //if(Input.touchCount > 0)
+        List<Touch> touches = InputHelper.GetTouches();
+        if (touches.Count > 0)
+            foreach (Touch touch in touches)
+            {
+                HandleInput(touch);
+            }
         //HandleTouchEvents(Input.GetTouch(0));
         // Listen for input
 
@@ -39,7 +41,16 @@ public class WorldController : MonoBehaviour {
 
     public void HandleInput(Touch touch)
     {
-        // handle touch events
+        Debug.Log(touch.position);
+        Ray ray = Camera.main.ScreenPointToRay(touch.position);
+
+
+        Vector3 worldPoint = Camera.main.ScreenToWorldPoint(touch.position);
+        Vector2 touchPosition = new Vector2(worldPoint.x, worldPoint.y);
+        Collider2D hit = Physics2D.OverlapPoint(touchPosition);
+        Debug.Log(touch.position);
+        if (hit)
+            Debug.Log(hit.transform.gameObject.name);
     }
 
     public void HandleMovement()

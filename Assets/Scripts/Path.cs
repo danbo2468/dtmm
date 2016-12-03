@@ -70,17 +70,6 @@ public class Path : MonoBehaviour {
         return null;
     }
 
-    public Transform GetFirstNodeOfScene()
-    {
-        coreNodes = new List<Transform>();
-        Transform[] nodeTransforms = GetComponentsInChildren<Transform>();
-        for (int i = 0; i < nodeTransforms.Length; i++)
-            if (nodeTransforms[i] != transform && nodeTransforms[i].tag != "Path")
-                return nodeTransforms[i];
-
-        return null; // No nodes found.
-    }
-
     public List<Transform> GetPathNodesFromCoreNode(Transform coreNode)
     {
         pathNodes = new List<Transform>();
@@ -98,4 +87,14 @@ public class Path : MonoBehaviour {
         return pathNode.transform.parent;
     }
 
+    public Transform GetFirstNodeOfScene()
+    {
+        coreNodes = new List<Transform>();
+        Transform[] nodeTransforms = GetComponentsInChildren<Transform>();
+        for (int i = 0; i < nodeTransforms.Length; i++)
+            if (nodeTransforms[i] != transform && nodeTransforms[i].tag != "Path")
+                return nodeTransforms[i];
+
+        return null; // No nodes found.
+    }
 }

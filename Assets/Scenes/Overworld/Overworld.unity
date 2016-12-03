@@ -521,6 +521,9 @@ MonoBehaviour:
   player: {fileID: 48144639}
   path: {fileID: 1753598564}
   script: {fileID: 0}
+  isMoving: 0
+  targetPosition: {fileID: 0}
+  playerIsAtNode: {fileID: 0}
 --- !u!4 &355564811
 Transform:
   m_ObjectHideFlags: 0
@@ -1211,6 +1214,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 985514162}
   - 212: {fileID: 985514163}
+  - 58: {fileID: 985514164}
   m_Layer: 0
   m_Name: HouseNode
   m_TagString: LevelUncompleted
@@ -1264,6 +1268,20 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
+--- !u!58 &985514164
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 985514161}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 2.5599997
 --- !u!1 &991663565
 GameObject:
   m_ObjectHideFlags: 0
