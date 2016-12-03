@@ -25,7 +25,7 @@ public class WorldController : MonoBehaviour {
         script = path.GetComponent<Path>();
         HandleMovement();
         isMoving = false;
-        isValidMove = false;
+        isValidMove = true;
         playerIsAtNode = script.GetFirstNodeOfScene();
     }
 	
@@ -57,14 +57,19 @@ public class WorldController : MonoBehaviour {
         if (hit)
             foreach (string tag in tagArray)
                 if (!isValidMove)
-                    if (hit.transform.gameObject.tag != tag)
-                        isValidMove = true;             
+                    if (hit.transform.gameObject.tag == tag)
+                        isValidMove = false;         
     }
 
     public void HandleMovement()
     {
         //player.transform.position = Vector2.Lerp()
+        Test2();
         
+    }
+
+    public void Test()
+    {
         List<Transform> coreNodes = script.GetAllCoreNodes();
         List<Transform> reachableNodes = script.GetReachableCoreNodes(coreNodes);
         List<Transform> pathNodes = new List<Transform>();
@@ -84,9 +89,11 @@ public class WorldController : MonoBehaviour {
         Debug.Log(script.GetFirstNodeOfScene());
     }
 
-    public void Test()
+    public void Test2()
     {
-
+        List<Transform> coreNodes = script.GetAllCoreNodes();
+        foreach (Transform node in coreNodes)
+            script.getNextCoreNodeOfPath(node);
     }
 
     

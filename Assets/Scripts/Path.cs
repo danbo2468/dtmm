@@ -65,6 +65,8 @@ public class Path : MonoBehaviour {
         // !directionNext && !noDirection :: Go to previous core node
         // noDirection :: Player tapped the node that is currently active.
 
+        // get path nodes from core nodes, but when !directionNext, it should get the path nodes of the previous core node!
+
         return null;
     }
 
@@ -128,6 +130,24 @@ public class Path : MonoBehaviour {
                 return nodeTransforms[i];
 
         return null; // No nodes found.
+    }
+
+    public Transform getNextCoreNodeOfPath(Transform coreNode)
+    {
+        List<Transform> temp = GetAllCoreNodes();
+        Transform returnNode = coreNode;
+
+        for (int i = 0; i < temp.Count-1; i++) // perhaps Count - 1
+        {
+            if (temp[i] == coreNode)
+            {
+                Debug.Log("We are now at the node: " + temp[i].name);
+                returnNode = temp[i + 1];
+                Debug.Log("The next node is: " + returnNode.name);
+
+            }
+        }
+        return returnNode;
     }
 
 }
