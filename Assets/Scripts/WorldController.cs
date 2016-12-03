@@ -32,7 +32,6 @@ public class WorldController : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        Debug.Log(isValidMove);
         List<Touch> touches = InputHelper.GetTouches();
         if (touches.Count > 0)
             foreach (Touch touch in touches)

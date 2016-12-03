@@ -9,6 +9,7 @@ public class Path : MonoBehaviour {
     private List<Transform> reachableNodes;
     private List<Transform> pathNodes;
     private Transform firstNode;
+    private Stack<Transform> travelingPath;
 
     // This is just for unity, drawing the line on the worldmap.
     private void OnDrawGizmosSelected()
@@ -39,6 +40,31 @@ public class Path : MonoBehaviour {
     // This gunna be the boss methods of methods.
     public List<Transform> CalculateTravelingPath(Transform startingNode, Transform targetNode)
     {
+        // First we have to define the direction we have to go. 
+        List<Transform> temp = GetAllCoreNodes();
+        int startingNodeInt = 0;
+        int targetNodeInt = 0;
+        bool directionNext = false;
+        bool noDirection = false;
+
+        for (int i = 0; i < temp.Count; i++)
+        {
+            if (temp[i] == startingNode)
+                startingNodeInt = i;
+            if (temp[i] == targetNode)
+                targetNodeInt = i;               
+        }
+
+        if (startingNodeInt < targetNodeInt)
+            directionNext = true;
+        else if (startingNodeInt == targetNodeInt)
+            noDirection = true;
+        
+        // Now we know which way we have to go.
+        // directionNext && !noDirection :: Go to next core node
+        // !directionNext && !noDirection :: Go to previous core node
+        // noDirection :: Player tapped the node that is currently active.
+
         return null;
     }
 
