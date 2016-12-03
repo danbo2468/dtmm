@@ -36,6 +36,12 @@ public class Path : MonoBehaviour {
         }
     }
 
+    // This gunna be the boss methods of methods.
+    public List<Transform> CalculateTravelingPath(Transform startingNode, Transform targetNode)
+    {
+        return null;
+    }
+
     public List<Transform> GetAllCoreNodes()
     {
         coreNodes = new List<Transform>();
@@ -97,4 +103,5 @@ public class Path : MonoBehaviour {
 
         return null; // No nodes found.
     }
+
 }

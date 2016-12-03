@@ -8,17 +8,23 @@ public class WorldController : MonoBehaviour {
     [SerializeField]
     public GameObject path;
 
-    public Path script;
-    public bool isMoving;
     public Transform targetPosition;
     public Transform playerIsAtNode;
 
+    public Path script;
+
+    public string[] tagArray = { "Path", "LevelUnreachable", "AddMoreForbiddenTagsHere" };
+    public bool isMoving;
+    public bool isValidMove;
+
+    
 	// Use this for initialization
 	void Start () {
         // Ask GameManager for all level completions, highscores and last player location.
         script = path.GetComponent<Path>();
         HandleMovement();
         isMoving = false;
+        isValidMove = false;
         playerIsAtNode = script.GetFirstNodeOfScene();
     }
 	
@@ -41,16 +47,16 @@ public class WorldController : MonoBehaviour {
 
     public void HandleInput(Touch touch)
     {
-        Debug.Log(touch.position);
         Ray ray = Camera.main.ScreenPointToRay(touch.position);
-
-
         Vector3 worldPoint = Camera.main.ScreenToWorldPoint(touch.position);
         Vector2 touchPosition = new Vector2(worldPoint.x, worldPoint.y);
         Collider2D hit = Physics2D.OverlapPoint(touchPosition);
-        Debug.Log(touch.position);
+
         if (hit)
-            Debug.Log(hit.transform.gameObject.name);
+            foreach (string tag in tagArray)
+                if (!isValidMove)
+                    if (hit.transform.gameObject.tag != tag)
+                        isValidMove = true;             
     }
 
     public void HandleMovement()
