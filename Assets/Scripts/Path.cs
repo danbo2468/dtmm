@@ -78,7 +78,6 @@ public class Path : MonoBehaviour {
             if (nodeTransforms[i] != transform && nodeTransforms[i].tag != "Path")
                 coreNodes.Add(nodeTransforms[i]);
 
-        Debug.Log("Expected number = 6, actual number: " + coreNodes.Count);
         return coreNodes;
     }
 
@@ -89,14 +88,12 @@ public class Path : MonoBehaviour {
             if (coreNodes[i].tag != "LevelUnreachable")
                 reachableNodes.Add(coreNodes[i]);
 
-        Debug.Log("Expected number = 3, actual number: " + reachableNodes.Count);
         return reachableNodes;
     }
 
     public Transform GetNextUnreachableNode()
     {
         List<Transform> temp = GetAllCoreNodes();
-        //bool found = false;
         for (int i = 0; i < temp.Count; i++)
             if (temp[i].tag == "LevelUnreachable")
                 return temp[i];
@@ -117,7 +114,6 @@ public class Path : MonoBehaviour {
 
     public Transform GetParentNode(Transform pathNode)
     {
-        Debug.Log(pathNode.transform.parent);
         return pathNode.transform.parent;
     }
 
@@ -141,10 +137,24 @@ public class Path : MonoBehaviour {
         {
             if (temp[i] == coreNode)
             {
-                Debug.Log("We are now at the node: " + temp[i].name);
                 returnNode = temp[i + 1];
-                Debug.Log("The next node is: " + returnNode.name);
+            }
+        }
+        return returnNode;
+    }
 
+    public Transform getPreviousCoreNodeOfPath(Transform coreNode)
+    {
+        List<Transform> temp = GetAllCoreNodes();
+        Transform returnNode = coreNode;
+
+        for (int i = 1; i < temp.Count; i++) // perhaps Count - 1
+        {
+            if (temp[i] == coreNode)
+            {
+                Debug.Log("We are now at the node: " + temp[i].name);
+                returnNode = temp[i - 1];
+                Debug.Log("The previous node is: " + returnNode.name);
             }
         }
         return returnNode;

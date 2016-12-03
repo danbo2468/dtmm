@@ -94,6 +94,9 @@ public class WorldController : MonoBehaviour {
         List<Transform> coreNodes = script.GetAllCoreNodes();
         foreach (Transform node in coreNodes)
             script.getNextCoreNodeOfPath(node);
+
+        foreach (Transform node in coreNodes)
+            script.getPreviousCoreNodeOfPath(node);
     }
 
     
