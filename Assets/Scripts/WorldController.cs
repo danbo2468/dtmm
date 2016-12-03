@@ -9,6 +9,7 @@ public class WorldController : MonoBehaviour {
     public GameObject path;
 
     public Transform targetPosition;
+    public Transform nextTargetPosition;
     public Transform playerIsAtNode;
 
     public Path script;
@@ -31,11 +32,13 @@ public class WorldController : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
+        Debug.Log(isValidMove);
         List<Touch> touches = InputHelper.GetTouches();
         if (touches.Count > 0)
             foreach (Touch touch in touches)
             {
                 HandleInput(touch);
+
             }
         //HandleTouchEvents(Input.GetTouch(0));
         // Listen for input
@@ -69,7 +72,6 @@ public class WorldController : MonoBehaviour {
         Debug.Log("Expected numbers are: 0 | 0 | 8 ||| 7 8 10 ");
         foreach (Transform node in reachableNodes)
         {
-            ;
             foreach (Transform node1 in script.GetPathNodesFromCoreNode(node))
             {
                 script.GetParentNode(node1);
@@ -81,6 +83,11 @@ public class WorldController : MonoBehaviour {
         Debug.Log(lastUnreachableNode);
 
         Debug.Log(script.GetFirstNodeOfScene());
+    }
+
+    public void Test()
+    {
+
     }
 
     
