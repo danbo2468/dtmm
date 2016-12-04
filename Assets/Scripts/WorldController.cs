@@ -17,6 +17,7 @@ public class WorldController : MonoBehaviour {
     public string[] tagArray = { "Path", "LevelUnreachable", "AddMoreForbiddenTagsHere" };
     public bool isMoving;
     public bool isValidMove;
+    public bool playerIsAtCoreNode;
 
     
 	// Use this for initialization
@@ -24,9 +25,9 @@ public class WorldController : MonoBehaviour {
         // Ask GameManager for all level completions, highscores and last player location.
         script = path.GetComponent<Path>();
         HandleMovement();
-        isMoving = false;
-        isValidMove = true;
+        isMoving = false;    
         playerIsAtNode = script.GetFirstNodeOfScene();
+        playerIsAtCoreNode = script.IsPlayerAtCoreNode(playerIsAtNode);
     }
 	
 	// Update is called once per frame
@@ -35,20 +36,32 @@ public class WorldController : MonoBehaviour {
         List<Touch> touches = InputHelper.GetTouches();
         if (touches.Count > 0)
             foreach (Touch touch in touches)
-            {
                 HandleInput(touch);
 
-            }
-        //HandleTouchEvents(Input.GetTouch(0));
-        // Listen for input
+        if (isValidMove) // we got a valid move! Let's put that as our next target position!
+            if (isMoving && playerIsAtCoreNode) // player is at a core node, so we can safely change direction if needed.
+                targetPosition = nextTargetPosition; // change current target to the new target.
 
-        // if player tapped a node and the character is already moving, stop moving when next node is reached.
+        if (targetPosition) // we got a target position, let's move towards it
+        {
+            Debug.Log('c');
+            isMoving = true;
+            HandleMovement();
+        }
+
+        else
+            isMoving = false; // we are no longer moving, thus reached our destination.
+
+
+        // if player tapped a node and the character is already moving, stop moving when next coreNode is reached.
 
         // if the player is still moving, don't call any node calculations
     }
 
     public void HandleInput(Touch touch)
     {
+        //Debug.Log('b');
+        isValidMove = true;
         Ray ray = Camera.main.ScreenPointToRay(touch.position);
         Vector3 worldPoint = Camera.main.ScreenToWorldPoint(touch.position);
         Vector2 touchPosition = new Vector2(worldPoint.x, worldPoint.y);
@@ -58,13 +71,29 @@ public class WorldController : MonoBehaviour {
             foreach (string tag in tagArray)
                 if (!isValidMove)
                     if (hit.transform.gameObject.tag == tag)
-                        isValidMove = false;         
+                        isValidMove = false;
+
+        if (isMoving)
+        {
+            nextTargetPosition = hit.transform.gameObject.transform;
+            //Debug.Log(hit.transform.gameObject.name);
+        }
+
+        else if(!isMoving)
+        {
+            targetPosition = hit.transform.gameObject.transform;
+        }
+
+        //Debug.Log(nextTargetPosition);
+        
     }
 
     public void HandleMovement()
     {
+        List<Transform> route = script.CalculateTravelingPath(playerIsAtNode, targetPosition);
+        Debug.Log(route.Count);
         //player.transform.position = Vector2.Lerp()
-        Test2();
+
         
     }
 
@@ -73,7 +102,6 @@ public class WorldController : MonoBehaviour {
         List<Transform> coreNodes = script.GetAllCoreNodes();
         List<Transform> reachableNodes = script.GetReachableCoreNodes(coreNodes);
         List<Transform> pathNodes = new List<Transform>();
-        Debug.Log("Expected numbers are: 0 | 0 | 8 ||| 7 8 10 ");
         foreach (Transform node in reachableNodes)
         {
             foreach (Transform node1 in script.GetPathNodesFromCoreNode(node))
@@ -93,12 +121,9 @@ public class WorldController : MonoBehaviour {
     {
         List<Transform> coreNodes = script.GetAllCoreNodes();
         foreach (Transform node in coreNodes)
-            script.getNextCoreNodeOfPath(node);
+            script.GetNextCoreNodeOfPath(node);
 
         foreach (Transform node in coreNodes)
-            script.getPreviousCoreNodeOfPath(node);
+            script.GetPreviousCoreNodeOfPath(node);
     }
-
-    
-   
 }

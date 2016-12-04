@@ -59,15 +59,29 @@ public class Path : MonoBehaviour {
             directionNext = true;
         else if (startingNodeInt == targetNodeInt)
             noDirection = true;
-        
+
         // Now we know which way we have to go.
         // directionNext && !noDirection :: Go to next core node
         // !directionNext && !noDirection :: Go to previous core node
         // noDirection :: Player tapped the node that is currently active.
 
-        // get path nodes from core nodes, but when !directionNext, it should get the path nodes of the previous core node!
+        // get path nodes from core nodes, but when !directionNext, it should get the path nodes of the previous core node in different order!
 
-        return null;
+        List<Transform> returnNodes = new List<Transform>();
+
+        if(!noDirection)
+            if(directionNext)
+                while(startingNode != targetNode)
+                {
+                    foreach (Transform node in GetPathNodesFromCoreNode(GetNextCoreNodeOfPath(startingNode)))
+                    {
+                        returnNodes.Add(node);
+                    }
+                    returnNodes.Add(GetNextCoreNodeOfPath(startingNode));
+                    startingNode = GetNextCoreNodeOfPath(startingNode);
+                }
+
+        return returnNodes;
     }
 
     public List<Transform> GetAllCoreNodes()
@@ -119,7 +133,6 @@ public class Path : MonoBehaviour {
 
     public Transform GetFirstNodeOfScene()
     {
-        coreNodes = new List<Transform>();
         Transform[] nodeTransforms = GetComponentsInChildren<Transform>();
         for (int i = 0; i < nodeTransforms.Length; i++)
             if (nodeTransforms[i] != transform && nodeTransforms[i].tag != "Path")
@@ -128,7 +141,7 @@ public class Path : MonoBehaviour {
         return null; // No nodes found.
     }
 
-    public Transform getNextCoreNodeOfPath(Transform coreNode)
+    public Transform GetNextCoreNodeOfPath(Transform coreNode)
     {
         List<Transform> temp = GetAllCoreNodes();
         Transform returnNode = coreNode;
@@ -143,7 +156,7 @@ public class Path : MonoBehaviour {
         return returnNode;
     }
 
-    public Transform getPreviousCoreNodeOfPath(Transform coreNode)
+    public Transform GetPreviousCoreNodeOfPath(Transform coreNode)
     {
         List<Transform> temp = GetAllCoreNodes();
         Transform returnNode = coreNode;
@@ -152,12 +165,20 @@ public class Path : MonoBehaviour {
         {
             if (temp[i] == coreNode)
             {
-                Debug.Log("We are now at the node: " + temp[i].name);
                 returnNode = temp[i - 1];
-                Debug.Log("The previous node is: " + returnNode.name);
             }
         }
         return returnNode;
+    }
+
+    public bool IsPlayerAtCoreNode(Transform node)
+    {
+        List<Transform> nodes = GetAllCoreNodes();
+        foreach(Transform item in nodes)
+            if (node == item)
+                return true;
+        
+        return false;
     }
 
 }
