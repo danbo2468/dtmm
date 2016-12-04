@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using System;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
@@ -16,7 +17,9 @@ public class GameManager : MonoBehaviour {
     public bool backgroundMusic;
     public bool soundEffects;
 
+    // Mechanics
     public static GameManager gameManager;
+    public ScoreManager scoreManager;
 
 	// Use this for initialization
 	void Awake () {
@@ -117,6 +120,19 @@ public class GameManager : MonoBehaviour {
     public void DeleteSaveProfile(int saveProfileNumber)
     {
         File.Delete(Application.persistentDataPath + "/saveProfile" + saveProfileNumber + ".dat");
+    }
+
+    // Set the score manager for this level
+    public void SetScoreManager(ScoreManager scoreManager)
+    {
+        this.scoreManager = scoreManager;
+    }
+
+    // Relaod the level
+    public void RestartLevel()
+    {
+        int scene = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(scene, LoadSceneMode.Single);
     }
 }
 

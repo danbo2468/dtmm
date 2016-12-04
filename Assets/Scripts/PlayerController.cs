@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -134,8 +133,7 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.tag == "Water")
         {
-            int scene = SceneManager.GetActiveScene().buildIndex;
-            SceneManager.LoadScene(scene, LoadSceneMode.Single);
+            GameManager.gameManager.RestartLevel();
         }
     }
 }

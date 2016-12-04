@@ -6,23 +6,14 @@ public class ScoreManager : MonoBehaviour {
 
     float currentScore;
     float collectedCoins;
-    Text scoreText;
+    public Text scoreText;
     public static ScoreManager scoreManager;
 
     // Use this for initialization
-    void Awake () {
-        if (scoreManager == null)
-        {
-            DontDestroyOnLoad(gameObject);
-            scoreManager = this;
-        }
-        else if (scoreManager != this)
-        {
-            Destroy(gameObject);
-        }
-        scoreText = GetComponent<Text>();
+    void Start () {
         currentScore = 0;
         collectedCoins = 0;
+        GameManager.gameManager.SetScoreManager(this);
 	}
 
     void Update()
