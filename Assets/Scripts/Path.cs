@@ -81,7 +81,16 @@ public class Path : MonoBehaviour {
                     startingNode = GetNextCoreNodeOfPath(startingNode);
                 }
 
+        if(!noDirection)
+            if(!directionNext)
+                while(startingNode != targetNode)
+                {
+                    
+                }
+
         return returnNodes;
+
+
     }
 
     public List<Transform> GetAllCoreNodes()

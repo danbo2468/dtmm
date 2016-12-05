@@ -36,9 +36,13 @@ public class WorldController : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
+        if (script.IsPlayerAtCoreNode(player.transform))
+            playerIsAtNode = player.transform.gameObject.transform;
+
+            //script.IsPlayerAtCoreNode(player.transform)
+
         if (!isMoving)
         {
-            Debug.Log("im responding");
             List<Touch> touches = InputHelper.GetTouches();
             if (touches.Count > 0)
                 foreach (Touch touch in touches)
@@ -50,18 +54,18 @@ public class WorldController : MonoBehaviour {
         }
             if (targetPosition && !isMoving) // we got a target position, let's move towards it
             {
-                Debug.Log(isMoving);
                 List<Transform> route = script.CalculateTravelingPath(playerIsAtNode, targetPosition);
+
+           // foreach (Transform path in route)
+                //Debug.Log(path.name);
+
                 if (currentWayPoint < route.Count)
                 {
                     if(targetWayPoint == null)
                         targetWayPoint = route[currentWayPoint];
                     HandleMovement(route);
-                }
-                    
-                
+                } 
             }
-
             else
                 isMoving = false; // we are no longer moving, thus reached our destination.
         
