@@ -11,8 +11,8 @@ public class Collectable : MonoBehaviour {
     {
         if(other.gameObject.tag == "Player")
         {
-            GameManager.gameManager.scoreManager.AddToScore(value);
-            GameManager.gameManager.scoreManager.CollectedCoins(1);
+            GameManager.gameManager.levelManager.AddToScore(value);
+            GameManager.gameManager.levelManager.CollectedCoins(1);
             gameObject.SetActive(false);
         }
     }

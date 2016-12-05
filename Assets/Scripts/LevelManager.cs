@@ -2,23 +2,31 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public class ScoreManager : MonoBehaviour {
+public class LevelManager : MonoBehaviour {
 
     float currentScore;
     float collectedCoins;
     public Text scoreText;
-    public static ScoreManager scoreManager;
+    public int level;
+    public GameObject levelEnd;
+    PlayerController player;
 
     // Use this for initialization
     void Start () {
+        player = FindObjectOfType<PlayerController>();
         currentScore = 0;
         collectedCoins = 0;
-        GameManager.gameManager.SetScoreManager(this);
+        GameManager.gameManager.SetLevelManager(this);
 	}
 
     void Update()
     {
         scoreText.text = "Score: " + (int) currentScore;
+        if(player.transform.position.x > levelEnd.transform.position.x)
+        {
+            SaveScore();
+            GameManager.gameManager.RestartLevel();
+        }
     }
 
     public void AddToScore(float points)
@@ -33,7 +41,9 @@ public class ScoreManager : MonoBehaviour {
 
     void SaveScore()
     {
-
+        GameManager.gameManager.SetLevelHigschore(level, currentScore);
+        GameManager.gameManager.AddCoinAmount(collectedCoins);
+        GameManager.gameManager.Save();
     }
 
     void ResetScore()

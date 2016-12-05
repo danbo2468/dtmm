@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using System;
@@ -12,6 +11,8 @@ public class GameManager : MonoBehaviour {
     public int saveProfileNumber;
     public string characterGender;
     public string characterName;
+    public float[] levelHighscores;
+    public float coins;
 
     // Game settings
     public bool backgroundMusic;
@@ -19,7 +20,7 @@ public class GameManager : MonoBehaviour {
 
     // Mechanics
     public static GameManager gameManager;
-    public ScoreManager scoreManager;
+    public LevelManager levelManager;
 
 	// Use this for initialization
 	void Awake () {
@@ -37,6 +38,8 @@ public class GameManager : MonoBehaviour {
     // Load the Player Prefs
     void Start()
     {
+        levelHighscores = new float[14];
+
         if (PlayerPrefs.HasKey("Background Music"))
         {
             if (PlayerPrefs.GetInt("Background Music") == 1)
@@ -76,7 +79,7 @@ public class GameManager : MonoBehaviour {
         BinaryFormatter formatter = new BinaryFormatter();
         FileStream file = File.Create(Application.persistentDataPath + "/saveProfile" + this.saveProfileNumber + ".dat");
 
-        SaveData saveData = new SaveData(this.saveProfileNumber, this.characterGender, this.characterName);
+        SaveData saveData = new SaveData(this.saveProfileNumber, this.characterGender, this.characterName, this.levelHighscores, this.coins);
 
         formatter.Serialize(file, saveData);
         file.Close();
@@ -113,6 +116,8 @@ public class GameManager : MonoBehaviour {
             this.saveProfileNumber = saveData.saveProfileNumber;
             this.characterGender = saveData.characterGender;
             this.characterName = saveData.characterName;
+            this.levelHighscores = saveData.levelHighscores;
+            this.coins = saveData.coins;
         }
     }
 
@@ -122,10 +127,10 @@ public class GameManager : MonoBehaviour {
         File.Delete(Application.persistentDataPath + "/saveProfile" + saveProfileNumber + ".dat");
     }
 
-    // Set the score manager for this level
-    public void SetScoreManager(ScoreManager scoreManager)
+    // Set the level manager for this level
+    public void SetLevelManager(LevelManager levelManager)
     {
-        this.scoreManager = scoreManager;
+        this.levelManager = levelManager;
     }
 
     // Relaod the level
@@ -133,6 +138,21 @@ public class GameManager : MonoBehaviour {
     {
         int scene = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(scene, LoadSceneMode.Single);
+    }
+
+    // Set the highscore for a certain level
+    public void SetLevelHigschore(int level, float highscore)
+    {
+        if (highscore > levelHighscores[level])
+        {
+            levelHighscores[level] = highscore;
+        }
+    }
+
+    // Add coins to the current amount
+    public void AddCoinAmount(float collectedCoins)
+    {
+        coins += collectedCoins;
     }
 }
 
@@ -143,15 +163,15 @@ class SaveData
     public int saveProfileNumber;
     public string characterGender;
     public string characterName;
+    public float[] levelHighscores;
+    public float coins;
 
-    float coins;
-    IDictionary<int, float> levelHighscore;
-
-    public SaveData(int saveProfileNumber, string characterGender, string characterName)
+    public SaveData(int saveProfileNumber, string characterGender, string characterName, float[] levelHighscores, float coins)
     {
-        levelHighscore = new Dictionary<int, float>();
         this.saveProfileNumber = saveProfileNumber;
         this.characterGender = characterGender;
         this.characterName = characterName;
+        this.levelHighscores = levelHighscores;
+        this.coins = coins;
     }
 }
