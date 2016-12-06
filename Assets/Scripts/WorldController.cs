@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
-public class WorldController : MonoBehaviour {
+public class WorldController : MonoBehaviour
+{
     [SerializeField]
     public GameObject player;
     [SerializeField]
@@ -22,8 +24,138 @@ public class WorldController : MonoBehaviour {
 
     public int currentWayPoint = 0;
 
+    public bool moveNext;
+    public bool movePrevious;
 
-    
+    public bool MoveNext
+    {
+        get
+        {
+            return moveNext;
+        }
+
+        set
+        {
+            moveNext = value;
+        }
+    }
+
+    public bool MovePrevious
+    {
+        get
+        {
+            return movePrevious;
+        }
+
+        set
+        {
+            movePrevious = value;
+        }
+    }
+
+    void Start()
+    {
+        // Ask GameManager for all level completions, highscores and last player location.
+        script = path.GetComponent<Path>();
+        playerIsAtNode = script.GetFirstNodeOfScene();
+        playerIsAtCoreNode = script.IsPlayerAtCoreNode(playerIsAtNode);
+    }
+
+    void Update()
+    {
+        Movement();
+    }
+
+    void Movement()
+    {
+        
+        if (moveNext)
+        {        
+            List<Transform> route = script.GetRoute(playerIsAtNode, true);
+            if (route.Count > 0)
+            {
+                
+                if (currentWayPoint < route.Count)
+                {
+                    if (targetWayPoint == null)
+                    {
+                        targetWayPoint = route[currentWayPoint];
+                    }
+                }
+
+                if (player.transform.position == targetWayPoint.position)
+                {
+                    currentWayPoint++;
+                    targetWayPoint = route[currentWayPoint];
+                }
+
+                player.transform.position = Vector2.MoveTowards(new Vector2(player.transform.position.x, player.transform.position.y), targetWayPoint.position, 14.5f * Time.deltaTime);
+
+                if (player.transform.position == route[route.Count - 1].position)
+                {
+                    currentWayPoint = 0;
+                    playerIsAtNode = targetWayPoint;
+                    moveNext = false;
+                    targetWayPoint = null;                   
+                }
+            }
+        }
+        if (movePrevious)
+        {
+            
+            List<Transform> route = script.GetRoute(playerIsAtNode, false);
+            if (route.Count > 0)
+            {
+                if (currentWayPoint < route.Count)
+                {
+                    if (targetWayPoint == null)
+                    {
+                        targetWayPoint = route[currentWayPoint];
+                    }
+                }
+
+                if (player.transform.position == targetWayPoint.position)
+                {
+                    targetWayPoint = route[currentWayPoint];
+                    currentWayPoint++;
+                }
+
+                player.transform.position = Vector2.MoveTowards(new Vector2(player.transform.position.x, player.transform.position.y), targetWayPoint.position, 14.5f * Time.deltaTime);
+
+                if (player.transform.position == route[route.Count - 1].position)
+                {
+                    currentWayPoint = 0;
+                    playerIsAtNode = targetWayPoint;
+                    movePrevious = false;
+                    targetWayPoint = null;     
+                }
+            }     
+        }
+    }
+
+    public void DisableButtons()
+    {
+        GameObject buttons = GameObject.FindGameObjectWithTag("LevelCanvas");
+        Button[] button = buttons.GetComponentsInChildren<Button>();
+        foreach(Button but in button)
+        {
+            but.interactable = false;
+        }
+    }
+
+    public void EnableButtons()
+    {
+        GameObject buttons = GameObject.FindGameObjectWithTag("LevelCanvas");
+        Button[] button = buttons.GetComponentsInChildren<Button>();
+        foreach (Button but in button)
+        {
+            but.interactable = true;
+        }
+    }
+
+}
+    /* OLD WORLD CONTROLLER
+
 	// Use this for initialization
 	void Start () {
         // Ask GameManager for all level completions, highscores and last player location.
@@ -137,7 +269,7 @@ public class WorldController : MonoBehaviour {
         //player.transform.position = Vector2.Lerp()
 
     */
-
+/*
     }
 
     public void Test()
@@ -170,3 +302,4 @@ public class WorldController : MonoBehaviour {
             script.GetPreviousCoreNodeOfPath(node);
     }
 }
+*/

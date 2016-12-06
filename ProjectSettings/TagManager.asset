@@ -11,6 +11,8 @@ TagManager:
   - LevelUncompleted
   - LevelUnreachable
   - Path
+  - LevelButtons
+  - LevelCanvas
   layers:
   - Default
   - TransparentFX

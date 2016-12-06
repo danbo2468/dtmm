@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 public class Path : MonoBehaviour {
     public Color lineColor;
 
@@ -37,61 +38,7 @@ public class Path : MonoBehaviour {
         }
     }
 
-    // This gunna be the boss methods of methods.
-    public List<Transform> CalculateTravelingPath(Transform startingNode, Transform targetNode)
-    {
-        // First we have to define the direction we have to go. 
-        List<Transform> temp = GetAllCoreNodes();
-        int startingNodeInt = 0;
-        int targetNodeInt = 0;
-        bool directionNext = false;
-        bool noDirection = false;
-
-        for (int i = 0; i < temp.Count; i++)
-        {
-            if (temp[i] == startingNode)
-                startingNodeInt = i;
-            if (temp[i] == targetNode)
-                targetNodeInt = i;               
-        }
-
-        if (startingNodeInt < targetNodeInt)
-            directionNext = true;
-        else if (startingNodeInt == targetNodeInt)
-            noDirection = true;
-
-        // Now we know which way we have to go.
-        // directionNext && !noDirection :: Go to next core node
-        // !directionNext && !noDirection :: Go to previous core node
-        // noDirection :: Player tapped the node that is currently active.
-
-        // get path nodes from core nodes, but when !directionNext, it should get the path nodes of the previous core node in different order!
-
-        List<Transform> returnNodes = new List<Transform>();
-
-        if(!noDirection)
-            if(directionNext)
-                while(startingNode != targetNode)
-                {
-                    foreach (Transform node in GetPathNodesFromCoreNode(GetNextCoreNodeOfPath(startingNode)))
-                    {
-                        returnNodes.Add(node);
-                    }
-                    returnNodes.Add(GetNextCoreNodeOfPath(startingNode));
-                    startingNode = GetNextCoreNodeOfPath(startingNode);
-                }
-
-        if(!noDirection)
-            if(!directionNext)
-                while(startingNode != targetNode)
-                {
-                    
-                }
-
-        return returnNodes;
-
-
-    }
+    
 
     public List<Transform> GetAllCoreNodes()
     {
@@ -190,4 +137,111 @@ public class Path : MonoBehaviour {
         return false;
     }
 
+    /// <summary>
+    /// Returns a route based on given parameters, supply a valid startingNode, and a true for next node, false for previous node.
+    /// </summary>
+    /// <param name="startingNode"></param>
+    /// <param name="direction"></param>
+    /// <returns></returns>
+    public List<Transform> GetRoute(Transform startingNode, bool direction)
+    {   
+        List<Transform> route = new List<Transform>();
+        List<Transform> allNodes = GetAllCoreNodes();
+        if (direction)
+        {
+            if (allNodes[allNodes.Count - 1] != startingNode)
+            {
+                Transform nextNode = GetNextCoreNodeOfPath(startingNode);
+                if (nextNode.tag != "LevelUnreachable")
+                {
+                    List<Transform> temp = GetPathNodesFromCoreNode(nextNode);
+                    foreach (Transform node in temp)
+                        route.Add(node);
+                    route.Add(nextNode);
+                }
+            }
+        }   
+
+        else if (!direction)
+        {
+            Debug.Log(allNodes[0] + " " + startingNode);
+            if (allNodes[0] != startingNode)
+            {
+                Transform previousNode = GetPreviousCoreNodeOfPath(startingNode);
+                List<Transform> temp = GetPathNodesFromCoreNode(startingNode);
+                foreach (Transform node in temp.AsEnumerable().Reverse())
+                    route.Add(node);
+                route.Add(previousNode);
+            }
+            foreach (Transform node in route)
+            {
+                Debug.Log("ROUTE:::: " + node.name);
+            }
+
+        }
+        return route;
+    }
+
+
 }
+
+
+/// OLD METHOD WONT WORK WITH BUTTONS L/R
+/// 
+/*
+ * // This gunna be the boss methods of methods.
+    public List<Transform> CalculateTravelingPath(Transform startingNode, Transform targetNode)
+    {
+        // First we have to define the direction we have to go. 
+        List<Transform> temp = GetAllCoreNodes();
+        int startingNodeInt = 0;
+        int targetNodeInt = 0;
+        bool directionNext = false;
+        bool noDirection = false;
+
+        for (int i = 0; i < temp.Count; i++)
+        {
+            if (temp[i] == startingNode)
+                startingNodeInt = i;
+            if (temp[i] == targetNode)
+                targetNodeInt = i;               
+        }
+
+        if (startingNodeInt < targetNodeInt)
+            directionNext = true;
+        else if (startingNodeInt == targetNodeInt)
+            noDirection = true;
+
+        // Now we know which way we have to go.
+        // directionNext && !noDirection :: Go to next core node
+        // !directionNext && !noDirection :: Go to previous core node
+        // noDirection :: Player tapped the node that is currently active.
+
+        // get path nodes from core nodes, but when !directionNext, it should get the path nodes of the previous core node in different order!
+
+        List<Transform> returnNodes = new List<Transform>();
+
+        if(!noDirection)
+            if(directionNext)
+                while(startingNode != targetNode)
+                {
+                    foreach (Transform node in GetPathNodesFromCoreNode(GetNextCoreNodeOfPath(startingNode)))
+                    {
+                        returnNodes.Add(node);
+                    }
+                    returnNodes.Add(GetNextCoreNodeOfPath(startingNode));
+                    startingNode = GetNextCoreNodeOfPath(startingNode);
+                }
+
+        if(!noDirection)
+            if(!directionNext)
+                while(startingNode != targetNode)
+                {
+                    
+                }
+
+        return returnNodes;
+
+
+    }
+*/
