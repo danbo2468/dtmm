@@ -39,8 +39,6 @@ public class Path : MonoBehaviour {
         }
     }
 
-    
-
     public List<Transform> GetAllCoreNodes()
     {
         coreNodes = new List<Transform>();
@@ -52,6 +50,16 @@ public class Path : MonoBehaviour {
         return coreNodes;
     }
 
+    public int GetLevelID(Transform node)
+    {
+        List<Transform> temp = GetAllCoreNodes();
+        for (int i = 0; i < temp.Count; i++)
+            if (temp[i].name == node.name)
+                return i + 1;
+
+        throw new UnityException("No level found!");
+
+    }
     public List<Transform> GetReachableCoreNodes(List<Transform> coreNodes)
     {
         reachableNodes = new List<Transform>();
