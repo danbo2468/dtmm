@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using System;
 
 public class WorldController : MonoBehaviour
 {
@@ -65,13 +66,10 @@ public class WorldController : MonoBehaviour
     void Update()
     {
         Movement();
-        if (isMoving)
-            DisableButtons();
-        else if (!isMoving)
-            EnableButtons();
+        HandleButtons();
     }
 
-    void Movement()
+    private void Movement()
     {
         
         if (moveNext)
@@ -145,7 +143,7 @@ public class WorldController : MonoBehaviour
             }
     }
 
-    public void DisableButtons()
+    private void DisableButtons()
     {
         GameObject buttons = GameObject.FindGameObjectWithTag("LevelCanvas");
         Button[] button = buttons.GetComponentsInChildren<Button>();
@@ -155,7 +153,7 @@ public class WorldController : MonoBehaviour
         }
     }
 
-    public void EnableButtons()
+    private void EnableButtons()
     {
         GameObject buttons = GameObject.FindGameObjectWithTag("LevelCanvas");
         Button[] button = buttons.GetComponentsInChildren<Button>();
@@ -163,6 +161,29 @@ public class WorldController : MonoBehaviour
         {
             but.interactable = true;
         }
+    }
+
+    private void HandleButtons()
+    {
+        if (isMoving)
+        {
+            DisableButtons();
+        }
+            
+        else if (!isMoving)
+        {
+            EnableButtons();
+        }            
+    }
+
+    private void ShowEnterLevelCanvas(Transform node)
+    {
+        
+    }
+
+    private void HideEnterLevelCanvas(Transform node)
+    {
+
     }
 
 }
