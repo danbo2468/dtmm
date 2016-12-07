@@ -65,8 +65,9 @@ public class WorldController : MonoBehaviour
 
     void Update()
     {
-        Movement();
         HandleButtons();
+        Movement();
+        
     }
 
     private void Movement()
@@ -86,7 +87,7 @@ public class WorldController : MonoBehaviour
                     }
                 }
 
-                if (player.transform.position == targetWayPoint.position)
+                if (player.transform.position == targetWayPoint.position && currentWayPoint != route.Count)
                 {
                     currentWayPoint++;
                     targetWayPoint = route[currentWayPoint];
@@ -121,7 +122,7 @@ public class WorldController : MonoBehaviour
                     }
                 }
 
-                if (player.transform.position == targetWayPoint.position)
+                if (player.transform.position == targetWayPoint.position && currentWayPoint != route.Count)
                 {
                     targetWayPoint = route[currentWayPoint];
                     currentWayPoint++;
