@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
-using System;
 
 public class WorldController : MonoBehaviour
 {
@@ -15,6 +14,8 @@ public class WorldController : MonoBehaviour
     public Transform nextTargetPosition;
     public Transform playerIsAtNode;
     public Transform targetWayPoint;
+
+    public GameObject Popup;
 
     public Path script;
 
@@ -70,11 +71,17 @@ public class WorldController : MonoBehaviour
         
     }
 
+    public void LoadLevel()
+    {
+        Debug.Log("Enter level is clicked");
+    }
+
     private void Movement()
     {
         
         if (moveNext)
-        {        
+        {
+            HideEnterLevelCanvas();
             List<Transform> route = script.GetRoute(playerIsAtNode, true);
             if (route.Count > 0)
             {
@@ -101,15 +108,20 @@ public class WorldController : MonoBehaviour
                     playerIsAtNode = targetWayPoint;
                     moveNext = false;
                     targetWayPoint = null;
-                    isMoving = false;                  
+                    isMoving = false;
+                    ShowEnterLevelCanvas(playerIsAtNode);
                 }
             }
             if (route.Count == 0)
+            {
                 moveNext = false;
+                ShowEnterLevelCanvas(playerIsAtNode);
+            }
         }
 
         if (movePrevious)
-        {          
+        {
+            HideEnterLevelCanvas();
             List<Transform> route = script.GetRoute(playerIsAtNode, false);
             if (route.Count > 0)
             {
@@ -137,11 +149,15 @@ public class WorldController : MonoBehaviour
                     movePrevious = false;
                     targetWayPoint = null;
                     isMoving = false;
+                    ShowEnterLevelCanvas(playerIsAtNode);                    
                 }
             }
             if (route.Count == 0)
+            {
                 movePrevious = false;
+                ShowEnterLevelCanvas(playerIsAtNode);
             }
+        }
     }
 
     private void DisableButtons()
@@ -179,13 +195,29 @@ public class WorldController : MonoBehaviour
 
     private void ShowEnterLevelCanvas(Transform node)
     {
-        
+        float score = Mathf.Round(Random.Range(100f, 1000f)); // Load score from file.
+        Text[] textFields = Popup.GetComponentsInChildren<Text>();
+        textFields[0].text = "World - " + node.name;
+        textFields[1].text = "Total Score: " + score;
+
+        Popup.SetActive(true);
     }
 
-    private void HideEnterLevelCanvas(Transform node)
+    private void HideEnterLevelCanvas()
     {
-
+        Popup.SetActive(false);
     }
+    /// <summary>
+    /// Might be useless.
+    /// </summary>
+    /// <param name="textArea"></param>
+    /// <param name="text"></param>
+    private void SetText(Text textArea, string text)
+    {
+        textArea.text = text;
+    }
+
+
 
 }
     /* OLD WORLD CONTROLLER

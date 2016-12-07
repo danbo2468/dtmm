@@ -13,6 +13,12 @@ TagManager:
   - Path
   - LevelButtons
   - LevelCanvas
+  - PreviousLevel
+  - LevelText
+  - ScoreText
+  - EnterLevel
+  - Popup
+  - EnterLevelText
   layers:
   - Default
   - TransparentFX
