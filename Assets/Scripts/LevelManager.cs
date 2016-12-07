@@ -10,6 +10,8 @@ public class LevelManager : MonoBehaviour {
     public Text scoreText;
     public int level;
     public GameObject levelEnd;
+    public GameObject gameOverMenu;
+    public GameObject finishedMenu;
     PlayerController player;
 
     // Use this for initialization
@@ -18,6 +20,9 @@ public class LevelManager : MonoBehaviour {
         currentScore = 0;
         collectedCoins = 0;
         GameManager.gameManager.SetLevelManager(this);
+        gameOverMenu.SetActive(false);
+        finishedMenu.SetActive(false);
+
 	}
 
     void Update()
@@ -54,11 +59,17 @@ public class LevelManager : MonoBehaviour {
 
     public void GameOver()
     {
-        int scene = SceneManager.GetActiveScene().buildIndex;
-        SceneManager.LoadScene(scene, LoadSceneMode.Single);
+        gameOverMenu.SetActive(true);
+        player.SetMoveSpeed(0);
     }
 
     public void Finished()
+    {
+        finishedMenu.SetActive(true);
+        player.SetMoveSpeed(0);
+    }
+
+    public void RestartLevel()
     {
         int scene = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(scene, LoadSceneMode.Single);
