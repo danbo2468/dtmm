@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour {
 
@@ -25,7 +26,7 @@ public class LevelManager : MonoBehaviour {
         if(player.transform.position.x > levelEnd.transform.position.x)
         {
             SaveScore();
-            GameManager.gameManager.RestartLevel();
+            Finished();
         }
     }
 
@@ -49,5 +50,17 @@ public class LevelManager : MonoBehaviour {
     void ResetScore()
     {
         currentScore = 0;
+    }
+
+    public void GameOver()
+    {
+        int scene = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(scene, LoadSceneMode.Single);
+    }
+
+    public void Finished()
+    {
+        int scene = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(scene, LoadSceneMode.Single);
     }
 }

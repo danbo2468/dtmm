@@ -40,7 +40,13 @@ public class PlayerController : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
+    {   
+        // Check the player health
+        if(health <= 0)
+        {
+            GameManager.gameManager.levelManager.GameOver();
+        }
+
         //Check if the tutorialmode is on
         if (!tutorialMode) {
 
@@ -133,7 +139,7 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.tag == "Water")
         {
-            GameManager.gameManager.RestartLevel();
+            GameManager.gameManager.levelManager.GameOver();
         }
     }
 }

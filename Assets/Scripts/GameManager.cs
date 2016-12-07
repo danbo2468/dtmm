@@ -133,13 +133,6 @@ public class GameManager : MonoBehaviour {
         this.levelManager = levelManager;
     }
 
-    // Relaod the level
-    public void RestartLevel()
-    {
-        int scene = SceneManager.GetActiveScene().buildIndex;
-        SceneManager.LoadScene(scene, LoadSceneMode.Single);
-    }
-
     // Set the highscore for a certain level
     public void SetLevelHigschore(int level, float highscore)
     {
