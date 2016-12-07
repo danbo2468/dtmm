@@ -110,12 +110,12 @@ public class Path : MonoBehaviour {
         return pathNode.transform.parent;
     }
 
-    public Transform GetFirstNodeOfScene()
+    public Transform GetNodeOfScene(int number)
     {
-        Transform[] nodeTransforms = GetComponentsInChildren<Transform>();
-        for (int i = 0; i < nodeTransforms.Length; i++)
-            if (nodeTransforms[i] != transform && nodeTransforms[i].tag != "Path")
-                return nodeTransforms[i];
+
+        List<Transform> nodeTransforms = GetAllCoreNodes();
+        if (nodeTransforms.Count >= number)
+            return nodeTransforms[number - 1];
 
         return null; // No nodes found.
     }

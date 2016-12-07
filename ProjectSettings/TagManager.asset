@@ -19,6 +19,9 @@ TagManager:
   - EnterLevel
   - Popup
   - EnterLevelText
+  - WorldCanvas
+  - AreaBegin
+  - AreaEnd
   layers:
   - Default
   - TransparentFX

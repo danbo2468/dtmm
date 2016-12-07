@@ -23,7 +23,6 @@ public class WorldController : MonoBehaviour
     public string[] tagArray = { "Path", "LevelUnreachable", "AddMoreForbiddenTagsHere" };
     public bool isMoving;
     public bool isValidMove;
-    public bool playerIsAtCoreNode;
 
     public int currentWayPoint = 0;
 
@@ -58,23 +57,20 @@ public class WorldController : MonoBehaviour
 
     void Start()
     {
-        // Ask GameManager for all level completions, highscores and last player location.
-        
+        // Ask GameManager for all level completions, highscores and last player location.        
         script = path.GetComponent<Path>();
-        playerIsAtNode = script.GetFirstNodeOfScene();
-        playerIsAtCoreNode = script.IsPlayerAtCoreNode(playerIsAtNode);
+        playerIsAtNode = script.GetNodeOfScene(1);
     }
 
     void Update()
     {
         HandleButtons();
-        Movement();
-        
+        Movement();      
     }
 
     public void LoadLevel()
     {
-        Debug.Log("Enter level is clicked");
+        
     }
 
     private void Movement()
@@ -200,12 +196,13 @@ public class WorldController : MonoBehaviour
         float score = Mathf.Round(Random.Range(100f, 1000f)); // Load score from file or load manager. 
         if (SceneManager.GetActiveScene().name == "Overworld")
         {
-            
+
             textFields[0].text = "World - " + node.name;
             textFields[1].text = "Total Score: " + score;
-            textFields[2].text = "Enter Area";
+            textFields[2].text = "Enter";
         }
-        else
+        // else if probably needs some refactoring and i have to add some bool methods for these first/last level.
+        else if (script.GetLevelID(node) != 1 && script.GetLevelID(node) != script.GetAllCoreNodes().Count)
         {
             textFields[0].text = node.name + " - level " + script.GetLevelID(node);
             textFields[1].text = "Score: " + score;
