@@ -56,6 +56,7 @@ public class WorldController : MonoBehaviour
     void Start()
     {
         // Ask GameManager for all level completions, highscores and last player location.
+        
         script = path.GetComponent<Path>();
         playerIsAtNode = script.GetFirstNodeOfScene();
         playerIsAtCoreNode = script.IsPlayerAtCoreNode(playerIsAtNode);
@@ -64,6 +65,10 @@ public class WorldController : MonoBehaviour
     void Update()
     {
         Movement();
+        if (isMoving)
+            DisableButtons();
+        else if (!isMoving)
+            EnableButtons();
     }
 
     void Movement()
@@ -74,7 +79,7 @@ public class WorldController : MonoBehaviour
             List<Transform> route = script.GetRoute(playerIsAtNode, true);
             if (route.Count > 0)
             {
-                
+                isMoving = true;
                 if (currentWayPoint < route.Count)
                 {
                     if (targetWayPoint == null)
@@ -96,16 +101,20 @@ public class WorldController : MonoBehaviour
                     currentWayPoint = 0;
                     playerIsAtNode = targetWayPoint;
                     moveNext = false;
-                    targetWayPoint = null;                   
+                    targetWayPoint = null;
+                    isMoving = false;                  
                 }
             }
+            if (route.Count == 0)
+                moveNext = false;
         }
+
         if (movePrevious)
-        {
-            
+        {          
             List<Transform> route = script.GetRoute(playerIsAtNode, false);
             if (route.Count > 0)
             {
+                isMoving = true;
                 if (currentWayPoint < route.Count)
                 {
                     if (targetWayPoint == null)
@@ -127,10 +136,13 @@ public class WorldController : MonoBehaviour
                     currentWayPoint = 0;
                     playerIsAtNode = targetWayPoint;
                     movePrevious = false;
-                    targetWayPoint = null;     
+                    targetWayPoint = null;
+                    isMoving = false;
                 }
-            }     
-        }
+            }
+            if (route.Count == 0)
+                movePrevious = false;
+            }
     }
 
     public void DisableButtons()

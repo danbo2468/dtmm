@@ -9,8 +9,9 @@ public class Path : MonoBehaviour {
     private List<Transform> coreNodes;
     private List<Transform> reachableNodes;
     private List<Transform> pathNodes;
+
     private Transform firstNode;
-    private Stack<Transform> travelingPath;
+    public Transform test;
 
     // This is just for unity, drawing the line on the worldmap.
     private void OnDrawGizmosSelected()
@@ -66,6 +67,20 @@ public class Path : MonoBehaviour {
         List<Transform> temp = GetAllCoreNodes();
         for (int i = 0; i < temp.Count; i++)
             if (temp[i].tag == "LevelUnreachable")
+                return temp[i];
+
+        return null;
+    }
+
+    /// <summary>
+    /// Even though most nodes are reachable, this one returns the first uncompleted level.
+    /// </summary>
+    /// <returns></returns>
+    public Transform GetNextUncompletedLevel()
+    {
+        List<Transform> temp = GetAllCoreNodes();
+        for (int i = 0; i < temp.Count; i++)
+            if (temp[i].tag == "LevelUncompleted")
                 return temp[i];
 
         return null;
@@ -164,7 +179,6 @@ public class Path : MonoBehaviour {
 
         else if (!direction)
         {
-            Debug.Log(allNodes[0] + " " + startingNode);
             if (allNodes[0] != startingNode)
             {
                 Transform previousNode = GetPreviousCoreNodeOfPath(startingNode);
@@ -173,15 +187,21 @@ public class Path : MonoBehaviour {
                     route.Add(node);
                 route.Add(previousNode);
             }
-            foreach (Transform node in route)
-            {
-                Debug.Log("ROUTE:::: " + node.name);
-            }
-
         }
         return route;
     }
 
+    public void setLevelCompleted(Transform node)
+    {
+        node.tag = "LevelCompleted";
+        node.GetComponent<SpriteRenderer>().sprite = Resources.Load("Placeholder - GreenCircle", typeof(Sprite)) as Sprite;
+    }
+
+    public void setLevelUncompleted(Transform node)
+    {
+        node.tag = "LevelUncompleted";
+        node.GetComponent<SpriteRenderer>().sprite = Resources.Load("Placeholder - RedCircle", typeof(Sprite)) as Sprite;
+    }
 
 }
 
