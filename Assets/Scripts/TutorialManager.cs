@@ -24,15 +24,15 @@ public class TutorialManager : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        jumpPoint = GameObject.Find("JumpPoint");
-        collectPoint = GameObject.Find("CollectPoint");
-        groundAttackPoint = GameObject.Find("GroundAttackPoint");
-        airAttackPoint = GameObject.Find("AirAttackPoint");
+        jumpPoint = GameObject.Find("Jump Point");
+        collectPoint = GameObject.Find("Collect Point");
+        groundAttackPoint = GameObject.Find("Ground Attack Point");
+        airAttackPoint = GameObject.Find("Air Attack Point");
 
-        jumpText = GameObject.Find("JumpText");
-        collectText = GameObject.Find("CollectText");
-        groundAttackText = GameObject.Find("GroundAttackText");
-        airAttackText = GameObject.Find("AirAttackText");
+        jumpText = GameObject.Find("Jump Text");
+        collectText = GameObject.Find("Collect Text");
+        groundAttackText = GameObject.Find("Ground Attack Text");
+        airAttackText = GameObject.Find("Air Attack Text");
 
         jumpText.SetActive(false);
         collectText.SetActive(false);

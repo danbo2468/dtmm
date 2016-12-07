@@ -10,7 +10,7 @@ public class BulletController : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        border = GameObject.Find("RightViewBorder");
+        border = GameObject.Find("Right Camera Border");
     }
 	
 	// Update is called once per frame
