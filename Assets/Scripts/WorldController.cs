@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class WorldController : MonoBehaviour
 {
@@ -195,10 +196,21 @@ public class WorldController : MonoBehaviour
 
     private void ShowEnterLevelCanvas(Transform node)
     {
-        float score = Mathf.Round(Random.Range(100f, 1000f)); // Load score from file.
         Text[] textFields = Popup.GetComponentsInChildren<Text>();
-        textFields[0].text = "World - " + node.name;
-        textFields[1].text = "Total Score: " + score;
+        float score = Mathf.Round(Random.Range(100f, 1000f)); // Load score from file or load manager. 
+        if (SceneManager.GetActiveScene().name == "Overworld")
+        {
+            
+            textFields[0].text = "World - " + node.name;
+            textFields[1].text = "Total Score: " + score;
+            textFields[2].text = "Enter Area";
+        }
+        else
+        {
+            textFields[0].text = node.name + " - level " + script.GetLevelID(node);
+            textFields[1].text = "Score: " + score;
+            textFields[2].text = "Play";
+        }
 
         Popup.SetActive(true);
     }
