@@ -58,9 +58,19 @@ public class WorldController : MonoBehaviour
 
     void Start()
     {
-        // Ask GameManager for all level completions, highscores and last player location.        
         script = path.GetComponent<Path>();
-        playerIsAtNode = script.GetNodeOfScene(1);
+        if (GameManager.gameManager.worldNode == null)
+        {
+            playerIsAtNode = script.GetNodeOfScene(1);
+        }
+        else
+        {
+            if (IsOverworld())
+                playerIsAtNode = GameManager.gameManager.worldNode;
+            else
+                playerIsAtNode = GameManager.gameManager.levelNode;
+        }
+        // Ask GameManager for all level completions, highscores and last player location.        
     }
 
     void Update()
@@ -73,7 +83,12 @@ public class WorldController : MonoBehaviour
     {
         if (IsOverworld())
         {
+            GameManager.gameManager.Save();
             SceneManager.LoadScene(playerIsAtNode.name);
+        }
+        else
+        {
+            
         }
     }
 
@@ -156,7 +171,12 @@ public class WorldController : MonoBehaviour
             if (route.Count == 0)
             {
                 movePrevious = false;
-                    ShowEnterLevelCanvas(playerIsAtNode);
+                ShowEnterLevelCanvas(playerIsAtNode);
+            }
+
+            if (playerIsAtNode.tag == "AreaBegin")
+            {
+                SceneManager.LoadScene("Overworld");
             }
         }
     }

@@ -22,6 +22,10 @@ public class GameManager : MonoBehaviour {
     public static GameManager gameManager;
     public LevelManager levelManager;
 
+    // WorldController
+    public Transform worldNode; // player is at this worldNode;
+    public Transform levelNode; // player is at this levelNode;
+
 	// Use this for initialization
 	void Awake () {
         if(gameManager == null)
@@ -39,6 +43,8 @@ public class GameManager : MonoBehaviour {
     void Start()
     {
         levelHighscores = new float[14];
+        worldNode = null;
+        levelNode = null;
 
         if (PlayerPrefs.HasKey("Background Music"))
         {
@@ -79,7 +85,7 @@ public class GameManager : MonoBehaviour {
         BinaryFormatter formatter = new BinaryFormatter();
         FileStream file = File.Create(Application.persistentDataPath + "/saveProfile" + this.saveProfileNumber + ".dat");
 
-        SaveData saveData = new SaveData(this.saveProfileNumber, this.characterGender, this.characterName, this.levelHighscores, this.coins);
+        SaveData saveData = new SaveData(this.saveProfileNumber, this.characterGender, this.characterName, this.levelHighscores, this.coins, TransformToArray(this.worldNode), TransformToArray(this.levelNode));
 
         formatter.Serialize(file, saveData);
         file.Close();
@@ -118,6 +124,8 @@ public class GameManager : MonoBehaviour {
             this.characterName = saveData.characterName;
             this.levelHighscores = saveData.levelHighscores;
             this.coins = saveData.coins;
+            SetArrayToTransform(saveData.worldNode, worldNode);
+            SetArrayToTransform(saveData.levelNode, levelNode);
         }
     }
 
@@ -147,6 +155,16 @@ public class GameManager : MonoBehaviour {
     {
         coins += collectedCoins;
     }
+
+    public float[] TransformToArray(Transform transform)
+    {
+        return new float[3] { transform.position.x, transform.position.y, transform.position.z };      
+    }
+
+    public void SetArrayToTransform(float[] array, Transform target)
+    {
+        target.position = new Vector3(array[0], array[1], array[2]);
+    }
 }
 
 
@@ -158,13 +176,17 @@ class SaveData
     public string characterName;
     public float[] levelHighscores;
     public float coins;
+    public float[] worldNode;
+    public float[] levelNode;
 
-    public SaveData(int saveProfileNumber, string characterGender, string characterName, float[] levelHighscores, float coins)
+    public SaveData(int saveProfileNumber, string characterGender, string characterName, float[] levelHighscores, float coins, float[] worldNode, float[] levelNode)
     {
         this.saveProfileNumber = saveProfileNumber;
         this.characterGender = characterGender;
         this.characterName = characterName;
         this.levelHighscores = levelHighscores;
         this.coins = coins;
+        this.worldNode = worldNode;
+        this.levelNode = levelNode;
     }
 }
