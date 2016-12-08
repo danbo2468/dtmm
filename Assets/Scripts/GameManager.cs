@@ -23,8 +23,8 @@ public class GameManager : MonoBehaviour {
     public LevelManager levelManager;
 
     // WorldController
-    public Transform worldNode; // player is at this worldNode;
-    public Transform levelNode; // player is at this levelNode;
+    public Vector3 worldNode; // player is at this worldNode;
+    public Vector3 levelNode; // player is at this levelNode;
 
 	// Use this for initialization
 	void Awake () {
@@ -43,8 +43,8 @@ public class GameManager : MonoBehaviour {
     void Start()
     {
         levelHighscores = new float[14];
-        worldNode = null;
-        levelNode = null;
+        worldNode = new Vector3(0, 0, 0);
+        levelNode = new Vector3(0, 0, 0);
 
         if (PlayerPrefs.HasKey("Background Music"))
         {
@@ -156,14 +156,14 @@ public class GameManager : MonoBehaviour {
         coins += collectedCoins;
     }
 
-    public float[] TransformToArray(Transform transform)
+    public float[] TransformToArray(Vector3 vector)
     {
-        return new float[3] { transform.position.x, transform.position.y, transform.position.z };      
+        return new float[3] { vector.x, vector.y, vector.z };      
     }
 
-    public void SetArrayToTransform(float[] array, Transform target)
+    public void SetArrayToTransform(float[] array, Vector3 target)
     {
-        target.position = new Vector3(array[0], array[1], array[2]);
+        target = new Vector3(array[0], array[1], array[2]);
     }
 }
 

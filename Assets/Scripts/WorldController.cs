@@ -59,16 +59,17 @@ public class WorldController : MonoBehaviour
     void Start()
     {
         script = path.GetComponent<Path>();
-        if (GameManager.gameManager.worldNode == null)
+        if (GameManager.gameManager.worldNode.x == 0 && GameManager.gameManager.worldNode.y == 0 && GameManager.gameManager.worldNode.z == 0)
         {
+            Debug.Log("I'm here!");
             playerIsAtNode = script.GetNodeOfScene(1);
         }
         else
         {
             if (IsOverworld())
-                playerIsAtNode = GameManager.gameManager.worldNode;
+                playerIsAtNode.position = GameManager.gameManager.worldNode;
             else
-                playerIsAtNode = GameManager.gameManager.levelNode;
+                playerIsAtNode.position = GameManager.gameManager.levelNode;
         }
         // Ask GameManager for all level completions, highscores and last player location.        
     }
@@ -176,6 +177,7 @@ public class WorldController : MonoBehaviour
 
             if (playerIsAtNode.tag == "AreaBegin")
             {
+                GameManager.gameManager.Save();
                 SceneManager.LoadScene("Overworld");
             }
         }
