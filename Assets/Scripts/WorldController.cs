@@ -18,6 +18,7 @@ public class WorldController : MonoBehaviour
 
     public GameObject Popup;
 
+
     public Path script;
 
     public string[] tagArray = { "Path", "LevelUnreachable", "AddMoreForbiddenTagsHere" };
@@ -65,17 +66,20 @@ public class WorldController : MonoBehaviour
     void Update()
     {
         HandleButtons();
-        Movement();      
+        Movement();
     }
 
     public void LoadLevel()
     {
-        
+        if (IsOverworld())
+        {
+            SceneManager.LoadScene(playerIsAtNode.name);
+        }
     }
 
     private void Movement()
     {
-        
+
         if (moveNext)
         {
             HideEnterLevelCanvas();
@@ -146,35 +150,34 @@ public class WorldController : MonoBehaviour
                     movePrevious = false;
                     targetWayPoint = null;
                     isMoving = false;
-                    ShowEnterLevelCanvas(playerIsAtNode);                    
+                    ShowEnterLevelCanvas(playerIsAtNode);
                 }
             }
             if (route.Count == 0)
             {
                 movePrevious = false;
-                ShowEnterLevelCanvas(playerIsAtNode);
+                    ShowEnterLevelCanvas(playerIsAtNode);
             }
         }
     }
 
     private void DisableButtons()
     {
-        GameObject buttons = GameObject.FindGameObjectWithTag("LevelCanvas");
-        Button[] button = buttons.GetComponentsInChildren<Button>();
-        foreach(Button but in button)
-        {
+        Button[] button = GetButtonsFromTaggedGameObject("LevelCanvas");
+        foreach (Button but in button)
             but.interactable = false;
-        }
     }
 
     private void EnableButtons()
     {
-        GameObject buttons = GameObject.FindGameObjectWithTag("LevelCanvas");
-        Button[] button = buttons.GetComponentsInChildren<Button>();
+        Button[] button = GetButtonsFromTaggedGameObject("LevelCanvas");
         foreach (Button but in button)
-        {
             but.interactable = true;
-        }
+    }
+
+    private Button[] GetButtonsFromTaggedGameObject(string tag)
+    {
+        return GameObject.FindGameObjectWithTag(tag).GetComponentsInChildren<Button>();
     }
 
     private void HandleButtons()
@@ -183,33 +186,38 @@ public class WorldController : MonoBehaviour
         {
             DisableButtons();
         }
-            
+
         else if (!isMoving)
         {
             EnableButtons();
-        }            
+        }
     }
 
     private void ShowEnterLevelCanvas(Transform node)
     {
+        int compare = 1;
+        if (IsOverworld())
+            compare = 0;
+
         Text[] textFields = Popup.GetComponentsInChildren<Text>();
         float score = Mathf.Round(Random.Range(100f, 1000f)); // Load score from file or load manager. 
-        if (SceneManager.GetActiveScene().name == "Overworld")
-        {
 
-            textFields[0].text = "World - " + node.name;
-            textFields[1].text = "Total Score: " + score;
-            textFields[2].text = "Enter";
-        }
-        // else if probably needs some refactoring and i have to add some bool methods for these first/last level.
-        else if (script.GetLevelID(node) != 1 && script.GetLevelID(node) != script.GetAllCoreNodes().Count)
+        if (script.GetLevelID(node) != compare && script.GetLevelID(node) != script.GetAllCoreNodes().Count)
         {
-            textFields[0].text = node.name + " - level " + script.GetLevelID(node);
-            textFields[1].text = "Score: " + score;
-            textFields[2].text = "Play";
-        }
-
+            if (IsOverworld())
+            {
+                textFields[0].text = "World - " + node.name;
+                textFields[1].text = "Total Score: " + score;
+                textFields[2].text = "Enter";
+            }
+            else
+            {
+                textFields[0].text = node.name + " - level " + script.GetLevelID(node);
+                textFields[1].text = "Score: " + score;
+                textFields[2].text = "Play";
+            }
         Popup.SetActive(true);
+        }
     }
 
     private void HideEnterLevelCanvas()
@@ -226,6 +234,12 @@ public class WorldController : MonoBehaviour
         textArea.text = text;
     }
 
+    private bool IsOverworld()
+    {
+        if (SceneManager.GetActiveScene().name == "Overworld")
+            return true;
+        return false;
+    }
 
 
 }

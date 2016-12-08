@@ -19,3 +19,17 @@ EditorBuildSettings:
     path: Assets/Scenes/Menu/Name Selection.unity
   - enabled: 1
     path: Assets/Scenes/Levels/Tutorial.unity
+  - enabled: 1
+    path: Assets/Scenes/Overworld/Overworld.unity
+  - enabled: 1
+    path: Assets/Scenes/Overworld/Bonus.unity
+  - enabled: 1
+    path: Assets/Scenes/Overworld/House.unity
+  - enabled: 1
+    path: Assets/Scenes/Overworld/Jungle.unity
+  - enabled: 1
+    path: Assets/Scenes/Overworld/Market.unity
+  - enabled: 1
+    path: Assets/Scenes/Overworld/School.unity
+  - enabled: 1
+    path: Assets/Scenes/Overworld/Street.unity

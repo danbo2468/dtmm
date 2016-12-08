@@ -175,7 +175,7 @@ public class Path : MonoBehaviour {
             if (allNodes[allNodes.Count - 1] != startingNode)
             {
                 Transform nextNode = GetNextCoreNodeOfPath(startingNode);
-                if (nextNode.tag != "LevelUnreachable")
+                if (nextNode.tag != "LevelUnreachable" && startingNode.tag != "LevelUncompleted")
                 {
                     List<Transform> temp = GetPathNodesFromCoreNode(nextNode);
                     foreach (Transform node in temp)
