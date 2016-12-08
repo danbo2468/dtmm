@@ -20,7 +20,6 @@ public class TutorialManager : MonoBehaviour {
 
     // Other
     private string lastPoint;
-    public BackgroundScroller[] backgrounds;
 
     // Use this for initialization
     void Start () {
@@ -66,7 +65,6 @@ public class TutorialManager : MonoBehaviour {
         else if (player.transform.position.x > airAttackPoint.transform.position.x && lastPoint == "GroundAttackPoint")
         {
             player.SetMoveSpeed(0);
-            ToggleBackgroundMovement(false);
             airAttackText.SetActive(true);
             if (Input.GetMouseButtonDown(0))
             {
@@ -92,7 +90,6 @@ public class TutorialManager : MonoBehaviour {
         else if (player.transform.position.x > groundAttackPoint.transform.position.x && lastPoint == "CollectPoint")
         {
             player.SetMoveSpeed(0);
-            ToggleBackgroundMovement(false);
             groundAttackText.SetActive(true);
             if (Input.GetMouseButtonDown(1))
             {
@@ -114,7 +111,6 @@ public class TutorialManager : MonoBehaviour {
         else if (player.transform.position.x > collectPoint.transform.position.x && lastPoint == "JumpPoint")
         {
             player.SetMoveSpeed(0);
-            ToggleBackgroundMovement(false);
             collectText.SetActive(true);
             if (Input.GetMouseButtonDown(0))
             {
@@ -135,7 +131,6 @@ public class TutorialManager : MonoBehaviour {
         else if (player.transform.position.x > jumpPoint.transform.position.x && lastPoint == null)
         {
             player.SetMoveSpeed(0);
-            ToggleBackgroundMovement(false);
             jumpText.SetActive(true);
             if (Input.GetMouseButtonDown(0))
             {
@@ -149,7 +144,6 @@ public class TutorialManager : MonoBehaviour {
     void ContinueFromPoint(string continueFrom)
     {
         player.SetMoveSpeed();
-        ToggleBackgroundMovement(true);
         lastPoint = continueFrom;
         if(continueFrom == "JumpPoint")
         {
@@ -166,15 +160,6 @@ public class TutorialManager : MonoBehaviour {
         else if (continueFrom == "AirAttackPoint")
         {
             airAttackText.SetActive(false);
-        }
-    }
-
-    // Toggle the background movement
-    void ToggleBackgroundMovement(bool moving)
-    {
-        for(int i = 0; i < backgrounds.Length; i++)
-        {
-            backgrounds[i].shouldScroll = moving;
         }
     }
 }
