@@ -43,8 +43,8 @@ public class GameManager : MonoBehaviour {
     void Start()
     {
         levelHighscores = new float[14];
-        worldNode = new Vector3(0, 0, 0);
-        levelNode = new Vector3(0, 0, 0);
+        //worldNode = new Vector3(0, 0, 0);
+        //levelNode = new Vector3(0, 0, 0);
 
         if (PlayerPrefs.HasKey("Background Music"))
         {
@@ -85,7 +85,7 @@ public class GameManager : MonoBehaviour {
         BinaryFormatter formatter = new BinaryFormatter();
         FileStream file = File.Create(Application.persistentDataPath + "/saveProfile" + this.saveProfileNumber + ".dat");
 
-        SaveData saveData = new SaveData(this.saveProfileNumber, this.characterGender, this.characterName, this.levelHighscores, this.coins, TransformToArray(this.worldNode), TransformToArray(this.levelNode));
+        SaveData saveData = new SaveData(this.saveProfileNumber, this.characterGender, this.characterName, this.levelHighscores, this.coins, Vector3ToArray(this.worldNode), Vector3ToArray(this.levelNode));
 
         formatter.Serialize(file, saveData);
         file.Close();
@@ -124,8 +124,8 @@ public class GameManager : MonoBehaviour {
             this.characterName = saveData.characterName;
             this.levelHighscores = saveData.levelHighscores;
             this.coins = saveData.coins;
-            SetArrayToTransform(saveData.worldNode, worldNode);
-            SetArrayToTransform(saveData.levelNode, levelNode);
+            this.worldNode = SetArrayToTransform(saveData.worldNode);
+            this.levelNode = SetArrayToTransform(saveData.levelNode);
         }
     }
 
@@ -156,14 +156,24 @@ public class GameManager : MonoBehaviour {
         coins += collectedCoins;
     }
 
-    public float[] TransformToArray(Vector3 vector)
+    public float[] Vector3ToArray(Vector3 vector)
     {
         return new float[3] { vector.x, vector.y, vector.z };      
     }
 
-    public void SetArrayToTransform(float[] array, Vector3 target)
+    public Vector3 SetArrayToTransform(float[] array)
     {
-        target = new Vector3(array[0], array[1], array[2]);
+        return new Vector3(array[0], array[1], array[2]);
+    }
+
+    public void SetWorldPosition(Vector3 position)
+    {
+        this.worldNode = position;
+    }
+
+    public void SetLevelPosition(Vector3 position)
+    {
+        this.levelNode = position;
     }
 }
 

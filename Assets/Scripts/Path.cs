@@ -160,6 +160,16 @@ public class Path : MonoBehaviour {
         return false;
     }
 
+    public Transform findNodeOnPosition(Vector3 position)
+    {
+        List<Transform> nodes = GetAllCoreNodes();
+        foreach (Transform item in nodes)
+            if (item.position == position)
+                return item;
+
+        return null;
+    }
+
     /// <summary>
     /// Returns a route based on given parameters, supply a valid startingNode, and a true for next node, false for previous node.
     /// </summary>
