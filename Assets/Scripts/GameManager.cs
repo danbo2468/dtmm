@@ -126,6 +126,9 @@ public class GameManager : MonoBehaviour {
             this.coins = saveData.coins;
             this.worldNode = SetArrayToTransform(saveData.worldNode);
             this.levelNode = SetArrayToTransform(saveData.levelNode);
+
+            Debug.Log("We've loaded a file! The settings are: ");
+            Debug.Log("WorldNode: " + worldNode + " and levelNode: " + levelNode);
         }
     }
 

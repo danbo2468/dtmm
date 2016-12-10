@@ -82,9 +82,18 @@ public class WorldController : MonoBehaviour
             else if (!IsOverworld())
             {
                 if (playerIsAtNode)
+                {
                     playerIsAtNode.position = GameManager.gameManager.levelNode;
+                }
                 else
+                {
                     playerIsAtNode = script.GetNodeOfScene(1);
+                }
+
+                if(script.GetLevelID(playerIsAtNode) == 1)
+                {
+                    moveNext = true;
+                }
             }
         }
         // Ask GameManager for all level completions, highscores and last player location.        
