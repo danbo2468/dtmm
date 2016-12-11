@@ -66,24 +66,23 @@ public class WorldController : MonoBehaviour
             Debug.Log("First time playing this game!");
             playerIsAtNode = script.GetNodeOfScene(1);
             Debug.Log(playerIsAtNode.position);
-            GameManager.gameManager.SetWorldPosition(playerIsAtNode.position);
-            Debug.Log(GameManager.gameManager.worldNode);
+            SetOverworldPosition(playerIsAtNode.position);
+            Debug.Log(GetOverworldPosition());
         }
         else
         {
             if (IsOverworld())
             {
-                Debug.Log("Getting data! player was at this node: " + script.findNodeOnPosition(GameManager.gameManager.worldNode));
-                playerIsAtNode = script.findNodeOnPosition(GameManager.gameManager.worldNode);
-                //playerIsAtNode = script.GetNodeOfScene()
-                playerIsAtNode.position = GameManager.gameManager.worldNode;
+                Debug.Log("Getting data! player was at this node: " + script.findNodeOnPosition(GetOverworldPosition()));
+                playerIsAtNode = script.findNodeOnPosition(GetOverworldPosition());
+                playerIsAtNode.position = GetOverworldPosition();
                 player.transform.position = playerIsAtNode.position;
             }
             else if (!IsOverworld())
             {
                 if (playerIsAtNode)
                 {
-                    playerIsAtNode.position = GameManager.gameManager.levelNode;
+                    playerIsAtNode.position = GetLevelPosition();
                 }
                 else
                 {
@@ -107,7 +106,7 @@ public class WorldController : MonoBehaviour
     void Update()
     {
         if(playerIsAtNode)
-            Debug.Log(GameManager.gameManager.worldNode + " << GM || WM >> " + playerIsAtNode.position);      
+            Debug.Log(GetOverworldPosition() + " << GM || WM >> " + playerIsAtNode.position);      
         HandleButtons();
         Movement();
     }
@@ -116,9 +115,9 @@ public class WorldController : MonoBehaviour
     {
         if (IsOverworld())
         {
-            Debug.Log("We have set the gamemanager's worldposition from " + GameManager.gameManager.worldNode + " to this: " + playerIsAtNode.position);
-            SetOverworld(playerIsAtNode.position);
-            Debug.Log("This is the worldnode position now: " + GameManager.gameManager.worldNode);
+            Debug.Log("We have set the gamemanager's worldposition from " + GetOverworldPosition() + " to this: " + playerIsAtNode.position);
+            SetOverworldPosition(playerIsAtNode.position);
+            Debug.Log("This is the worldnode position now: " + GetOverworldPosition());
             Debug.Log("LOADING LEVEL::: " + playerIsAtNode.name);
             SceneManager.LoadScene(playerIsAtNode.name);
         }
@@ -165,11 +164,11 @@ public class WorldController : MonoBehaviour
 
                     if (IsOverworld())
                     {
-                        SetOverworld(playerIsAtNode.position);
+                        SetOverworldPosition(playerIsAtNode.position);
                     }
                     if (!IsOverworld())
                     {
-                        SetLevel(playerIsAtNode.position);
+                        SetLevelPosition(playerIsAtNode.position);
                         if (playerIsAtNode.tag == "AreaEnd")
                         {
                             SceneManager.LoadScene("Overworld");
@@ -218,11 +217,11 @@ public class WorldController : MonoBehaviour
 
                     if (IsOverworld())
                     {
-                        SetOverworld(playerIsAtNode.position);
+                        SetOverworldPosition(playerIsAtNode.position);
                     }
                     if (!IsOverworld())
                     {
-                        SetLevel(playerIsAtNode.position);
+                        SetLevelPosition(playerIsAtNode.position);
                         if (playerIsAtNode.tag == "AreaBegin")
                         {
                             Debug.Log("LOADING OVERWORLD");
@@ -236,20 +235,28 @@ public class WorldController : MonoBehaviour
             {
                 movePrevious = false;
                 ShowEnterLevelCanvas(playerIsAtNode);
-            }
-            
-            
+            }   
         }
     }
 
-    private void SetOverworld(Vector3 position)
+    private void SetOverworldPosition(Vector3 position)
     {
         GameManager.gameManager.SetWorldPosition(position);
     }
 
-    private void SetLevel(Vector3 position)
+    private void SetLevelPosition(Vector3 position)
     {
         GameManager.gameManager.SetLevelPosition(position);
+    }
+
+    private Vector3 GetOverworldPosition()
+    {
+        return GameManager.gameManager.worldNode;
+    }
+
+    private Vector3 GetLevelPosition()
+    {
+        return GameManager.gameManager.levelNode;
     }
 
     private void DisableButtons()
