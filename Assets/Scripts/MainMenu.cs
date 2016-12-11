@@ -7,34 +7,16 @@ public class MainMenu : MonoBehaviour {
 
     public InputField nameInputField;
 
-    // Go to the Save Profile scene
-    public void SwitchToSaveProfileScene()
-    {
-        SceneManager.LoadScene("Choose Save Profile");
-    }
 
-    // Go to the Save As scene
-    public void SwitchToSaveAsScene()
+    public void TogglePanel(GameObject panel)
     {
-        SceneManager.LoadScene("Save As");
-    }
-
-    // Go to the Gender Selection scene
-    public void SwitchToGenderSelectionScene()
-    {
-        SceneManager.LoadScene("Gender Selection");
+        panel.SetActive(!panel.activeSelf);
     }
 
     // Set the chosen gender
     public void SetGender(string gender)
     {
         GameManager.gameManager.characterGender = gender;
-    }
-
-    // Go to the Name Selection scene
-    public void SwitchToNameSelectionScene()
-    {
-        SceneManager.LoadScene("Name Selection");
     }
 
     // Set the chosen name
@@ -67,14 +49,6 @@ public class MainMenu : MonoBehaviour {
     public void DeleteSaveProfile(int saveProfile)
     {
         GameManager.gameManager.DeleteSaveProfile(saveProfile);
-        int scene = SceneManager.GetActiveScene().buildIndex;
-        SceneManager.LoadScene(scene, LoadSceneMode.Single);
-    }
-
-    // Go to the Settings Scene
-    public void SwitchToSettingsScene()
-    {
-        SceneManager.LoadScene("Settings");
     }
 
     // Save the game settings
