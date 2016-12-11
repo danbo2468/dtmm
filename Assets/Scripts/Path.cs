@@ -170,6 +170,11 @@ public class Path : MonoBehaviour {
         return null;
     }
 
+    public Transform GetLastNode()
+    {
+        return GetAllCoreNodes()[GetAllCoreNodes().Count - 1];
+    }
+
     /// <summary>
     /// Returns a route based on given parameters, supply a valid startingNode, and a true for next node, false for previous node.
     /// </summary>
