@@ -69,8 +69,11 @@ public class WorldController : MonoBehaviour
             SetOverworldPosition(playerIsAtNode.position);
             Debug.Log(GetOverworldPosition());
         }
+        // The overworld node is not 0,0,0 meaning there should be a node saved in the player profile.
         else
         {
+            // If we are in the overworld -> ask the script for the node that is saved in the player profile.
+            // After the node has been found, set the position of the player to that node and 'teleport' the player to it.
             if (IsOverworld())
             {
                 Debug.Log("Getting data! player was at this node: " + script.findNodeOnPosition(GetOverworldPosition()));
@@ -78,8 +81,10 @@ public class WorldController : MonoBehaviour
                 playerIsAtNode.position = GetOverworldPosition();
                 player.transform.position = playerIsAtNode.position;
             }
+            // If we are not in the over world -> we must be in one of the area's.
             else if (!IsOverworld())
             {
+                // i don't know what to write here.
                 if (playerIsAtNode)
                 {
                     playerIsAtNode.position = GetLevelPosition();
@@ -89,58 +94,70 @@ public class WorldController : MonoBehaviour
                     playerIsAtNode = script.GetNodeOfScene(1);
                 }
 
+                // If player is at the first node -> Move to next node;
                 if(script.GetLevelID(playerIsAtNode) == 1)
                 {
                     moveNext = true;
                 }
 
+                // If player is at the last node -> Load overworld;
                 if (playerIsAtNode == script.GetLastNode())
                 {
                     SceneManager.LoadScene("Overworld");
                 }
             }
         }
-        SetLevels();
-        // Ask GameManager for all level completions, highscores and last player location.     
+        // after all evaluation is done, set the nodes to the correct values.
+        SetLevels();    
     }
 
     void Update()
-    {
-        if(playerIsAtNode)
-            Debug.Log(GetOverworldPosition() + " << GM || WM >> " + playerIsAtNode.position);      
+    {  
         HandleButtons();
         Movement();
     }
 
+    /// <summary>
+    /// LoadLevel() A function to load the overworld or a level. This may have to be integrated in the level manager.
+    /// Right now it is important that the scene name equals the node name.
+    /// TODO: Danbo look please.
+    /// </summary>
     public void LoadLevel()
     {
         if (IsOverworld())
         {
-            Debug.Log("We have set the gamemanager's worldposition from " + GetOverworldPosition() + " to this: " + playerIsAtNode.position);
             SetOverworldPosition(playerIsAtNode.position);
-            Debug.Log("This is the worldnode position now: " + GetOverworldPosition());
-            Debug.Log("LOADING LEVEL::: " + playerIsAtNode.name);
             SceneManager.LoadScene(playerIsAtNode.name);
         }
         else
         {
-            
+            SetLevelPosition(playerIsAtNode.position);
+            SceneManager.LoadScene(playerIsAtNode.name);
         }
     }
 
-    
-
+    /// <summary>
+    /// Movement() A function to move the player to the desired location. It's a big method that requires refactoring.
+    /// Basically it works like this:
+    /// Step 1: Check if player wants to move forward or backwards
+    /// Step 2: Ask script to calculate the path/route it needs to take.
+    /// Step 3: If the current way point does not match the last way point in the route, it means were not done yet and it continues
+    /// Step 4: Move the player towards the waypoint
+    /// Step 5: At somepoint we've reached our destination and it will reset some values
+    /// Step 6: Check if the player is at the overworld, if yes save the location, if not save the level location. 
+    /// Step 7: Upon reaching the destination, the popup with levelname + score will show again. Also the buttons will be enabled again.
+    /// TODO: Refactor
+    /// </summary>
     private void Movement()
     {
-
-        if (moveNext)
+        if (moveNext) // step 1
         {
             HideEnterLevelCanvas();
-            List<Transform> route = script.GetRoute(playerIsAtNode, true);
+            List<Transform> route = script.GetRoute(playerIsAtNode, true); // step 2
             if (route.Count > 0)
             {
                 isMoving = true;
-                if (currentWayPoint < route.Count)
+                if (currentWayPoint < route.Count) // step 3
                 {
                     if (targetWayPoint == null)
                     {
@@ -148,7 +165,7 @@ public class WorldController : MonoBehaviour
                     }
                 }
 
-                if (player.transform.position == targetWayPoint.position && currentWayPoint != route.Count)
+                if (player.transform.position == targetWayPoint.position && currentWayPoint != route.Count) // step 4
                 {
                     currentWayPoint++;
                     targetWayPoint = route[currentWayPoint];
@@ -156,7 +173,7 @@ public class WorldController : MonoBehaviour
 
                 player.transform.position = Vector2.MoveTowards(new Vector2(player.transform.position.x, player.transform.position.y), targetWayPoint.position, 14.5f * Time.deltaTime);
 
-                if (player.transform.position == route[route.Count - 1].position)
+                if (player.transform.position == route[route.Count - 1].position) // step 5
                 {
                     currentWayPoint = 0;
                     playerIsAtNode = targetWayPoint;
@@ -165,21 +182,21 @@ public class WorldController : MonoBehaviour
                     isMoving = false;
                     ShowEnterLevelCanvas(playerIsAtNode);
 
-                    if (IsOverworld())
+                    if (IsOverworld()) // step 6
                     {
                         SetOverworldPosition(playerIsAtNode.position);
                     }
                     if (!IsOverworld())
                     {
-                        SetLevelPosition(playerIsAtNode.position);
                         if (playerIsAtNode.tag == "AreaEnd")
                         {
                             SceneManager.LoadScene("Overworld");
                         }
+                        SetLevelPosition(playerIsAtNode.position);                      
                     }
                 }
             }
-            if (route.Count == 0)
+            if (route.Count == 0) // step 7
             {
                 moveNext = false;
                 ShowEnterLevelCanvas(playerIsAtNode);
@@ -239,6 +256,22 @@ public class WorldController : MonoBehaviour
                 movePrevious = false;
                 ShowEnterLevelCanvas(playerIsAtNode);
             }   
+        }
+    }
+
+    /// <summary>
+    /// Button handler, disables/enables buttons based on current state.
+    /// </summary>
+    private void HandleButtons()
+    {
+        if (isMoving)
+        {
+            DisableButtons();
+        }
+
+        else if (!isMoving)
+        {
+            EnableButtons();
         }
     }
 
@@ -405,6 +438,12 @@ public class WorldController : MonoBehaviour
         }
     }
     
+    /// <summary>
+    /// Checks the array for scores based on the indexes supplied, returns true if ALL of the indexes are set.
+    /// </summary>
+    /// <param name="array"></param>
+    /// <param name="indexes"></param>
+    /// <returns>True/False</returns>
     private bool ScoreIsSet(float[] array, int[] indexes)
     {
         bool returnBool = true;
@@ -418,11 +457,21 @@ public class WorldController : MonoBehaviour
         return returnBool;
     }
 
+    /// <summary>
+    /// Checks the array for scores based on one index supplied, returns true if it's set. 
+    /// </summary>
+    /// <param name="array"></param>
+    /// <param name="index"></param>
+    /// <returns>True/False</returns>
     private bool ScoreIsSet(float[] array, int index)
     {
             return array[index] > 0 ? true : false;
     }
 
+    /// <summary>
+    /// Checks whether the current scene is the overworld.
+    /// </summary>
+    /// <returns></returns>
     private bool IsOverworld()
     {
         if (SceneManager.GetActiveScene().name == "Overworld")
@@ -430,6 +479,9 @@ public class WorldController : MonoBehaviour
         return false;
     }
 
+    /// <summary>
+    /// Disables the tagged buttons in the LevelCanvas;
+    /// </summary>
     private void DisableButtons()
     {
         Button[] button = GetButtonsFromTaggedGameObject("LevelCanvas");
@@ -437,6 +489,9 @@ public class WorldController : MonoBehaviour
             but.interactable = false;
     }
 
+    /// <summary>
+    /// Enables the tagged buttons in the LevelCanvas
+    /// </summary>
     private void EnableButtons()
     {
         Button[] button = GetButtonsFromTaggedGameObject("LevelCanvas");
@@ -444,24 +499,20 @@ public class WorldController : MonoBehaviour
             but.interactable = true;
     }
 
+    /// <summary>
+    /// Returns all the buttons in an array based on a given tag.
+    /// </summary>
+    /// <param name="tag"></param>
+    /// <returns></returns>
     private Button[] GetButtonsFromTaggedGameObject(string tag)
     {
         return GameObject.FindGameObjectWithTag(tag).GetComponentsInChildren<Button>();
     }
 
-    private void HandleButtons()
-    {
-        if (isMoving)
-        {
-            DisableButtons();
-        }
-
-        else if (!isMoving)
-        {
-            EnableButtons();
-        }
-    }
-
+    /// <summary>
+    /// Displays the popup above the player when idling at a level/area node.
+    /// </summary>
+    /// <param name="node"></param>
     private void ShowEnterLevelCanvas(Transform node)
     {
         int compare = 1;
@@ -489,15 +540,13 @@ public class WorldController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Hides the popup above the player when moving in the area/overworld;
+    /// </summary>
     private void HideEnterLevelCanvas()
     {
         Popup.SetActive(false);
     }
-
-    
-
-    
-
 }
     
 

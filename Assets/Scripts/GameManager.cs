@@ -172,11 +172,13 @@ public class GameManager : MonoBehaviour {
     public void SetWorldPosition(Vector3 position)
     {
         this.worldNode = position;
+        Save();
     }
 
     public void SetLevelPosition(Vector3 position)
     {
         this.levelNode = position;
+        Save();
     }
 }
 
