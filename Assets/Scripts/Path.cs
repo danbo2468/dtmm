@@ -125,7 +125,7 @@ public class Path : MonoBehaviour {
         List<Transform> temp = GetAllCoreNodes();
         Transform returnNode = coreNode;
 
-        for (int i = 0; i < temp.Count-1; i++) // perhaps Count - 1
+        for (int i = 0; i < temp.Count - 1; i ++) // perhaps Count - 1
         {
             if (temp[i] == coreNode)
             {
@@ -231,6 +231,7 @@ public class Path : MonoBehaviour {
             node.GetComponent<SpriteRenderer>().sprite = Resources.Load("Placeholder - RedCircle", typeof(Sprite)) as Sprite;
         }
     }
+
 
 }
 
