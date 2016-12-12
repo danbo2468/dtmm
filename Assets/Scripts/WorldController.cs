@@ -57,7 +57,7 @@ public class WorldController : MonoBehaviour
 
     void Start()
     {
-        SetLevels();
+        
         script = path.GetComponent<Path>();
         //playerIsAtNode = script.GetNodeOfScene(1);
         // if the nodes are 0,0,0 it means they aren't set and we should set a default one, preferably the first node of the scene.
@@ -100,6 +100,7 @@ public class WorldController : MonoBehaviour
                 }
             }
         }
+        SetLevels();
         // Ask GameManager for all level completions, highscores and last player location.     
     }
 
