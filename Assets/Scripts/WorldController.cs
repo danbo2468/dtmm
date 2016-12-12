@@ -301,23 +301,66 @@ public class WorldController : MonoBehaviour
                 {
                     script.setLevelCompleted(script.GetNodeOfScene(4));
                 }
-
-
             }
 
             if (SceneManager.GetActiveScene().name == "Market")
             {
+                if (ScoreIsSet(levelHighscores, 5))
+                {
+                    script.setLevelCompleted(script.GetNodeOfScene(2));
+                    script.setLevelUncompleted(script.GetNodeOfScene(3));
+                }
 
+                if (ScoreIsSet(levelHighscores, 6))
+                {
+                    script.setLevelCompleted(script.GetNodeOfScene(3));
+                    script.setLevelUncompleted(script.GetNodeOfScene(4));
+                }
+
+                if (ScoreIsSet(levelHighscores, 7))
+                {
+                    script.setLevelCompleted(script.GetNodeOfScene(4));
+                }
             }
 
             if (SceneManager.GetActiveScene().name == "School")
             {
+                if (ScoreIsSet(levelHighscores, 8))
+                {
+                    script.setLevelCompleted(script.GetNodeOfScene(2));
+                    script.setLevelUncompleted(script.GetNodeOfScene(3));
+                }
 
+                if (ScoreIsSet(levelHighscores, 9))
+                {
+                    script.setLevelCompleted(script.GetNodeOfScene(3));
+                    script.setLevelUncompleted(script.GetNodeOfScene(4));
+                }
+
+                if (ScoreIsSet(levelHighscores, 10))
+                {
+                    script.setLevelCompleted(script.GetNodeOfScene(4));
+                }
             }
 
             if (SceneManager.GetActiveScene().name == "Jungle")
             {
+                if (ScoreIsSet(levelHighscores, 11))
+                {
+                    script.setLevelCompleted(script.GetNodeOfScene(2));
+                    script.setLevelUncompleted(script.GetNodeOfScene(3));
+                }
 
+                if (ScoreIsSet(levelHighscores, 12))
+                {
+                    script.setLevelCompleted(script.GetNodeOfScene(3));
+                    script.setLevelUncompleted(script.GetNodeOfScene(4));
+                }
+
+                if (ScoreIsSet(levelHighscores, 13))
+                {
+                    script.setLevelCompleted(script.GetNodeOfScene(4));
+                }
             }
 
         }
