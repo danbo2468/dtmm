@@ -13,6 +13,7 @@ public class LevelManager : MonoBehaviour {
     public GameObject gameOverMenu;
     public GameObject finishedMenu;
     PlayerController player;
+    private bool finished;
 
     // Use this for initialization
     void Start () {
@@ -22,13 +23,13 @@ public class LevelManager : MonoBehaviour {
         GameManager.gameManager.SetLevelManager(this);
         gameOverMenu.SetActive(false);
         finishedMenu.SetActive(false);
-
+        finished = false;
 	}
 
     void Update()
     {
         scoreText.text = "Score: " + (int) currentScore;
-        if(player.transform.position.x > levelEnd.transform.position.x)
+        if(player.transform.position.x > levelEnd.transform.position.x && !finished)
         {
             SaveScore();
             Finished();
@@ -67,6 +68,7 @@ public class LevelManager : MonoBehaviour {
     {
         finishedMenu.SetActive(true);
         player.SetMoveSpeed(0);
+        finished = true;
     }
 
     public void RestartLevel()
