@@ -194,6 +194,7 @@ public class WorldController : MonoBehaviour
                         }
                         SetLevelPosition(playerIsAtNode.position);                      
                     }
+                    GameManager.gameManager.Save();
                 }
             }
             if (route.Count == 0) // step 7
@@ -248,7 +249,7 @@ public class WorldController : MonoBehaviour
                             SceneManager.LoadScene("Overworld");
                         }
                     }
-                    
+                    GameManager.gameManager.Save();
                 }
             }
             if (route.Count == 0)
