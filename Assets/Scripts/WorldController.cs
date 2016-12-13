@@ -533,7 +533,7 @@ public class WorldController : MonoBehaviour
             }
             else
             {
-                textFields[0].text = node.name + " - level " + script.GetLevelID(node);
+                textFields[0].text = SceneManager.GetActiveScene().name + " - " + node.name;
                 textFields[1].text = "Score: " + score;
                 textFields[2].text = "Play";
             }
