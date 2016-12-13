@@ -52,7 +52,18 @@ public class PlayerController : MonoBehaviour
 
             // Check if grounded
             CheckGrounded();
-
+            if (Input.GetMouseButtonDown(0))
+            {
+                Vector2 mousePosition = new Vector2(Input.mousePosition.x, Screen.height - Input.mousePosition.y);
+                if (mousePosition.x < Screen.width / 2)
+                {
+                    if (grounded)
+                        Jump();
+                }
+                else if (mousePosition.x > Screen.width / 2)
+                    Shoot();
+            }
+            /*
             // Check if spacebar or left mouse button is pressed
             if (Input.GetMouseButtonDown(0) && grounded)
             {
@@ -60,10 +71,11 @@ public class PlayerController : MonoBehaviour
             }
             
             // Check if the right mous button is pressed
-            if (Input.GetMouseButtonDown(1))
+            if (Input.GetMouseButtonDown(0))
             {
                 Shoot();
             }
+            */
 
         }
 

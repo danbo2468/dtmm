@@ -51,13 +51,16 @@ public class TutorialManager : MonoBehaviour {
         // After air attack point
         if (lastPoint == "AirAttackPoint")
         {
-            if (Input.GetMouseButtonDown(0) && player.CheckGrounded())
+            if (Input.GetMouseButtonDown(0))
             {
-                player.Jump();
-            }
-            if (Input.GetMouseButtonDown(1))
-            {
-                player.Shoot();
+                Vector2 mousePosition = new Vector2(Input.mousePosition.x, Screen.height - Input.mousePosition.y);
+                if (mousePosition.x < Screen.width / 2)
+                {
+                    if (player.CheckGrounded())
+                        player.Jump();
+                }
+                else if (mousePosition.x > Screen.width / 2)
+                    player.Shoot();
             }
         }
 
@@ -68,21 +71,29 @@ public class TutorialManager : MonoBehaviour {
             airAttackText.SetActive(true);
             if (Input.GetMouseButtonDown(0))
             {
-                player.Jump();
-                ContinueFromPoint("AirAttackPoint");
+                Vector2 mousePosition = new Vector2(Input.mousePosition.x, Screen.height - Input.mousePosition.y);
+                if (mousePosition.x < Screen.width / 2)
+                {
+                    if (player.CheckGrounded())
+                        player.Jump();
+                }
+            ContinueFromPoint("AirAttackPoint");
             }
         }
 
         // Between ground attack point and air attack point
         else if (player.transform.position.x > groundAttackPoint.transform.position.x && lastPoint == "GroundAttackPoint")
         {
-            if (Input.GetMouseButtonDown(0) && player.CheckGrounded())
+            if (Input.GetMouseButtonDown(0))
             {
-                player.Jump();
-            }
-            if (Input.GetMouseButtonDown(1))
-            {
-                player.Shoot();
+                Vector2 mousePosition = new Vector2(Input.mousePosition.x, Screen.height - Input.mousePosition.y);
+                if (mousePosition.x < Screen.width / 2)
+                {
+                    if (player.CheckGrounded())
+                        player.Jump();
+                }
+                else if (mousePosition.x > Screen.width / 2)
+                    player.Shoot();
             }
         }
 
@@ -91,19 +102,28 @@ public class TutorialManager : MonoBehaviour {
         {
             player.SetMoveSpeed(0);
             groundAttackText.SetActive(true);
-            if (Input.GetMouseButtonDown(1))
+            if (Input.GetMouseButtonDown(0))
             {
-                player.Shoot();
-                ContinueFromPoint("GroundAttackPoint");
+                Vector2 mousePosition = new Vector2(Input.mousePosition.x, Screen.height - Input.mousePosition.y);
+
+                if (mousePosition.x > Screen.width / 2)
+                    player.Shoot();
+            
+            ContinueFromPoint("GroundAttackPoint");
             }
         }
 
         // Between collect point and ground attack point
         else if (player.transform.position.x > collectPoint.transform.position.x && lastPoint == "CollectPoint")
         {
-            if (Input.GetMouseButtonDown(0) && player.CheckGrounded())
+            if (Input.GetMouseButtonDown(0))
             {
-                player.Jump();
+                Vector2 mousePosition = new Vector2(Input.mousePosition.x, Screen.height - Input.mousePosition.y);
+                if (mousePosition.x < Screen.width / 2)
+                {
+                    if (player.CheckGrounded())
+                        player.Jump();
+                }
             }
         }
 
@@ -114,16 +134,23 @@ public class TutorialManager : MonoBehaviour {
             collectText.SetActive(true);
             if (Input.GetMouseButtonDown(0))
             {
-                ContinueFromPoint("CollectPoint");
+                Vector2 mousePosition = new Vector2(Input.mousePosition.x, Screen.height - Input.mousePosition.y);
+                if (mousePosition.x < Screen.width / 2)
+                {
+                    ContinueFromPoint("CollectPoint");
+                }
             }
         }
 
         // Between jump point and collect point
         else if (player.transform.position.x > jumpPoint.transform.position.x && lastPoint == "JumpPoint")
         {
-            if (Input.GetMouseButtonDown(0) && player.CheckGrounded())
+            if (Input.GetMouseButtonDown(0))
             {
-                player.Jump();
+                Vector2 mousePosition = new Vector2(Input.mousePosition.x, Screen.height - Input.mousePosition.y);
+                if (mousePosition.x < Screen.width / 2)
+                    if (player.CheckGrounded())
+                        player.Jump();
             }
         }
 
@@ -134,7 +161,11 @@ public class TutorialManager : MonoBehaviour {
             jumpText.SetActive(true);
             if (Input.GetMouseButtonDown(0))
             {
-                player.Jump();
+                Vector2 mousePosition = new Vector2(Input.mousePosition.x, Screen.height - Input.mousePosition.y);
+                if (mousePosition.x < Screen.width / 2)
+                    if (player.CheckGrounded())
+                        player.Jump();
+
                 ContinueFromPoint("JumpPoint");
             }
         }
