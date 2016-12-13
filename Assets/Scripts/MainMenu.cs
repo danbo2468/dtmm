@@ -42,7 +42,7 @@ public class MainMenu : MonoBehaviour {
     public void LoadGame(int saveProfile)
     {
         GameManager.gameManager.LoadSaveProfile(saveProfile);
-        SceneManager.LoadScene("Tutorial");
+        SceneManager.LoadScene("Overworld");
     }
 
     // Delete the player data
