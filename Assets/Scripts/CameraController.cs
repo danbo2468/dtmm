@@ -7,6 +7,7 @@ public class CameraController : MonoBehaviour {
     private PlayerController character;
     private Vector3 lastCharacterPosition;
     private float distanceToMoveX;
+    private float distanceToMoveY;
 
     // Use this for initialization
     void Start ()
@@ -20,6 +21,7 @@ public class CameraController : MonoBehaviour {
     {
         // Calculate the distance to move the camera
         distanceToMoveX = character.transform.position.x - lastCharacterPosition.x;
+        distanceToMoveY = (character.transform.position.y - lastCharacterPosition.y) / 2;
 
         // Move the camera
         transform.position = new Vector3(transform.position.x + distanceToMoveX, transform.position.y, transform.position.z);
