@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System;
 
 public class WorldController : MonoBehaviour
 {
@@ -435,7 +436,6 @@ public class WorldController : MonoBehaviour
                 script.setLevelCompleted(script.GetNodeOfScene(6));
                 script.setLevelUncompleted(script.GetNodeOfScene(7));
             }
-
         }
     }
     
@@ -528,13 +528,13 @@ public class WorldController : MonoBehaviour
             if (IsOverworld())
             {
                 textFields[0].text = "World - " + node.name;
-                textFields[1].text = "Total Score: " + score;
+                textFields[1].text = "Total Score: " + GetScoreOfArea();
                 textFields[2].text = "Enter";
             }
             else
             {
                 textFields[0].text = SceneManager.GetActiveScene().name + " - " + node.name;
-                textFields[1].text = "Score: " + score;
+                textFields[1].text = "Score: " + GetScoreOfLevel(playerIsAtNode.GetComponent<Level>().level).ToString();
                 textFields[2].text = "Play";
             }
         Popup.SetActive(true);
@@ -547,6 +547,21 @@ public class WorldController : MonoBehaviour
     private void HideEnterLevelCanvas()
     {
         Popup.SetActive(false);
+    }
+
+    private float GetScoreOfLevel(int level)
+    {
+        return float.IsNaN(GameManager.gameManager.levelHighscores[level]) ? 0 : GameManager.gameManager.levelHighscores[level];
+    }
+
+    private float GetScoreOfArea()
+    {
+        float returnValue = 0;
+
+        foreach (int level in playerIsAtNode.GetComponent<Area>().levels)
+            returnValue += GetScoreOfLevel(level);
+
+        return returnValue;
     }
 }
     
