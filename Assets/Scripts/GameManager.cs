@@ -1,6 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections.Generic;
-using UnityEngine.SceneManagement;
 using System;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
@@ -39,13 +37,13 @@ public class GameManager : MonoBehaviour {
         }
 	}
 
-    // Load the Player Prefs
     void Start()
     {
         levelHighscores = new float[14];
         //worldNode = new Vector3(0, 0, 0);
         //levelNode = new Vector3(0, 0, 0);
 
+        // ssLoad the Player Prefs
         if (PlayerPrefs.HasKey("Background Music"))
         {
             if (PlayerPrefs.GetInt("Background Music") == 1)
@@ -82,11 +80,15 @@ public class GameManager : MonoBehaviour {
     // Save the game status
     public void Save()
     {
+
+        // Create a new save file
         BinaryFormatter formatter = new BinaryFormatter();
         FileStream file = File.Create(Application.persistentDataPath + "/saveProfile" + this.saveProfileNumber + ".dat");
 
+        // Save the data to the file
         SaveData saveData = new SaveData(this.saveProfileNumber, this.characterGender, this.characterName, this.levelHighscores, this.coins, Vector3ToArray(this.worldNode), Vector3ToArray(this.levelNode));
 
+        // Close the file
         formatter.Serialize(file, saveData);
         file.Close();
     }
@@ -94,8 +96,12 @@ public class GameManager : MonoBehaviour {
     // Load the character's name of a certain profile
     public string LoadSaveProfileName(int saveProfileNumber)
     {
+
+        // Check if the save file exists
         if (File.Exists(Application.persistentDataPath + "/saveProfile" + saveProfileNumber + ".dat"))
         {
+
+            // Open the file and load the name
             BinaryFormatter formatter = new BinaryFormatter();
             FileStream file = File.Open(Application.persistentDataPath + "/saveProfile" + saveProfileNumber + ".dat", FileMode.Open);
             SaveData saveData = (SaveData)formatter.Deserialize(file);
@@ -104,7 +110,8 @@ public class GameManager : MonoBehaviour {
             return saveData.characterName;
         }
         else
-        {
+        {   
+            // Return null
             return null;
         }
     }
@@ -112,13 +119,17 @@ public class GameManager : MonoBehaviour {
     // Load a certain profile into the game manager
     public void LoadSaveProfile(int saveProfileNumber)
     {
+
+        // Check if the save file exists
         if (File.Exists(Application.persistentDataPath + "/saveProfile" + saveProfileNumber + ".dat"))
         {
+            // Load the information from the file
             BinaryFormatter formatter = new BinaryFormatter();
             FileStream file = File.Open(Application.persistentDataPath + "/saveProfile" + saveProfileNumber + ".dat", FileMode.Open);
             SaveData saveData = (SaveData)formatter.Deserialize(file);
             file.Close();
 
+            // Load the save file information into the game manager
             this.saveProfileNumber = saveData.saveProfileNumber;
             this.characterGender = saveData.characterGender;
             this.characterName = saveData.characterName;
@@ -159,28 +170,32 @@ public class GameManager : MonoBehaviour {
         coins += collectedCoins;
     }
 
+    // Convert a Vector3 to an Array
     public float[] Vector3ToArray(Vector3 vector)
     {
         return new float[3] { vector.x, vector.y, vector.z };      
     }
 
+    // Convert an Array to a Vector3
     public Vector3 SetArrayToTransform(float[] array)
     {
         return new Vector3(array[0], array[1], array[2]);
     }
 
+    // Set the position in the world
     public void SetWorldPosition(Vector3 position)
     {
         this.worldNode = position;
     }
 
+    // Set the position in a section
     public void SetLevelPosition(Vector3 position)
     {
         this.levelNode = position;
     }
 }
 
-
+// The format of save files
 [Serializable]
 class SaveData
 {
