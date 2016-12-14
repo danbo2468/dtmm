@@ -10,31 +10,6 @@ public class MainMenu : MonoBehaviour {
     void Awake()
     {
         GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>().orthographicSize = Screen.height / 2;
-        for (int i=0;i < transform.childCount;i++)
-        {
-            Transform childTransform = transform.GetChild(i);
-            for (int k = 0; k < childTransform.childCount; k++)
-            {
-                Transform childChildTransform = childTransform.GetChild(k);
-                childChildTransform.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
-                if (childChildTransform.GetComponent<RectTransform>().anchorMax == new Vector2(0.5f,1)
-                    && childChildTransform.GetComponent<RectTransform>().anchorMin == new Vector2(0.5f, 1))
-                {
-                    childChildTransform.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -Screen.height/5);
-                }
-                if (childChildTransform.GetComponent<RectTransform>().anchorMax == new Vector2(1, 0)
-                    && childChildTransform.GetComponent<RectTransform>().anchorMin == new Vector2(1, 0))
-                {
-                    childChildTransform.GetComponent<RectTransform>().anchoredPosition = new Vector2(-Screen.width/10, Screen.height / 10);
-                }
-                if (childChildTransform.GetComponent<RectTransform>().anchorMax == new Vector2(0.5f, 0)
-                    && childChildTransform.GetComponent<RectTransform>().anchorMin == new Vector2(0.5f, 0))
-                {
-                    childChildTransform.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, Screen.height / 10);
-                }
-
-            }
-        }
     }
 
     public void TogglePanel(GameObject panel)
