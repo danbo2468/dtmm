@@ -5,13 +5,10 @@ using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour {
 
+    // Input field for the name
     public InputField nameInputField;
 
-    void Awake()
-    {
-        GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>().orthographicSize = Screen.height / 2;
-    }
-
+    // Activate or De-activate a certain panel
     public void TogglePanel(GameObject panel)
     {
         panel.SetActive(!panel.activeSelf);
@@ -60,7 +57,6 @@ public class MainMenu : MonoBehaviour {
     {
         SceneManager.LoadScene("Welcome Screen");
     }
-
 
     // Exit the game
     public void QuitGame()
