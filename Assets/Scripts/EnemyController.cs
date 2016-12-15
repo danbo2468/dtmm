@@ -43,4 +43,12 @@ public class EnemyController : MonoBehaviour {
             other.gameObject.SendMessage("ApplyDamage", touchDamage);
         }
     }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "Player" && health > 0)
+        {
+            other.gameObject.SendMessage("ApplyDamage", touchDamage);
+        }
+    }
 }

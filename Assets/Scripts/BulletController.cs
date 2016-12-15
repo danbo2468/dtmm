@@ -31,7 +31,7 @@ public class BulletController : MonoBehaviour {
     }
 
     // Check if the bullet hits another object
-    void OnCollisionEnter2D(Collision2D other)
+    void OnTriggerEnter2D(Collider2D other)
     {
         if(other.gameObject.tag == "Enemy")
         {

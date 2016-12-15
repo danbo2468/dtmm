@@ -685,6 +685,16 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 0.75
       objectReference: {fileID: 0}
+    - target: {fileID: 114000011618840226, guid: 1dc54a111e5962644a9facb8390bfc16,
+        type: 2}
+      propertyPath: touchDamage
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 61000010918775140, guid: 1dc54a111e5962644a9facb8390bfc16,
+        type: 2}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1dc54a111e5962644a9facb8390bfc16, type: 2}
   m_IsPrefabParent: 0
@@ -3915,6 +3925,16 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 114000012816778314, guid: bd07e137744cabf4fbba9c4769df02b4,
+        type: 2}
+      propertyPath: bgImage
+      value: 
+      objectReference: {fileID: 2800000, guid: 4914ff4e6ab424b439f7bda287caacd6, type: 3}
+    - target: {fileID: 114000012816778314, guid: bd07e137744cabf4fbba9c4769df02b4,
+        type: 2}
+      propertyPath: fgImage
+      value: 
+      objectReference: {fileID: 2800000, guid: 5e50f4caa4cf1a0488c8b9b9b9d58868, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bd07e137744cabf4fbba9c4769df02b4, type: 2}
   m_IsPrefabParent: 0
