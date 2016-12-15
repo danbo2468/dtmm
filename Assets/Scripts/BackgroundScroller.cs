@@ -27,7 +27,7 @@ public class BackgroundScroller : MonoBehaviour {
         if ((transform.position.x + 35.5) < cameraTransform.position.x)
         {
             newPosition = transform.position;
-            newPosition.x += 2 * tileWidth;
+            newPosition.x += (2 * tileWidth) - 0.1f;
             transform.position = newPosition;
         }
     }
