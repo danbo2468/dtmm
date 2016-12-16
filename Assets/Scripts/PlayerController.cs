@@ -84,6 +84,7 @@ public class PlayerController : MonoBehaviour
 
     void OnGUI()
     {
+        /*
         // Create one Group to contain both images
         // Adjust the first 2 coordinates to place it somewhere else on-screen
         GUI.BeginGroup(new Rect(Screen.width/3, 5, healthBarLength, 32));
@@ -102,6 +103,7 @@ public class PlayerController : MonoBehaviour
         GUI.EndGroup();
 
         GUI.EndGroup();
+        */
     }
 
     // Check if grounded
