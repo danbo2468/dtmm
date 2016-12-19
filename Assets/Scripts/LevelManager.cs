@@ -7,15 +7,18 @@ public class LevelManager : MonoBehaviour {
 
     // Score
     float currentScore;
+    float highScore;
     float collectedCoins;
     public Text scoreText;
+    public Text highscoreText;
 
     // Level number
     public int level;
 
     // End of level
     public GameObject levelEnd;
-    private bool finished;
+    public bool isFinished;
+    public bool isGameOver;
 
     // Dialogs
     public GameObject gameOverMenu;
@@ -27,11 +30,14 @@ public class LevelManager : MonoBehaviour {
         player = FindObjectOfType<PlayerController>();
         currentScore = 0;
         collectedCoins = 0;
+        highScore = GameManager.gameManager.levelHighscores[level];
         GameManager.gameManager.SetLevelManager(this);
         gameOverMenu.SetActive(false);
         finishedMenu.SetActive(false);
-        finished = false;
-	}
+        isFinished = false;
+        isGameOver = false;
+        highscoreText.text = "Highest score: " + (int)highScore;
+    }
 
     // Call this every frame
     void Update()
@@ -40,7 +46,7 @@ public class LevelManager : MonoBehaviour {
         scoreText.text = "Score: " + (int) currentScore;
 
         // Check if the level is finished
-        if(player.transform.position.x > levelEnd.transform.position.x && !finished)
+        if (player.transform.position.x > levelEnd.transform.position.x && !isFinished)
         {
             SaveScore();
             Finished();
@@ -70,6 +76,7 @@ public class LevelManager : MonoBehaviour {
     // Show a Game Over dialog
     public void GameOver()
     {
+        isGameOver = true;
         gameOverMenu.SetActive(true);
         player.SetMoveSpeed(0);
     }
@@ -79,7 +86,7 @@ public class LevelManager : MonoBehaviour {
     {
         finishedMenu.SetActive(true);
         player.SetMoveSpeed(0);
-        finished = true;
+        isFinished = true;
     }
 
     // Restart this level

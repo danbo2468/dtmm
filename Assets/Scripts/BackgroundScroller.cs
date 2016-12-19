@@ -1,33 +1,40 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class BackgroundScroller : MonoBehaviour {
 
+    // Player
+    public PlayerController player;
+
+    // Scrolling
+    float imageWidth;
     public float scrollSpeed;
+
+    // Position
     Vector3 startPosition;
     Transform cameraTransform;
-    public PlayerController player;
-    float tileWidth;
 
     // Use this for initialization
     void Start () {
         player = FindObjectOfType<PlayerController>();
         startPosition = transform.position;
         cameraTransform = Camera.main.transform;
-        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
-        tileWidth = GetComponent<SpriteRenderer>().bounds.size.x;
+        imageWidth = GetComponent<SpriteRenderer>().bounds.size.x;
     }
 	
 	// Update is called once per frame
 	void Update () {
+
+        // Move the image at a certain speed
         Vector3 newPosition = transform.position;
         newPosition.x -= Time.deltaTime * scrollSpeed * player.GetComponent<Rigidbody2D>().velocity.x;
         transform.position = newPosition;
 
-        if ((transform.position.x + 35.5) < cameraTransform.position.x)
+        // Check if the image is out of the camera's view
+        if (transform.position.x + (imageWidth) < cameraTransform.position.x)
         {
+            // Set the new position of the image
             newPosition = transform.position;
-            newPosition.x += (2 * tileWidth) - 0.1f;
+            newPosition.x += (2 * imageWidth) - 0.1f;
             transform.position = newPosition;
         }
     }
