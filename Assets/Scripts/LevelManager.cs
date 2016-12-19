@@ -15,7 +15,8 @@ public class LevelManager : MonoBehaviour {
 
     // End of level
     public GameObject levelEnd;
-    private bool finished;
+    public bool isFinished;
+    public bool isGameOver;
 
     // Dialogs
     public GameObject gameOverMenu;
@@ -30,7 +31,8 @@ public class LevelManager : MonoBehaviour {
         GameManager.gameManager.SetLevelManager(this);
         gameOverMenu.SetActive(false);
         finishedMenu.SetActive(false);
-        finished = false;
+        isFinished = false;
+        isGameOver = false;
 	}
 
     // Call this every frame
@@ -40,7 +42,7 @@ public class LevelManager : MonoBehaviour {
         scoreText.text = "Score: " + (int) currentScore;
 
         // Check if the level is finished
-        if(player.transform.position.x > levelEnd.transform.position.x && !finished)
+        if(player.transform.position.x > levelEnd.transform.position.x && !isFinished)
         {
             SaveScore();
             Finished();
@@ -70,6 +72,7 @@ public class LevelManager : MonoBehaviour {
     // Show a Game Over dialog
     public void GameOver()
     {
+        isGameOver = true;
         gameOverMenu.SetActive(true);
         player.SetMoveSpeed(0);
     }
@@ -79,7 +82,7 @@ public class LevelManager : MonoBehaviour {
     {
         finishedMenu.SetActive(true);
         player.SetMoveSpeed(0);
-        finished = true;
+        isFinished = true;
     }
 
     // Restart this level

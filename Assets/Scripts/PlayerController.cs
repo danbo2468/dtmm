@@ -2,9 +2,6 @@
 
 public class PlayerController : MonoBehaviour
 {
-
-    
-
     // Character forces
     public float initialMoveSpeed;
     private float moveSpeed;
@@ -58,7 +55,7 @@ public class PlayerController : MonoBehaviour
         }
 
         //Check if the tutorialmode is on
-        if (!tutorialMode) {
+        if (!tutorialMode && !GameManager.gameManager.levelManager.isGameOver && !GameManager.gameManager.levelManager.isFinished) {
 
             // Check if grounded
             CheckGrounded();
