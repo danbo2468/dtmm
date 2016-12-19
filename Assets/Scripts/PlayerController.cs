@@ -4,9 +4,6 @@ using System;
 
 public class PlayerController : MonoBehaviour
 {
-
-    
-
     // Character forces
     public float initialMoveSpeed;
     private float moveSpeed;
@@ -28,13 +25,24 @@ public class PlayerController : MonoBehaviour
     // Weapons
     public BulletController weapon;
 
+    // Healthbar
+    public Texture2D bgImage;
+    public Texture2D fgImage;
+    public float healthBarLength;
+
 
     // Player health
     public float initialHealth;
     private float health;
 
+
     public GameObject healthCanvas;
     public List<Transform> hearts;
+
+    // Character gender
+    public RuntimeAnimatorController boyAnimation;
+    public RuntimeAnimatorController girlAnimation;
+
 
     // Use this for initialization
     void Start()
@@ -55,19 +63,29 @@ public class PlayerController : MonoBehaviour
         rigidBody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         health = initialHealth;
+
+        if (GameManager.gameManager.characterGender == "Female")
+        {
+            animator.runtimeAnimatorController = girlAnimation;
+        }
+        else
+        {
+            animator.runtimeAnimatorController = boyAnimation;
+        }
     }
 
     // Update is called once per frame
     void Update()
-    {   
+    {
         // Check the player health
-        if(health <= 0)
+        if (health <= 0)
         {
             GameManager.gameManager.levelManager.GameOver();
         }
 
         //Check if the tutorialmode is on
-        if (!tutorialMode) {
+        if (!tutorialMode && !GameManager.gameManager.levelManager.isGameOver && !GameManager.gameManager.levelManager.isFinished)
+        {
 
             // Check if grounded
             CheckGrounded();
@@ -351,7 +369,8 @@ public class PlayerController : MonoBehaviour
         if (speed == -1)
         {
             moveSpeed = initialMoveSpeed;
-        } else
+        }
+        else
         {
             moveSpeed = speed;
         }
