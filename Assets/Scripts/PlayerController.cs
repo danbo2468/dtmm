@@ -24,7 +24,6 @@ public class PlayerController : MonoBehaviour
     public BulletController weapon;
 
     // Healthbar
-
     public Texture2D bgImage;
     public Texture2D fgImage;
     public float healthBarLength;
@@ -32,6 +31,10 @@ public class PlayerController : MonoBehaviour
     // Player health
     public float initialHealth;
     private float health;
+
+    // Character gender
+    public RuntimeAnimatorController boyAnimation;
+    public RuntimeAnimatorController girlAnimation;
 
     // Use this for initialization
     void Start()
@@ -43,6 +46,14 @@ public class PlayerController : MonoBehaviour
         rigidBody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         health = initialHealth;
+
+        if(GameManager.gameManager.characterGender == "Female")
+        {
+            animator.runtimeAnimatorController = girlAnimation;
+        } else
+        {
+            animator.runtimeAnimatorController = boyAnimation;
+        }
     }
 
     // Update is called once per frame
