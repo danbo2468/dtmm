@@ -7,8 +7,10 @@ public class LevelManager : MonoBehaviour {
 
     // Score
     float currentScore;
+    float highScore;
     float collectedCoins;
     public Text scoreText;
+    public Text highscoreText;
 
     // Level number
     public int level;
@@ -28,12 +30,14 @@ public class LevelManager : MonoBehaviour {
         player = FindObjectOfType<PlayerController>();
         currentScore = 0;
         collectedCoins = 0;
+        highScore = GameManager.gameManager.levelHighscores[level];
         GameManager.gameManager.SetLevelManager(this);
         gameOverMenu.SetActive(false);
         finishedMenu.SetActive(false);
         isFinished = false;
         isGameOver = false;
-	}
+        highscoreText.text = "Highest score: " + (int)highScore;
+    }
 
     // Call this every frame
     void Update()
@@ -42,7 +46,7 @@ public class LevelManager : MonoBehaviour {
         scoreText.text = "Score: " + (int) currentScore;
 
         // Check if the level is finished
-        if(player.transform.position.x > levelEnd.transform.position.x && !isFinished)
+        if (player.transform.position.x > levelEnd.transform.position.x && !isFinished)
         {
             SaveScore();
             Finished();
