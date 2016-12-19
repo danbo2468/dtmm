@@ -24,6 +24,9 @@ public class GameManager : MonoBehaviour {
     public Vector3 worldNode; // player is at this worldNode;
     public Vector3 levelNode; // player is at this levelNode;
 
+    // heartCount
+    public int heartCount;
+
 	// Use this for initialization
 	void Awake () {
         if(gameManager == null)
@@ -39,6 +42,7 @@ public class GameManager : MonoBehaviour {
 
     void Start()
     {
+        heartCount = 2;
         levelHighscores = new float[14];
         //worldNode = new Vector3(0, 0, 0);
         //levelNode = new Vector3(0, 0, 0);
@@ -75,7 +79,12 @@ public class GameManager : MonoBehaviour {
         {
             soundEffects = true;
         }
-    } 
+    }
+
+    public int getHeartCount()
+    {
+        return heartCount;
+    }
 
     // Save the game status
     public void Save()

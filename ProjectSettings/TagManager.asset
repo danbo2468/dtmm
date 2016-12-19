@@ -22,6 +22,7 @@ TagManager:
   - WorldCanvas
   - AreaBegin
   - AreaEnd
+  - HealthCanvas
   layers:
   - Default
   - TransparentFX

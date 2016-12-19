@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
+using System;
 
 public class PlayerController : MonoBehaviour
 {
@@ -26,22 +28,29 @@ public class PlayerController : MonoBehaviour
     // Weapons
     public BulletController weapon;
 
-    // Healthbar
-
-    public Texture2D bgImage;
-    public Texture2D fgImage;
-    public float healthBarLength;
 
     // Player health
     public float initialHealth;
     private float health;
 
+    public GameObject healthCanvas;
+    public List<Transform> hearts;
+
     // Use this for initialization
     void Start()
     {
-        // Get the components
-        bgImage = new Texture2D(1, 1);
-        healthBarLength = Screen.width / 3;
+        Transform[] heartsTemp = healthCanvas.GetComponentsInChildren<Transform>();
+        hearts = new List<Transform>();
+
+        foreach (Transform heart in heartsTemp)
+        {
+            if (heart.tag != "HealthCanvas")
+            {
+                hearts.Add(heart);
+            }
+        }
+
+        UpdateGUI();
         moveSpeed = initialMoveSpeed;
         rigidBody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
@@ -82,29 +91,24 @@ public class PlayerController : MonoBehaviour
         UpdateAnimation();
     }
 
-    void OnGUI()
+    void setHalfHeart(int number)
     {
-        /*
-        // Create one Group to contain both images
-        // Adjust the first 2 coordinates to place it somewhere else on-screen
-        GUI.BeginGroup(new Rect(Screen.width/3, 5, healthBarLength, 32));
-
-        // Draw the background image
-        GUI.Box(new Rect(0, 0, healthBarLength, 32), bgImage);
-        //GUI.DrawTexture(new Rect(0, 0, healthBarLength, 32), bgImage, ScaleMode.ScaleToFit, true, 10.0f);
-        // Create a second Group which will be clipped
-        // We want to clip the image and not scale it, which is why we need the second Group
-        GUI.BeginGroup(new Rect(0, 0, health / initialHealth * healthBarLength, 32));
-
-        // Draw the foreground image
-        GUI.Box(new Rect(0, 0, healthBarLength, 32), fgImage);
-        //GUI.DrawTexture(new Rect(0, 0, healthBarLength, 32), fgImage, ScaleMode.ScaleToFit, true, 10.0f);
-        // End both Groups
-        GUI.EndGroup();
-
-        GUI.EndGroup();
-        */
+        Debug.Log("setHalfHeart(" + number + ")");
+        hearts[number - 1].GetComponent<SpriteRenderer>().sprite = Resources.Load("Half_heart", typeof(Sprite)) as Sprite;
     }
+
+    void setEmptyHeart(int number)
+    {
+        Debug.Log("setEmptyHeart(" + number + ")");
+        hearts[number - 1].GetComponent<SpriteRenderer>().sprite = Resources.Load("Empty_heart", typeof(Sprite)) as Sprite;
+    }
+
+    void setFullHeart(int number)
+    {
+        Debug.Log("setFullHeart(" + number + ")");
+        hearts[number - 1].GetComponent<SpriteRenderer>().sprite = Resources.Load("Full_heart", typeof(Sprite)) as Sprite;
+    }
+
 
     // Check if grounded
     public bool CheckGrounded()
@@ -132,6 +136,200 @@ public class PlayerController : MonoBehaviour
         Debug.Log("Player health before damage taken: " + health);
         health -= damage;
         Debug.Log("Player health after damage taken: " + health);
+        UpdateGUI();
+    }
+    private void SetupGUI()
+    {
+        // TODO disable hearts.
+        // Asks the gamemanager for the heartCount of the player.
+        int heartCount = GameManager.gameManager.getHeartCount();
+        Debug.Log(hearts.Count);
+
+        if (heartCount == 0)
+        {
+            setEmptyHeart(1);
+            setEmptyHeart(2);
+            setEmptyHeart(3);
+            setEmptyHeart(4);
+            setEmptyHeart(5);
+        }
+
+        if (heartCount == 1)
+        {
+            setHalfHeart(1);
+            setEmptyHeart(2);
+            setEmptyHeart(3);
+            setEmptyHeart(4);
+            setEmptyHeart(5);
+        }
+        if (heartCount == 2)
+        {
+            setFullHeart(1);
+            setEmptyHeart(2);
+            setEmptyHeart(3);
+            setEmptyHeart(4);
+            setEmptyHeart(5);
+        }
+        if (heartCount == 3)
+        {
+            setFullHeart(1);
+            setHalfHeart(2);
+            setEmptyHeart(3);
+            setEmptyHeart(4);
+            setEmptyHeart(5);
+        }
+        if (heartCount == 4)
+        {
+            setFullHeart(1);
+            setFullHeart(2);
+            setEmptyHeart(3);
+            setEmptyHeart(4);
+            setEmptyHeart(5);
+        }
+        if (heartCount == 5)
+        {
+            setFullHeart(1);
+            setFullHeart(2);
+            setHalfHeart(3);
+            setEmptyHeart(4);
+            setEmptyHeart(5);
+        }
+        if (heartCount == 6)
+        {
+            setFullHeart(1);
+            setFullHeart(2);
+            setFullHeart(3);
+            setEmptyHeart(4);
+            setEmptyHeart(5);
+        }
+        if (heartCount == 7)
+        {
+            setFullHeart(1);
+            setFullHeart(2);
+            setFullHeart(3);
+            setHalfHeart(4);
+            setEmptyHeart(5);
+        }
+        if (heartCount == 8)
+        {
+            setFullHeart(1);
+            setFullHeart(2);
+            setFullHeart(3);
+            setFullHeart(4);
+            setEmptyHeart(5);
+        }
+        if (heartCount == 9)
+        {
+            setFullHeart(1);
+            setFullHeart(2);
+            setFullHeart(3);
+            setFullHeart(4);
+            setHalfHeart(4);
+        }
+        if (heartCount == 10)
+        {
+            setFullHeart(1);
+            setFullHeart(2);
+            setFullHeart(3);
+            setFullHeart(4);
+            setFullHeart(5);
+        }
+    }
+    private void UpdateGUI()
+    {
+        // Asks the gamemanager for the heartCount of the player.
+        int heartCount = GameManager.gameManager.getHeartCount();
+        Debug.Log(hearts.Count);
+
+        if (heartCount == 0)
+        {
+            setEmptyHeart(1);
+            setEmptyHeart(2);
+            setEmptyHeart(3);
+            setEmptyHeart(4);
+            setEmptyHeart(5);
+        }
+
+        if (heartCount == 1)
+        {
+            setHalfHeart(1);
+            setEmptyHeart(2);
+            setEmptyHeart(3);
+            setEmptyHeart(4);
+            setEmptyHeart(5);
+        }
+        if (heartCount == 2)
+        {
+            setFullHeart(1);
+            setEmptyHeart(2);
+            setEmptyHeart(3);
+            setEmptyHeart(4);
+            setEmptyHeart(5);
+        }
+        if (heartCount == 3)
+        {
+            setFullHeart(1);
+            setHalfHeart(2);
+            setEmptyHeart(3);
+            setEmptyHeart(4);
+            setEmptyHeart(5);
+        }
+        if (heartCount == 4)
+        {
+            setFullHeart(1);
+            setFullHeart(2);
+            setEmptyHeart(3);
+            setEmptyHeart(4);
+            setEmptyHeart(5);
+        }
+        if (heartCount == 5)
+        {
+            setFullHeart(1);
+            setFullHeart(2);
+            setHalfHeart(3);
+            setEmptyHeart(4);
+            setEmptyHeart(5);
+        }
+        if (heartCount == 6)
+        {
+            setFullHeart(1);
+            setFullHeart(2);
+            setFullHeart(3);
+            setEmptyHeart(4);
+            setEmptyHeart(5);
+        }
+        if (heartCount == 7)
+        {
+            setFullHeart(1);
+            setFullHeart(2);
+            setFullHeart(3);
+            setHalfHeart(4);
+            setEmptyHeart(5);
+        }
+        if (heartCount == 8)
+        {
+            setFullHeart(1);
+            setFullHeart(2);
+            setFullHeart(3);
+            setFullHeart(4);
+            setEmptyHeart(5);
+        }
+        if (heartCount == 9)
+        {
+            setFullHeart(1);
+            setFullHeart(2);
+            setFullHeart(3);
+            setFullHeart(4);
+            setHalfHeart(4);
+        }
+        if (heartCount == 10)
+        {
+            setFullHeart(1);
+            setFullHeart(2);
+            setFullHeart(3);
+            setFullHeart(4);
+            setFullHeart(5);
+        }
     }
 
     // Update the animation of the character
