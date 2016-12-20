@@ -33,7 +33,7 @@ public class PlayerController : MonoBehaviour
 
     // Player health
     public float initialHealth;
-    private float health;
+    public float health;
 
 
     public GameObject healthCanvas;
