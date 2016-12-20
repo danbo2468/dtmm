@@ -64,6 +64,7 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         health = initialHealth;
 
+        // Set the character animation depending on the chosen gender
         if (GameManager.gameManager.characterGender == "Female")
         {
             animator.runtimeAnimatorController = girlAnimation;
