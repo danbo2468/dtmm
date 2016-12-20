@@ -33,7 +33,7 @@ public class PlayerController : MonoBehaviour
 
     // Player health
     public float initialHealth;
-    private float health;
+    public float health;
 
 
     public GameObject healthCanvas;
@@ -58,7 +58,7 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        UpdateGUI();
+        SetupGUI();
         moveSpeed = initialMoveSpeed;
         rigidBody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
@@ -78,6 +78,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(health);
         // Check the player health
         if (health <= 0)
         {
@@ -110,23 +111,7 @@ public class PlayerController : MonoBehaviour
         UpdateAnimation();
     }
 
-    void setHalfHeart(int number)
-    {
-        Debug.Log("setHalfHeart(" + number + ")");
-        hearts[number - 1].GetComponent<SpriteRenderer>().sprite = Resources.Load("Half_heart", typeof(Sprite)) as Sprite;
-    }
-
-    void setEmptyHeart(int number)
-    {
-        Debug.Log("setEmptyHeart(" + number + ")");
-        hearts[number - 1].GetComponent<SpriteRenderer>().sprite = Resources.Load("Empty_heart", typeof(Sprite)) as Sprite;
-    }
-
-    void setFullHeart(int number)
-    {
-        Debug.Log("setFullHeart(" + number + ")");
-        hearts[number - 1].GetComponent<SpriteRenderer>().sprite = Resources.Load("Full_heart", typeof(Sprite)) as Sprite;
-    }
+    
 
 
     // Check if grounded
@@ -159,108 +144,44 @@ public class PlayerController : MonoBehaviour
     }
     private void SetupGUI()
     {
-        // TODO disable hearts.
         // Asks the gamemanager for the heartCount of the player.
         int heartCount = GameManager.gameManager.getHeartCount();
-        Debug.Log(hearts.Count);
+        Debug.Log(heartCount);
 
         if (heartCount == 0)
         {
-            setEmptyHeart(1);
-            setEmptyHeart(2);
-            setEmptyHeart(3);
-            setEmptyHeart(4);
-            setEmptyHeart(5);
+            disableHeart(1);
+            disableHeart(2);
+            disableHeart(3);
+            disableHeart(4);
+            disableHeart(5);
         }
-
-        if (heartCount == 1)
+        else if (heartCount == 1)
         {
-            setHalfHeart(1);
-            setEmptyHeart(2);
-            setEmptyHeart(3);
-            setEmptyHeart(4);
-            setEmptyHeart(5);
+            disableHeart(2);
+            disableHeart(3);
+            disableHeart(4);
+            disableHeart(5);
         }
-        if (heartCount == 2)
+        else if (heartCount == 2)
         {
-            setFullHeart(1);
-            setEmptyHeart(2);
-            setEmptyHeart(3);
-            setEmptyHeart(4);
-            setEmptyHeart(5);
+            disableHeart(3);
+            disableHeart(4);
+            disableHeart(5);
         }
-        if (heartCount == 3)
+        else if (heartCount == 3)
         {
-            setFullHeart(1);
-            setHalfHeart(2);
-            setEmptyHeart(3);
-            setEmptyHeart(4);
-            setEmptyHeart(5);
+            disableHeart(4);
+            disableHeart(5);
         }
-        if (heartCount == 4)
+        else if (heartCount == 4)
         {
-            setFullHeart(1);
-            setFullHeart(2);
-            setEmptyHeart(3);
-            setEmptyHeart(4);
-            setEmptyHeart(5);
-        }
-        if (heartCount == 5)
-        {
-            setFullHeart(1);
-            setFullHeart(2);
-            setHalfHeart(3);
-            setEmptyHeart(4);
-            setEmptyHeart(5);
-        }
-        if (heartCount == 6)
-        {
-            setFullHeart(1);
-            setFullHeart(2);
-            setFullHeart(3);
-            setEmptyHeart(4);
-            setEmptyHeart(5);
-        }
-        if (heartCount == 7)
-        {
-            setFullHeart(1);
-            setFullHeart(2);
-            setFullHeart(3);
-            setHalfHeart(4);
-            setEmptyHeart(5);
-        }
-        if (heartCount == 8)
-        {
-            setFullHeart(1);
-            setFullHeart(2);
-            setFullHeart(3);
-            setFullHeart(4);
-            setEmptyHeart(5);
-        }
-        if (heartCount == 9)
-        {
-            setFullHeart(1);
-            setFullHeart(2);
-            setFullHeart(3);
-            setFullHeart(4);
-            setHalfHeart(4);
-        }
-        if (heartCount == 10)
-        {
-            setFullHeart(1);
-            setFullHeart(2);
-            setFullHeart(3);
-            setFullHeart(4);
-            setFullHeart(5);
+            disableHeart(5);
         }
     }
     private void UpdateGUI()
     {
-        // Asks the gamemanager for the heartCount of the player.
-        int heartCount = GameManager.gameManager.getHeartCount();
-        Debug.Log(hearts.Count);
-
-        if (heartCount == 0)
+        if (health == 0)
         {
             setEmptyHeart(1);
             setEmptyHeart(2);
@@ -269,7 +190,7 @@ public class PlayerController : MonoBehaviour
             setEmptyHeart(5);
         }
 
-        if (heartCount == 1)
+        else if (health == 1)
         {
             setHalfHeart(1);
             setEmptyHeart(2);
@@ -277,7 +198,7 @@ public class PlayerController : MonoBehaviour
             setEmptyHeart(4);
             setEmptyHeart(5);
         }
-        if (heartCount == 2)
+        else if (health == 2)
         {
             setFullHeart(1);
             setEmptyHeart(2);
@@ -285,7 +206,7 @@ public class PlayerController : MonoBehaviour
             setEmptyHeart(4);
             setEmptyHeart(5);
         }
-        if (heartCount == 3)
+        else if (health == 3)
         {
             setFullHeart(1);
             setHalfHeart(2);
@@ -293,7 +214,7 @@ public class PlayerController : MonoBehaviour
             setEmptyHeart(4);
             setEmptyHeart(5);
         }
-        if (heartCount == 4)
+        else if (health == 4)
         {
             setFullHeart(1);
             setFullHeart(2);
@@ -301,7 +222,7 @@ public class PlayerController : MonoBehaviour
             setEmptyHeart(4);
             setEmptyHeart(5);
         }
-        if (heartCount == 5)
+        else if (health == 5)
         {
             setFullHeart(1);
             setFullHeart(2);
@@ -309,7 +230,7 @@ public class PlayerController : MonoBehaviour
             setEmptyHeart(4);
             setEmptyHeart(5);
         }
-        if (heartCount == 6)
+        else if (health == 6)
         {
             setFullHeart(1);
             setFullHeart(2);
@@ -317,7 +238,7 @@ public class PlayerController : MonoBehaviour
             setEmptyHeart(4);
             setEmptyHeart(5);
         }
-        if (heartCount == 7)
+        else if (health == 7)
         {
             setFullHeart(1);
             setFullHeart(2);
@@ -325,7 +246,7 @@ public class PlayerController : MonoBehaviour
             setHalfHeart(4);
             setEmptyHeart(5);
         }
-        if (heartCount == 8)
+        else if (health == 8)
         {
             setFullHeart(1);
             setFullHeart(2);
@@ -333,7 +254,7 @@ public class PlayerController : MonoBehaviour
             setFullHeart(4);
             setEmptyHeart(5);
         }
-        if (heartCount == 9)
+        else if (health == 9)
         {
             setFullHeart(1);
             setFullHeart(2);
@@ -341,7 +262,7 @@ public class PlayerController : MonoBehaviour
             setFullHeart(4);
             setHalfHeart(4);
         }
-        if (heartCount == 10)
+        else if (health == 10)
         {
             setFullHeart(1);
             setFullHeart(2);
@@ -393,5 +314,29 @@ public class PlayerController : MonoBehaviour
         {
             GameManager.gameManager.levelManager.GameOver();
         }
+    }
+
+    void setHalfHeart(int number)
+    {
+        Debug.Log("setHalfHeart(" + number + ")");
+        hearts[number - 1].GetComponent<SpriteRenderer>().sprite = Resources.Load("Half_heart", typeof(Sprite)) as Sprite;
+    }
+
+    void setEmptyHeart(int number)
+    {
+        Debug.Log("setEmptyHeart(" + number + ")");
+        hearts[number - 1].GetComponent<SpriteRenderer>().sprite = Resources.Load("Empty_heart", typeof(Sprite)) as Sprite;
+    }
+
+    void setFullHeart(int number)
+    {
+        Debug.Log("setFullHeart(" + number + ")");
+        hearts[number - 1].GetComponent<SpriteRenderer>().sprite = Resources.Load("Full_heart", typeof(Sprite)) as Sprite;
+    }
+
+    void disableHeart(int number)
+    {
+        Debug.Log("disableHeart(" + number + ")");
+        hearts[number - 1].GetComponent<SpriteRenderer>().enabled = false;
     }
 }
