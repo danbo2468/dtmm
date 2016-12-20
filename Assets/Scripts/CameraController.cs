@@ -8,12 +8,16 @@ public class CameraController : MonoBehaviour {
     private Vector3 lastVerticalCharacterPosition;
     private Vector3 lastHorizontalCharacterPosition;
     private float distanceToMoveX;
+
+    // Y change
     private float distanceToMoveY;
     private float ySteps;
+    private float timesToChange;
 
     // Use this for initialization
     void Start ()
     {
+        timesToChange = 0;
         character = FindObjectOfType<PlayerController>();
         lastHorizontalCharacterPosition = character.transform.position;
         lastVerticalCharacterPosition = character.transform.position;
@@ -22,17 +26,20 @@ public class CameraController : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        if (character.CheckGrounded())
+        // Check if user enters another layer
+        if (character.CheckGrounded() && timesToChange == 0)
         {
             distanceToMoveY = (character.transform.position.y - lastVerticalCharacterPosition.y)/3;
-            ySteps = distanceToMoveY / 10;
+            ySteps = distanceToMoveY / 30;
+            timesToChange = 30;
             lastVerticalCharacterPosition = character.transform.position;
         }
 
-        if(distanceToMoveY > 0)
+        // Change Y
+        if(timesToChange > 0)
         {
             transform.position = new Vector3(transform.position.x, transform.position.y + ySteps, transform.position.z);
-            distanceToMoveY -= ySteps;
+            timesToChange--;
         }
 
         // Calculate the distance to move the camera
