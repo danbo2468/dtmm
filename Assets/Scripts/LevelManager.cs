@@ -32,10 +32,6 @@ public class LevelManager : MonoBehaviour {
         collectedCoins = 0;
         highScore = GameManager.gameManager.levelHighscores[level];
         GameManager.gameManager.SetLevelManager(this);
-        gameOverMenu.SetActive(false);
-        finishedMenu.SetActive(false);
-        isFinished = false;
-        isGameOver = false;
         highscoreText.text = "Highest score: " + (int)highScore;
     }
 

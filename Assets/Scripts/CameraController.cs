@@ -5,8 +5,8 @@ public class CameraController : MonoBehaviour {
 
     // The character, his last position and the difference between those and the camera position
     private PlayerController character;
-    private Vector3 lastCharacterPosition;
-    private Vector4 lastVerticalCharacterPosition;
+    private Vector3 lastVerticalCharacterPosition;
+    private Vector3 lastHorizontalCharacterPosition;
     private float distanceToMoveX;
     private float distanceToMoveY;
 
@@ -14,7 +14,7 @@ public class CameraController : MonoBehaviour {
     void Start ()
     {
         character = FindObjectOfType<PlayerController>();
-        lastCharacterPosition = character.transform.position;
+        lastHorizontalCharacterPosition = character.transform.position;
         lastVerticalCharacterPosition = character.transform.position;
     }
 	
@@ -23,17 +23,18 @@ public class CameraController : MonoBehaviour {
     {
         if (character.CheckGrounded())
         {
-            distanceToMoveY = character.transform.position.y - lastVerticalCharacterPosition.y;
+            distanceToMoveY = (character.transform.position.y - lastVerticalCharacterPosition.y)/3;
             lastVerticalCharacterPosition = character.transform.position;
         }
 
         // Calculate the distance to move the camera
-        distanceToMoveX = character.transform.position.x - lastCharacterPosition.x;
+        distanceToMoveX = character.transform.position.x - lastHorizontalCharacterPosition.x;
 
         // Move the camera
-        transform.position = new Vector3(transform.position.x + distanceToMoveX, transform.position.y + distanceToMoveY, transform.position.z);
+        Vector3 newPosition = new Vector3(transform.position.x + distanceToMoveX, transform.position.y + distanceToMoveY, transform.position.z);
+        transform.position = newPosition;
 
         // Set the new character position
-        lastCharacterPosition = character.transform.position;
+        lastHorizontalCharacterPosition = character.transform.position;
 	}
 }
