@@ -57,6 +57,7 @@ public class PlayerController : MonoBehaviour
                 hearts.Add(heart);
             }
         }
+
         SetupGUI();
         moveSpeed = initialMoveSpeed;
         rigidBody = GetComponent<Rigidbody2D>();
@@ -143,7 +144,6 @@ public class PlayerController : MonoBehaviour
     }
     private void SetupGUI()
     {
-        // TODO disable hearts.
         // Asks the gamemanager for the heartCount of the player.
         int heartCount = GameManager.gameManager.getHeartCount();
         Debug.Log(heartCount);
@@ -156,79 +156,28 @@ public class PlayerController : MonoBehaviour
             disableHeart(4);
             disableHeart(5);
         }
-
-        if (heartCount == 1)
+        else if (heartCount == 1)
         {
             disableHeart(2);
             disableHeart(3);
             disableHeart(4);
             disableHeart(5);
         }
-        if (heartCount == 2)
+        else if (heartCount == 2)
         {
             disableHeart(3);
             disableHeart(4);
             disableHeart(5);
         }
-        if (heartCount == 3)
+        else if (heartCount == 3)
         {
             disableHeart(4);
             disableHeart(5);
         }
-        if (heartCount == 4)
+        else if (heartCount == 4)
         {
             disableHeart(5);
         }
-        /*
-        if (heartCount == 5)
-        {
-            setFullHeart(1);
-            setFullHeart(2);
-            setHalfHeart(3);
-            disableHeart(4);
-            disableHeart(5);
-        }
-        if (heartCount == 6)
-        {
-            setFullHeart(1);
-            setFullHeart(2);
-            setFullHeart(3);
-            disableHeart(4);
-            disableHeart(5);
-        }
-        if (heartCount == 7)
-        {
-            setFullHeart(1);
-            setFullHeart(2);
-            setFullHeart(3);
-            setHalfHeart(4);
-            disableHeart(5);
-        }
-        if (heartCount == 8)
-        {
-            setFullHeart(1);
-            setFullHeart(2);
-            setFullHeart(3);
-            setFullHeart(4);
-            disableHeart(5);
-        }
-        if (heartCount == 9)
-        {
-            setFullHeart(1);
-            setFullHeart(2);
-            setFullHeart(3);
-            setFullHeart(4);
-            setHalfHeart(4);
-        }
-        if (heartCount == 10)
-        {
-            setFullHeart(1);
-            setFullHeart(2);
-            setFullHeart(3);
-            setFullHeart(4);
-            setFullHeart(5);
-        }
-        */
     }
     private void UpdateGUI()
     {
@@ -241,7 +190,7 @@ public class PlayerController : MonoBehaviour
             setEmptyHeart(5);
         }
 
-        if (health == 1)
+        else if (health == 1)
         {
             setHalfHeart(1);
             setEmptyHeart(2);
@@ -249,7 +198,7 @@ public class PlayerController : MonoBehaviour
             setEmptyHeart(4);
             setEmptyHeart(5);
         }
-        if (health == 2)
+        else if (health == 2)
         {
             setFullHeart(1);
             setEmptyHeart(2);
@@ -257,7 +206,7 @@ public class PlayerController : MonoBehaviour
             setEmptyHeart(4);
             setEmptyHeart(5);
         }
-        if (health == 3)
+        else if (health == 3)
         {
             setFullHeart(1);
             setHalfHeart(2);
@@ -265,7 +214,7 @@ public class PlayerController : MonoBehaviour
             setEmptyHeart(4);
             setEmptyHeart(5);
         }
-        if (health == 4)
+        else if (health == 4)
         {
             setFullHeart(1);
             setFullHeart(2);
@@ -273,7 +222,7 @@ public class PlayerController : MonoBehaviour
             setEmptyHeart(4);
             setEmptyHeart(5);
         }
-        if (health == 5)
+        else if (health == 5)
         {
             setFullHeart(1);
             setFullHeart(2);
@@ -281,7 +230,7 @@ public class PlayerController : MonoBehaviour
             setEmptyHeart(4);
             setEmptyHeart(5);
         }
-        if (health == 6)
+        else if (health == 6)
         {
             setFullHeart(1);
             setFullHeart(2);
@@ -289,7 +238,7 @@ public class PlayerController : MonoBehaviour
             setEmptyHeart(4);
             setEmptyHeart(5);
         }
-        if (health == 7)
+        else if (health == 7)
         {
             setFullHeart(1);
             setFullHeart(2);
@@ -297,7 +246,7 @@ public class PlayerController : MonoBehaviour
             setHalfHeart(4);
             setEmptyHeart(5);
         }
-        if (health == 8)
+        else if (health == 8)
         {
             setFullHeart(1);
             setFullHeart(2);
@@ -305,7 +254,7 @@ public class PlayerController : MonoBehaviour
             setFullHeart(4);
             setEmptyHeart(5);
         }
-        if (health == 9)
+        else if (health == 9)
         {
             setFullHeart(1);
             setFullHeart(2);
@@ -313,7 +262,7 @@ public class PlayerController : MonoBehaviour
             setFullHeart(4);
             setHalfHeart(4);
         }
-        if (health == 10)
+        else if (health == 10)
         {
             setFullHeart(1);
             setFullHeart(2);

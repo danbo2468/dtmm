@@ -86,6 +86,11 @@ public class GameManager : MonoBehaviour {
         return heartCount;
     }
 
+    public void addHeartCount()
+    {
+        heartCount++;
+    }
+
     // Save the game status
     public void Save()
     {
@@ -95,7 +100,7 @@ public class GameManager : MonoBehaviour {
         FileStream file = File.Create(Application.persistentDataPath + "/saveProfile" + this.saveProfileNumber + ".dat");
 
         // Save the data to the file
-        SaveData saveData = new SaveData(this.saveProfileNumber, this.characterGender, this.characterName, this.levelHighscores, this.coins, Vector3ToArray(this.worldNode), Vector3ToArray(this.levelNode));
+        SaveData saveData = new SaveData(this.saveProfileNumber, this.characterGender, this.characterName, this.levelHighscores, this.coins, Vector3ToArray(this.worldNode), Vector3ToArray(this.levelNode), heartCount);
 
         // Close the file
         formatter.Serialize(file, saveData);
@@ -105,7 +110,6 @@ public class GameManager : MonoBehaviour {
     // Load the character's name of a certain profile
     public string LoadSaveProfileName(int saveProfileNumber)
     {
-
         // Check if the save file exists
         if (File.Exists(Application.persistentDataPath + "/saveProfile" + saveProfileNumber + ".dat"))
         {
@@ -118,6 +122,7 @@ public class GameManager : MonoBehaviour {
 
             return saveData.characterName;
         }
+
         else
         {   
             // Return null
@@ -146,6 +151,7 @@ public class GameManager : MonoBehaviour {
             this.coins = saveData.coins;
             this.worldNode = SetArrayToTransform(saveData.worldNode);
             this.levelNode = SetArrayToTransform(saveData.levelNode);
+            this.heartCount = saveData.heartCount;
 
             Debug.Log("We've loaded a file! The settings are: ");
             Debug.Log("WorldNode: " + worldNode + " and levelNode: " + levelNode);
@@ -215,8 +221,9 @@ class SaveData
     public float coins;
     public float[] worldNode;
     public float[] levelNode;
+    public int heartCount;
 
-    public SaveData(int saveProfileNumber, string characterGender, string characterName, float[] levelHighscores, float coins, float[] worldNode, float[] levelNode)
+    public SaveData(int saveProfileNumber, string characterGender, string characterName, float[] levelHighscores, float coins, float[] worldNode, float[] levelNode, int heartCount)
     {
         this.saveProfileNumber = saveProfileNumber;
         this.characterGender = characterGender;
@@ -225,5 +232,6 @@ class SaveData
         this.coins = coins;
         this.worldNode = worldNode;
         this.levelNode = levelNode;
+        this.heartCount = heartCount;
     }
 }
