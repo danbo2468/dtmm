@@ -40,12 +40,10 @@ public class LevelManager : MonoBehaviour {
     // UI Score calculation
     public Text oldScoreText;
     public Text newScoreText;
-    public bool[] heartBools;
     public List<Transform> heartCountList;
 
     // Use this for initialization
     void Start () {
-        heartBools = new bool[5];
         player = FindObjectOfType<PlayerController>();
         currentScore = 0;
         collectedCoins = 0;
@@ -69,7 +67,6 @@ public class LevelManager : MonoBehaviour {
         if (isFinished)
         {
             heartCountList = player.hearts;
-            Debug.Log(heartCountList.Count);
             Transform target = heart1;
             for (int i = 1; i <= heartCountList.Count; i++)
             {
@@ -87,14 +84,16 @@ public class LevelManager : MonoBehaviour {
 
                 else if (i == 5)
                     target = heart5;
-
+                Debug.Log("I am moving hearts");
                 heartCountList[i - 1].transform.position = Vector2.MoveTowards(new Vector2(heartCountList[i - 1].transform.position.x, heartCountList[i - 1].transform.position.y), new Vector2(target.position.x, target.position.y), 5.0f * Time.deltaTime);
                 if (heartCountList[i - 1].transform.localScale.x > targetScale)
                 {
-                    heartBools[i - 1] = true;
-                    heartCountList[i - 1].transform.localScale -= Vector3.one * Time.deltaTime * shrinkSpeed;   
+                    Debug.Log("I'm shrinking!");
+                    heartCountList[i - 1].transform.localScale -= Vector3.one * Time.deltaTime * shrinkSpeed;
                 }
-            }    
+            }
+            SaveScore();
+            newScoreText.text = "Score: " + calculateScore();
         }
     }
 
@@ -133,19 +132,7 @@ public class LevelManager : MonoBehaviour {
         player.SetMoveSpeed(0);
         isFinished = true;
         oldScoreText.text = currentScore.ToString();
-        for (int i = 0; i < heartCountList.Count; i++)
-        {
-            if (heartBools[i])
-                shrinking = false;
-            else
-                shrinking = true;
-
-            if (!shrinking)
-            {
-                SaveScore();
-                newScoreText.text = "Score: " + calculateScore();
-            }
-        }
+        
     }
 
     // Restart this level

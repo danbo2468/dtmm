@@ -79,7 +79,6 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(health);
         // Check the player health
         if (health <= 0)
         {
@@ -185,6 +184,7 @@ public class PlayerController : MonoBehaviour
             disableHeart(5);
         }
     }
+
     private void UpdateGUI()
     {
         if (health == 0)
