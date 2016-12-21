@@ -32,16 +32,19 @@ public class LevelManager : MonoBehaviour {
     public Transform heart4;
     public Transform heart5;
 
+    // Shrinking hearts
     public bool shrinking;
-    public float targetScale = 2.0f;
+    public float targetScale = 1.9f;
     public float shrinkSpeed = 2.0f;
 
-    void Shrink()
-    {
-        shrinking = true;
-    }
+    // UI Score calculation
+    public Text oldScoreText;
+    public Text newScoreText;
 
-    
+    void SetShrink(bool boolean)
+    {
+        shrinking = boolean;
+    }
 
     // Use this for initialization
     void Start () {
@@ -67,6 +70,7 @@ public class LevelManager : MonoBehaviour {
 
         if (isFinished)
         {
+            SetShrink(false);
             List<Transform> temp = player.hearts;
             Debug.Log(temp.Count);
             Transform target = heart1;
@@ -86,17 +90,14 @@ public class LevelManager : MonoBehaviour {
 
                 else if (i == 5)
                     target = heart5;
-
-                //Debug.Log(temp[i - 1].transform.position = Vector2.MoveTowards(new Vector2(temp[i - 1].transform.position.x, temp[i - 1].transform.position.y), new Vector2(target.position.x, target.position.y), 0.3f * Time.deltaTime));
-                temp[i - 1].transform.position = Vector2.MoveTowards(new Vector2(temp[i - 1].transform.position.x, temp[i - 1].transform.position.y), new Vector2(target.position.x, target.position.y), 5.0f * Time.deltaTime);
+     
+               temp[i - 1].transform.position = Vector2.MoveTowards(new Vector2(temp[i - 1].transform.position.x, temp[i - 1].transform.position.y), new Vector2(target.position.x, target.position.y), 5.0f * Time.deltaTime);
                 if (temp[i - 1].transform.localScale.x > targetScale)
                 {
-                    Debug.Log("fasdf");
+                    SetShrink(true);
                     temp[i - 1].transform.localScale -= Vector3.one * Time.deltaTime * shrinkSpeed;   
                 }
-            }
-            
-            SaveScore();
+            }    
         }
     }
 
@@ -115,7 +116,7 @@ public class LevelManager : MonoBehaviour {
     // Save the score in the GameManager
     void SaveScore()
     {
-        GameManager.gameManager.SetLevelHigschore(level, currentScore * player.health);
+        GameManager.gameManager.SetLevelHigschore(level, calculateScore());
         GameManager.gameManager.AddCoinAmount(collectedCoins);
         GameManager.gameManager.Save();
     }
@@ -134,6 +135,12 @@ public class LevelManager : MonoBehaviour {
         finishedMenu.SetActive(true);
         player.SetMoveSpeed(0);
         isFinished = true;
+        oldScoreText.text = currentScore.ToString();
+        if (!shrinking)
+        {
+            SaveScore();
+            newScoreText.text = "Score: " + calculateScore();
+        }
     }
 
     // Restart this level
@@ -147,5 +154,13 @@ public class LevelManager : MonoBehaviour {
     public void GoToWorld()
     {
         SceneManager.LoadScene("Overworld");
+    }
+
+    // Calculates score based on current score and player health.
+    // Example:
+    // Score: 50, player health = 4. Return 50 * (4 / 2) = 100.
+    public float calculateScore()
+    {
+        return currentScore * (player.health / 2);
     }
 }
