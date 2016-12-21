@@ -394,6 +394,12 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 458c31bb82c65ec469c5cba44ff1b8a1, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &113612200 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114000011102803304, guid: 458c31bb82c65ec469c5cba44ff1b8a1,
+    type: 2}
+  m_PrefabInternal: {fileID: 113612199}
+  m_Script: {fileID: 11500000, guid: 9d354521911457d4ca7623f2094f84fb, type: 3}
 --- !u!4 &120431060 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4000010441697466, guid: a1f9ffc7e069d8347ae55a1c870d6334,
@@ -3697,6 +3703,46 @@ Prefab:
         type: 2}
       propertyPath: m_RootOrder
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000012007946262, guid: 4fc5cf7cc8b49ab40a8ccc107d88f7e5,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 113612200}
+    - target: {fileID: 114000012007946262, guid: 4fc5cf7cc8b49ab40a8ccc107d88f7e5,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: RestartLevel
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010085514676, guid: 4fc5cf7cc8b49ab40a8ccc107d88f7e5,
+        type: 2}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 113612200}
+    - target: {fileID: 114000010085514676, guid: 4fc5cf7cc8b49ab40a8ccc107d88f7e5,
+        type: 2}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: GoToWorld
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010468526678, guid: 4fc5cf7cc8b49ab40a8ccc107d88f7e5,
+        type: 2}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 113612200}
+    - target: {fileID: 114000010468526678, guid: 4fc5cf7cc8b49ab40a8ccc107d88f7e5,
+        type: 2}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: GoToWorld
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000012921268442, guid: 4fc5cf7cc8b49ab40a8ccc107d88f7e5,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 113612200}
+    - target: {fileID: 114000012921268442, guid: 4fc5cf7cc8b49ab40a8ccc107d88f7e5,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: RestartLevel
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4fc5cf7cc8b49ab40a8ccc107d88f7e5, type: 2}

@@ -84,11 +84,10 @@ public class LevelManager : MonoBehaviour {
 
                 else if (i == 5)
                     target = heart5;
-                Debug.Log("I am moving hearts");
+
                 heartCountList[i - 1].transform.position = Vector2.MoveTowards(new Vector2(heartCountList[i - 1].transform.position.x, heartCountList[i - 1].transform.position.y), new Vector2(target.position.x, target.position.y), 5.0f * Time.deltaTime);
                 if (heartCountList[i - 1].transform.localScale.x > targetScale)
-                {
-                    Debug.Log("I'm shrinking!");
+                { 
                     heartCountList[i - 1].transform.localScale -= Vector3.one * Time.deltaTime * shrinkSpeed;
                 }
             }
