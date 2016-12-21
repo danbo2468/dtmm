@@ -58,6 +58,7 @@ public class PlayerController : MonoBehaviour
             }
         }
 
+        initialHealth = GameManager.gameManager.getHeartCount() * 2;
         SetupGUI();
         moveSpeed = initialMoveSpeed;
         rigidBody = GetComponent<Rigidbody2D>();
@@ -142,6 +143,11 @@ public class PlayerController : MonoBehaviour
         Debug.Log("Player health after damage taken: " + health);
         UpdateGUI();
     }
+
+    /// <summary>
+    /// SetupGUI()
+    /// Sets up the heart GUI based on the maximum heart count of the player. Every heart counts as 2 health.
+    /// </summary>
     private void SetupGUI()
     {
         // Asks the gamemanager for the heartCount of the player.

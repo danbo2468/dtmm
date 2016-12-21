@@ -140,8 +140,15 @@ MonoBehaviour:
   groundChecker: {fileID: 4000012238737754}
   groundCheckerRadius: 0.15
   weapon: {fileID: 114000010185211830, guid: 286454bb2b448a847a0167901178d9d7, type: 2}
-  initialHealth: 4
+  bgImage: {fileID: 0}
+  fgImage: {fileID: 0}
+  healthBarLength: 0
+  initialHealth: 0
+  health: 0
   healthCanvas: {fileID: 0}
+  hearts: []
+  boyAnimation: {fileID: 0}
+  girlAnimation: {fileID: 0}
 --- !u!212 &212000011300493458
 SpriteRenderer:
   m_ObjectHideFlags: 1
