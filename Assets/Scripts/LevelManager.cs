@@ -40,14 +40,12 @@ public class LevelManager : MonoBehaviour {
     // UI Score calculation
     public Text oldScoreText;
     public Text newScoreText;
-
-    void SetShrink(bool boolean)
-    {
-        shrinking = boolean;
-    }
+    public bool[] heartBools;
+    public List<Transform> heartCountList;
 
     // Use this for initialization
     void Start () {
+        heartBools = new bool[5];
         player = FindObjectOfType<PlayerController>();
         currentScore = 0;
         collectedCoins = 0;
@@ -70,11 +68,10 @@ public class LevelManager : MonoBehaviour {
 
         if (isFinished)
         {
-            SetShrink(false);
-            List<Transform> temp = player.hearts;
-            Debug.Log(temp.Count);
+            heartCountList = player.hearts;
+            Debug.Log(heartCountList.Count);
             Transform target = heart1;
-            for (int i = 1; i <= temp.Count; i++)
+            for (int i = 1; i <= heartCountList.Count; i++)
             {
                 if (i == 1)
                     target = heart1;
@@ -90,12 +87,12 @@ public class LevelManager : MonoBehaviour {
 
                 else if (i == 5)
                     target = heart5;
-     
-               temp[i - 1].transform.position = Vector2.MoveTowards(new Vector2(temp[i - 1].transform.position.x, temp[i - 1].transform.position.y), new Vector2(target.position.x, target.position.y), 5.0f * Time.deltaTime);
-                if (temp[i - 1].transform.localScale.x > targetScale)
+
+                heartCountList[i - 1].transform.position = Vector2.MoveTowards(new Vector2(heartCountList[i - 1].transform.position.x, heartCountList[i - 1].transform.position.y), new Vector2(target.position.x, target.position.y), 5.0f * Time.deltaTime);
+                if (heartCountList[i - 1].transform.localScale.x > targetScale)
                 {
-                    SetShrink(true);
-                    temp[i - 1].transform.localScale -= Vector3.one * Time.deltaTime * shrinkSpeed;   
+                    heartBools[i - 1] = true;
+                    heartCountList[i - 1].transform.localScale -= Vector3.one * Time.deltaTime * shrinkSpeed;   
                 }
             }    
         }
@@ -136,10 +133,18 @@ public class LevelManager : MonoBehaviour {
         player.SetMoveSpeed(0);
         isFinished = true;
         oldScoreText.text = currentScore.ToString();
-        if (!shrinking)
+        for (int i = 0; i < heartCountList.Count; i++)
         {
-            SaveScore();
-            newScoreText.text = "Score: " + calculateScore();
+            if (heartBools[i])
+                shrinking = false;
+            else
+                shrinking = true;
+
+            if (!shrinking)
+            {
+                SaveScore();
+                newScoreText.text = "Score: " + calculateScore();
+            }
         }
     }
 
