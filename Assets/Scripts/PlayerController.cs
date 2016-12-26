@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     public LayerMask ground;
     public Transform groundChecker;
     public float groundCheckerRadius;
+    public float currentLayer;
 
     // Character components
     private Rigidbody2D rigidBody;
@@ -25,17 +26,9 @@ public class PlayerController : MonoBehaviour
     // Weapons
     public BulletController weapon;
 
-    // Healthbar
-    public Texture2D bgImage;
-    public Texture2D fgImage;
-    public float healthBarLength;
-
-
     // Player health
     public float initialHealth;
     public float health;
-
-
     public GameObject healthCanvas;
     public List<Transform> hearts;
 
@@ -111,13 +104,15 @@ public class PlayerController : MonoBehaviour
         UpdateAnimation();
     }
 
-    
-
-
     // Check if grounded
     public bool CheckGrounded()
     {
         grounded = Physics2D.OverlapCircle(groundChecker.position, groundCheckerRadius, ground);
+        Collider2D[] platforms = Physics2D.OverlapCircleAll(groundChecker.position, groundCheckerRadius, ground);
+        for(int i = 0; i < platforms.Length; i++)
+        {
+            // To Do
+        }
         return grounded;
     }
 

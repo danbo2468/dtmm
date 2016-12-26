@@ -67,6 +67,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 4000010131396148}
+  - 114: {fileID: 114000013344444018}
   m_Layer: 0
   m_Name: 10x1 Elevated Platform
   m_TagString: Untagged
@@ -354,6 +355,18 @@ BoxCollider2D:
   m_Offset: {x: 19.959013, y: -0.08288765}
   serializedVersion: 2
   m_Size: {x: 44.814865, y: 0.5780235}
+--- !u!114 &114000013344444018
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011609679618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c86ec67590b87044abb6eb6ad54e3063, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  layer: 1
 --- !u!212 &212000010645199580
 SpriteRenderer:
   m_ObjectHideFlags: 1

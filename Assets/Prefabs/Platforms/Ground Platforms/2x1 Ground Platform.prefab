@@ -51,6 +51,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 4000012405832742}
+  - 114: {fileID: 114000012502457996}
   m_Layer: 8
   m_Name: 2x1 Ground Platform
   m_TagString: Untagged
@@ -174,6 +175,18 @@ BoxCollider2D:
   m_Offset: {x: 2.1710718, y: -0.08288766}
   serializedVersion: 2
   m_Size: {x: 9.238711, y: 0.57802343}
+--- !u!114 &114000012502457996
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012227834016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c86ec67590b87044abb6eb6ad54e3063, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  layer: 1
 --- !u!212 &212000010617133098
 SpriteRenderer:
   m_ObjectHideFlags: 1

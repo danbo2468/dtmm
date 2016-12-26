@@ -21,6 +21,7 @@ GameObject:
   - 4: {fileID: 4000010253837382}
   - 212: {fileID: 212000010228339716}
   - 61: {fileID: 61000011023645190}
+  - 114: {fileID: 114000011107620832}
   m_Layer: 8
   m_Name: 1x1 Elevated Platform
   m_TagString: Untagged
@@ -55,6 +56,18 @@ BoxCollider2D:
   m_Offset: {x: -0.087539434, y: -0.08288765}
   serializedVersion: 2
   m_Size: {x: 4.7214313, y: 0.57802343}
+--- !u!114 &114000011107620832
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012357807654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c86ec67590b87044abb6eb6ad54e3063, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  layer: 1
 --- !u!212 &212000010228339716
 SpriteRenderer:
   m_ObjectHideFlags: 1
