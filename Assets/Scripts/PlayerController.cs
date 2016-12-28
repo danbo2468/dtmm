@@ -107,12 +107,16 @@ public class PlayerController : MonoBehaviour
     // Check if grounded
     public bool CheckGrounded()
     {
-        grounded = Physics2D.OverlapCircle(groundChecker.position, groundCheckerRadius, ground);
-        Collider2D[] platforms = Physics2D.OverlapCircleAll(groundChecker.position, groundCheckerRadius, ground);
-        for(int i = 0; i < platforms.Length; i++)
-        {
-            // To Do
-        }
+        //grounded = Physics2D.OverlapCircle(groundChecker.position, groundCheckerRadius, ground);
+        //Collider2D[] platforms = Physics2D.OverlapCircleAll(groundChecker.position, groundCheckerRadius, ground);
+        //for(int i = 0; i < platforms.Length; i++)
+        //{
+        //    Platform platform = platforms[i].gameObject.GetComponent<Platform>();
+        //    if (platform != null) {
+        //        currentLayer = platform.layer;
+        //        Debug.Log("Ground" + platform.layer);
+        //    }
+        //}
         return grounded;
     }
 
