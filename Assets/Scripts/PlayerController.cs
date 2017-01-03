@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     // Character components
     private Rigidbody2D rigidBody;
     private Animator animator;
+    private bool throwing;
 
     // Tutorial
     private bool tutorialMode;
@@ -72,6 +73,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         // Check the player health
         if (health <= 0)
         {
@@ -129,8 +131,9 @@ public class PlayerController : MonoBehaviour
     // Let the character shoot
     public void Shoot()
     {
+        animator.SetTrigger("Throwing");
         BulletController bullet = Instantiate(weapon);
-        bullet.transform.position = new Vector2(transform.position.x + 1f, transform.position.y + 1.5f);
+        bullet.transform.position = new Vector2(transform.position.x + 0.8f, transform.position.y + 1.5f);
     }
 
     // Apply damage to the character

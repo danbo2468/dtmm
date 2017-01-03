@@ -17,8 +17,8 @@ public class LevelManager : MonoBehaviour {
 
     // End of level
     public GameObject levelEnd;
-    public bool isFinished;
-    public bool isGameOver;
+    public bool isFinished = false;
+    public bool isGameOver = false;
 
     // Dialogs
     public GameObject gameOverMenu;
