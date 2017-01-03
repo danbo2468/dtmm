@@ -84,7 +84,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000013485532074}
   - 212: {fileID: 212000013628303512}
-  - 61: {fileID: 61000013191207522}
   m_Layer: 8
   m_Name: 1x1 Elevated Platform
   m_TagString: Untagged
@@ -117,6 +116,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000012079759262}
   - 114: {fileID: 114000014095203178}
+  - 61: {fileID: 61000010068066748}
   m_Layer: 0
   m_Name: 6x1 Elevated Platform
   m_TagString: Untagged
@@ -143,9 +143,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013757628992}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 72.95171, y: 11.429, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 47.08351, y: 7.433379, z: 0}
+  m_LocalScale: {x: 0.6770543, y: 0.6770543, z: 0.6770543}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 4000013485532074}
@@ -221,20 +221,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4000012079759262}
   m_RootOrder: 4
---- !u!61 &61000013191207522
+--- !u!61 &61000010068066748
 BoxCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013155658800}
+  m_GameObject: {fileID: 1000013757628992}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: aef0003f8e84dd54c951f4dcdda00441, type: 2}
+  m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_Offset: {x: 11.061984, y: -0.08288765}
+  m_Offset: {x: 6.668469, y: -3.4702299}
   serializedVersion: 2
-  m_Size: {x: 27.020483, y: 0.57802343}
+  m_Size: {x: 40.59591, y: 0.83160067}
 --- !u!114 &114000014095203178
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -246,7 +246,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c86ec67590b87044abb6eb6ad54e3063, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  layer: 1
+  layer: 2
 --- !u!212 &212000011359813860
 SpriteRenderer:
   m_ObjectHideFlags: 1

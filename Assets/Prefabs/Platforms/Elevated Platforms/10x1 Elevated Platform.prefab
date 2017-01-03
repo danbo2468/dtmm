@@ -68,6 +68,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000010131396148}
   - 114: {fileID: 114000013344444018}
+  - 61: {fileID: 61000010312087308}
   m_Layer: 0
   m_Name: 10x1 Elevated Platform
   m_TagString: Untagged
@@ -116,7 +117,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000010444350876}
   - 212: {fileID: 212000013819077824}
-  - 61: {fileID: 61000013414896134}
   m_Layer: 8
   m_Name: 1x1 Elevated Platform
   m_TagString: Untagged
@@ -341,20 +341,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4000010131396148}
   m_RootOrder: 7
---- !u!61 &61000013414896134
+--- !u!61 &61000010312087308
 BoxCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013434501450}
+  m_GameObject: {fileID: 1000011609679618}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: aef0003f8e84dd54c951f4dcdda00441, type: 2}
+  m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_Offset: {x: 19.959013, y: -0.08288765}
+  m_Offset: {x: 20.07261, y: -3.475834}
   serializedVersion: 2
-  m_Size: {x: 44.814865, y: 0.5780235}
+  m_Size: {x: 67.29226, y: 0.7284665}
 --- !u!114 &114000013344444018
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -366,7 +366,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c86ec67590b87044abb6eb6ad54e3063, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  layer: 1
+  layer: 2
 --- !u!212 &212000010645199580
 SpriteRenderer:
   m_ObjectHideFlags: 1
