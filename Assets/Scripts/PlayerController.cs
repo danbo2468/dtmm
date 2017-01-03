@@ -107,7 +107,7 @@ public class PlayerController : MonoBehaviour
     // Check if grounded
     public bool CheckGrounded()
     {
-        //grounded = Physics2D.OverlapCircle(groundChecker.position, groundCheckerRadius, ground);
+        grounded = Physics2D.OverlapCircle(groundChecker.position, groundCheckerRadius, ground);
         //Collider2D[] platforms = Physics2D.OverlapCircleAll(groundChecker.position, groundCheckerRadius, ground);
         //for(int i = 0; i < platforms.Length; i++)
         //{
@@ -130,7 +130,7 @@ public class PlayerController : MonoBehaviour
     public void Shoot()
     {
         BulletController bullet = Instantiate(weapon);
-        bullet.transform.position = new Vector2(transform.position.x + 0.3f, transform.position.y + 1.5f);
+        bullet.transform.position = new Vector2(transform.position.x + 1f, transform.position.y + 1.5f);
     }
 
     // Apply damage to the character
