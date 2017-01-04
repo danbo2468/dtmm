@@ -1647,7 +1647,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Score: 0'
+  m_Text: 
 --- !u!114 &114000011647223622
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1812,6 +1812,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61e14940eb717d44fae2a4738b3a30a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  smoothness: 20
 --- !u!114 &114000012853684840
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2067,10 +2068,8 @@ MonoBehaviour:
     m_Bits: 256
   groundChecker: {fileID: 4000013425265266}
   groundCheckerRadius: 0.15
+  currentLayer: 0
   weapon: {fileID: 114000010185211830, guid: 286454bb2b448a847a0167901178d9d7, type: 2}
-  bgImage: {fileID: 2800000, guid: 4914ff4e6ab424b439f7bda287caacd6, type: 3}
-  fgImage: {fileID: 2800000, guid: 5e50f4caa4cf1a0488c8b9b9b9d58868, type: 3}
-  healthBarLength: 0
   initialHealth: 4
   health: 0
   healthCanvas: {fileID: 1000010702655234}
@@ -2132,6 +2131,7 @@ MonoBehaviour:
   shrinkSpeed: 2
   oldScoreText: {fileID: 114000011029751972}
   newScoreText: {fileID: 114000011547674238}
+  heartCountList: []
 --- !u!114 &114000013903012740
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3598,7 +3598,7 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 2473, y: -33855.008}
+  m_AnchoredPosition: {x: 14088, y: -33855.008}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224000014129792482
