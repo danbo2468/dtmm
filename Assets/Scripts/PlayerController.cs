@@ -6,7 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     // Character forces
     public float initialMoveSpeed;
-    private float moveSpeed;
+    public float moveSpeed;
     public float jumpForce;
 
     // Grounded
