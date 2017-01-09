@@ -16,6 +16,8 @@ public class WorldController : MonoBehaviour
     public Transform playerIsAtNode;
     public Transform targetWayPoint;
 
+    public Transform beginPosition;
+
     public GameObject Popup;
 
 
@@ -97,8 +99,9 @@ public class WorldController : MonoBehaviour
 
                 // If player is at the first node -> Move to next node;
                 if(script.GetLevelID(playerIsAtNode) == 1)
-                {
+                {                    
                     moveNext = true;
+                    Debug.Log("We loaded the scene, moving to next level.");
                 }
 
                 // If player is at the last node -> Load overworld;
@@ -108,14 +111,17 @@ public class WorldController : MonoBehaviour
                 }
             }
         }
+        Debug.Log(script.findNodeOnPosition(playerIsAtNode.position));
         // after all evaluation is done, set the nodes to the correct values.
         SetLevels();    
     }
 
     void Update()
-    {  
+    {
+        BugFix();
         HandleButtons();
         Movement();
+        
     }
 
     /// <summary>
@@ -134,6 +140,19 @@ public class WorldController : MonoBehaviour
         {
             SetLevelPosition(playerIsAtNode.position);
             SceneManager.LoadScene(playerIsAtNode.name);
+        }
+    }
+
+    public void BugFix()
+    {
+        if (SceneManager.GetActiveScene().name == "House")
+        {
+            beginPosition.position = new Vector2(-8, 4);
+        }
+
+        if (SceneManager.GetActiveScene().name == "Street")
+        {
+            beginPosition.position = new Vector2(-7.78f, -12.08f);
         }
     }
 
@@ -207,6 +226,7 @@ public class WorldController : MonoBehaviour
 
         if (movePrevious)
         {
+            Debug.Log("We are moving back!");
             HideEnterLevelCanvas();
             List<Transform> route = script.GetRoute(playerIsAtNode, false);
             if (route.Count > 0)
