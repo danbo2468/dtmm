@@ -103,7 +103,7 @@ GameObject:
   - 114: {fileID: 96111549}
   m_Layer: 0
   m_Name: Level 4
-  m_TagString: LevelCompleted
+  m_TagString: LevelUncompleted
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -317,7 +317,7 @@ GameObject:
   - 114: {fileID: 545734406}
   m_Layer: 0
   m_Name: Level 2
-  m_TagString: LevelCompleted
+  m_TagString: LevelUncompleted
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -464,7 +464,7 @@ GameObject:
   - 114: {fileID: 857670290}
   m_Layer: 0
   m_Name: Level 3
-  m_TagString: LevelCompleted
+  m_TagString: LevelUncompleted
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
