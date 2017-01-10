@@ -15,17 +15,28 @@ public class BossController : MonoBehaviour {
     public bool charge = false;
 
     public GameObject bossObject;
-    
-    public Rigidbody2D rigidBody;
     public GameObject player;
-
     public GameObject bossIdleLocation;
+    public GameObject chargeLocation;
+    public GameObject spawnLocation;
+    public GameObject infrontOfPlayer;
+    public GameObject blockLocation;
 
-    public string boss;
+    private List<BoxCollider2D> colliders;
+
+    private Rigidbody2D rigidBody;
+    
+
+    private string boss;
 
     void Start () {
         this.enabled = false;
         rigidBody = bossObject.GetComponent<Rigidbody2D>();
+        colliders = new List<BoxCollider2D>();
+        foreach (BoxCollider2D x in GetComponentsInChildren<BoxCollider2D>())
+        {
+            colliders.Add(x);
+        }
         Setup("Samurai");
 	}
 	
@@ -40,14 +51,50 @@ public class BossController : MonoBehaviour {
         }
         else 
         {
+            if (attack1)
+            {
+                isBusy = true;
+                Move(bossObject, infrontOfPlayer, 5f);
+                if(bossObject.transform.position == infrontOfPlayer.transform.position)
+                {
+                    // todo: play animation for attack and eventually set isBusy and attack1 to false.
+                    isBusy = false;
+                    Reset();
+                }
+            }
+            else if (attack2)
+            {
+                isBusy = true;
+                Move(bossObject, infrontOfPlayer, 5f);
+                if (bossObject.transform.position == infrontOfPlayer.transform.position)
+                {
+                    // todo: play animation for attack and eventually set isBusy and attack1 to false.
+                    isBusy = false;
+                    Reset();
+                }
+            }
+            else if (block)
+            {
+                Move(bossObject, blockLocation, 10f);
+                // Enable first collider.
+                colliders[0].enabled = true;
+                // start block animation
+                // blocks next incoming attack
+            }
+            else if (charge)
+            {
+                Move(bossObject, chargeLocation, 25f);
+            }
             if (!isBusy)
             {
-                // we are already doing things
+                Move(bossObject, bossIdleLocation, 10f);
             }
         }
-        //changeSpeed();
-        bossObject.transform.position = Vector2.MoveTowards(new Vector2(bossObject.transform.position.x, bossObject.transform.position.y), new Vector2(bossIdleLocation.transform.position.x, bossIdleLocation.transform.position.y), 10f * Time.deltaTime);
-        //rigidBody.velocity = new Vector2(bossObject.GetComponent<EnemyController>().speed, rigidBody.velocity.y);
+    }
+
+    public void Move(GameObject obj, GameObject target, float speed)
+    {
+        obj.transform.position = Vector2.MoveTowards(new Vector2(obj.transform.position.x, obj.transform.position.y), new Vector2(target.transform.position.x, target.transform.position.y), speed * Time.deltaTime);
     }
 
     void Setup(string boss)
@@ -59,7 +106,6 @@ public class BossController : MonoBehaviour {
         }
 
         // Now that we're done. We can introduce the boss to view of the player.
-        bossObject.GetComponent<EnemyController>().speed = player.GetComponent<PlayerController>().moveSpeed - 0.1f;
         settingUp = true;
     }
 
