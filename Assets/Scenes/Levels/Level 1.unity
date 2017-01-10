@@ -1693,6 +1693,11 @@ Prefab:
       propertyPath: player
       value: 
       objectReference: {fileID: 315623320}
+    - target: {fileID: 114000010216123614, guid: a198dace0807ff0438b2faeebe934a33,
+        type: 2}
+      propertyPath: bossIdleLocation
+      value: 
+      objectReference: {fileID: 1537467430}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a198dace0807ff0438b2faeebe934a33, type: 2}
   m_IsPrefabParent: 0

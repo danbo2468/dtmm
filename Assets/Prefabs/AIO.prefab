@@ -993,7 +993,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011306442124}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -234.15997, y: -159.53, z: -1}
+  m_LocalPosition: {x: -234.15997, y: -159.33, z: -1}
   m_LocalScale: {x: 2.1884255, y: 2.1884255, z: 2.1884255}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -1128,7 +1128,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010721268998}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.9, y: -0.49, z: 0}
+  m_LocalPosition: {x: 11.92, y: -0.49, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -2062,6 +2062,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialMoveSpeed: 7
+  moveSpeed: 0
   jumpForce: 20
   ground:
     serializedVersion: 2
@@ -2115,7 +2116,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoreText: {fileID: 114000011276713754}
   highscoreText: {fileID: 114000012853684840}
-  level: 1
+  level: 4
   levelEnd: {fileID: 1000013832594466}
   isFinished: 0
   isGameOver: 0
@@ -3598,7 +3599,7 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 14088, y: -33855.008}
+  m_AnchoredPosition: {x: 11803, y: -33855.008}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224000014129792482
