@@ -9,6 +9,7 @@ public class LevelManager : MonoBehaviour {
     float currentScore;
     float highScore;
     float collectedCoins;
+    bool scoreSaved;
     public Text scoreText;
     public Text highscoreText;
 
@@ -91,8 +92,12 @@ public class LevelManager : MonoBehaviour {
                     heartCountList[i - 1].transform.localScale -= Vector3.one * Time.deltaTime * shrinkSpeed;
                 }
             }
-            SaveScore();
-            newScoreText.text = "Score: " + calculateScore();
+            if (!scoreSaved)
+            {
+                SaveScore();
+                scoreSaved = true;
+            } 
+            newScoreText.text = "Score: " + (int) calculateScore();
         }
     }
 
