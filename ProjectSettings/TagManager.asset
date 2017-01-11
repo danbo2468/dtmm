@@ -36,6 +36,7 @@ TagManager:
   - Block
   - Charge
   - Samurai
+  - Trigger
   layers:
   - Default
   - TransparentFX

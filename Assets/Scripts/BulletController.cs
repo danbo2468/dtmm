@@ -30,6 +30,18 @@ public class BulletController : MonoBehaviour {
         transform.position = position;
     }
 
+    public void Deflect()
+    {
+        direction.x = -1;
+        direction.y = (float) Random.Range(-1f, 1f);
+    }
+
+    public void ResetDirections()
+    {
+        direction.x = 1;
+        direction.y = 0;
+    }
+
     // Check if the bullet hits another object
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -37,6 +49,11 @@ public class BulletController : MonoBehaviour {
         {
             other.gameObject.SendMessage("ApplyDamage", damage);
             Destroy(gameObject);
+        }
+        if(other.gameObject.tag == "Samurai")
+        {
+            GameObject.FindGameObjectWithTag("Trigger").SendMessage("IsHit", this.gameObject);
+
         }
     }
 }

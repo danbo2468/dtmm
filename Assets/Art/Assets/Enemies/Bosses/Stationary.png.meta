@@ -1,11 +1,13 @@
 fileFormatVersion: 2
 guid: 1b6df7a38ae2db343b2b61e2932a3819
-timeCreated: 1483650427
+timeCreated: 1484140206
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
     21300000: spritesheet_0
     21300002: spritesheet_1
+    21300004: Stationary_0
+    21300006: Stationary_1
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -55,28 +57,28 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: spritesheet_0
+      name: Stationary_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 1
-        width: 225
-        height: 215
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 4
+        y: 12
+        width: 219
+        height: 193
+      alignment: 9
+      pivot: {x: 0.56367224, y: 0.48279756}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: spritesheet_1
+      name: Stationary_1
       rect:
         serializedVersion: 2
-        x: 226
-        y: 0
-        width: 224
-        height: 216
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 229
+        y: 12
+        width: 216
+        height: 193
+      alignment: 9
+      pivot: {x: 0.5691678, y: 0.47591668}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0

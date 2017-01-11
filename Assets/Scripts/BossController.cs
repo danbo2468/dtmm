@@ -11,7 +11,7 @@ public class BossController : MonoBehaviour {
     public bool attack2 = false;
 
     public bool block = false;
-
+    public bool isBlocking = false;
     public bool charge = false;
 
     public GameObject bossObject;
@@ -25,6 +25,7 @@ public class BossController : MonoBehaviour {
     private List<BoxCollider2D> colliders;
 
     private Rigidbody2D rigidBody;
+    private Animator animator;
     
 
     private string boss;
@@ -32,11 +33,7 @@ public class BossController : MonoBehaviour {
     void Start () {
         this.enabled = false;
         rigidBody = bossObject.GetComponent<Rigidbody2D>();
-        colliders = new List<BoxCollider2D>();
-        foreach (BoxCollider2D x in GetComponentsInChildren<BoxCollider2D>())
-        {
-            colliders.Add(x);
-        }
+        animator = bossObject.GetComponent<Animator>();
         Setup("Samurai");
 	}
 	
@@ -75,19 +72,27 @@ public class BossController : MonoBehaviour {
             }
             else if (block)
             {
+                isBusy = true;
                 Move(bossObject, blockLocation, 10f);
                 // Enable first collider.
-                colliders[0].enabled = true;
+                if (bossObject.transform.position == blockLocation.transform.position)
+                {
+                    isBlocking = true;
+                    animator.SetBool("isBlocking", true);
+                }
+                
                 // start block animation
                 // blocks next incoming attack
             }
             else if (charge)
             {
+                isBusy = true;
                 Move(bossObject, chargeLocation, 25f);
             }
             if (!isBusy)
             {
-                Move(bossObject, bossIdleLocation, 10f);
+                animator.SetBool("isFlying", true);
+                Move(bossObject, bossIdleLocation, 5f);
             }
         }
     }
@@ -131,29 +136,23 @@ public class BossController : MonoBehaviour {
             charge = true;
         }
     }
-
+    /// <summary>
+    /// Resets all neccesary booleans and animator booleans.
+    /// </summary>
     public void Reset()
     {
         attack1 = false;
         attack2 = false;
         block = false;
         charge = false;
+        isBusy = false;
+        animator.SetBool("isFlying", false);
+        animator.SetBool("isBlocking", false);
+        animator.SetBool("isAttacking1", false);
+        animator.SetBool("isAttacking2", false);
     }
 
-    /// <summary>
-    /// This method will trigger the bosscontroler.
-    /// </summary>
-    /// <param name="collision"></param>
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        // IF Colliding with player and the controller is disabled: Enable it.
-        if (collision.gameObject.tag == "Player" && this.enabled == false)
-        {
-            this.enabled = true;
-            //todo: If level 4, load samurai, if lvl 7, load... if lvl 10, load...
-            Setup("Samurai");
-        }
-    }
+    
 
     private void changeSpeed()
     {
@@ -177,5 +176,35 @@ public class BossController : MonoBehaviour {
         float x = Screen.width * (percentageHorizontal / 100);
         float y = Screen.height * (percentageVertical / 100);
         return new Vector2(x, y);
+    }
+
+    public IEnumerator IsHit(GameObject weapon)
+    {
+        if (isBlocking)
+        {
+            weapon.SendMessage("Deflect");
+            yield return new WaitForSeconds(0.1f);
+            isBlocking = false;
+            Reset();
+            yield return new WaitForSeconds(0.1f);
+            Destroy(weapon);
+            animator.SetBool("isBlocking", false);
+        }
+    }
+
+    /// <summary>
+    /// This method will handle all triggers
+    /// </summary>
+    /// <param name="collision"></param>
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+
+        // IF Colliding with player and the controller is disabled: Enable it.
+        if (collision.gameObject.tag == "Player" && this.enabled == false)
+        {
+            this.enabled = true;
+            //todo: If level 4, load samurai, if lvl 7, load... if lvl 10, load... << This might be deprecated.
+            Setup("Samurai");
+        }
     }
 }
