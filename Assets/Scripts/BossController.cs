@@ -34,67 +34,59 @@ public class BossController : MonoBehaviour {
         this.enabled = false;
         rigidBody = bossObject.GetComponent<Rigidbody2D>();
         animator = bossObject.GetComponent<Animator>();
-        Setup("Samurai");
 	}
 	
 	// Update is called once per frame
 	void Update ()
     {
-        if (settingUp)
+        
+        if (attack1)
         {
-            bossObject.GetComponent<EnemyController>().speed = player.GetComponent<PlayerController>().moveSpeed;
-            rigidBody.velocity = new Vector2(bossObject.GetComponent<EnemyController>().speed, rigidBody.velocity.y);
-            settingUp = false;
+            isBusy = true;
+            Move(bossObject, infrontOfPlayer, 5f);
+            if(bossObject.transform.position == infrontOfPlayer.transform.position)
+            {
+                // todo: play animation for attack and eventually set isBusy and attack1 to false.
+                isBusy = false;
+                Reset();
+            }
         }
-        else 
+        else if (attack2)
         {
-            if (attack1)
+            isBusy = true;
+            Move(bossObject, infrontOfPlayer, 5f);
+            if (bossObject.transform.position == infrontOfPlayer.transform.position)
             {
-                isBusy = true;
-                Move(bossObject, infrontOfPlayer, 5f);
-                if(bossObject.transform.position == infrontOfPlayer.transform.position)
-                {
-                    // todo: play animation for attack and eventually set isBusy and attack1 to false.
-                    isBusy = false;
-                    Reset();
-                }
+                // todo: play animation for attack and eventually set isBusy and attack1 to false.
+                isBusy = false;
+                Reset();
             }
-            else if (attack2)
+        }
+        else if (block)
+        {
+            isBusy = true;
+            Move(bossObject, blockLocation, 10f);
+            // Enable first collider.
+            if (bossObject.transform.position == blockLocation.transform.position)
             {
-                isBusy = true;
-                Move(bossObject, infrontOfPlayer, 5f);
-                if (bossObject.transform.position == infrontOfPlayer.transform.position)
-                {
-                    // todo: play animation for attack and eventually set isBusy and attack1 to false.
-                    isBusy = false;
-                    Reset();
-                }
+                isBlocking = true;
+                animator.SetBool("isBlocking", true);
             }
-            else if (block)
-            {
-                isBusy = true;
-                Move(bossObject, blockLocation, 10f);
-                // Enable first collider.
-                if (bossObject.transform.position == blockLocation.transform.position)
-                {
-                    isBlocking = true;
-                    animator.SetBool("isBlocking", true);
-                }
                 
-                // start block animation
-                // blocks next incoming attack
-            }
-            else if (charge)
-            {
-                isBusy = true;
-                Move(bossObject, chargeLocation, 25f);
-            }
-            if (!isBusy)
-            {
-                animator.SetBool("isFlying", true);
-                Move(bossObject, bossIdleLocation, 5f);
-            }
+            // start block animation
+            // blocks next incoming attack
         }
+        else if (charge)
+        {
+            isBusy = true;
+            Move(bossObject, chargeLocation, 25f);
+        }
+        if (!isBusy)
+        {
+            animator.SetBool("isFlying", true);
+            Move(bossObject, bossIdleLocation, 5f);
+        }
+        
     }
 
     public void Move(GameObject obj, GameObject target, float speed)
@@ -102,15 +94,10 @@ public class BossController : MonoBehaviour {
         obj.transform.position = Vector2.MoveTowards(new Vector2(obj.transform.position.x, obj.transform.position.y), new Vector2(target.transform.position.x, target.transform.position.y), speed * Time.deltaTime);
     }
 
-    void Setup(string boss)
+    void Setup()
     {
-        // Determine which boss we are handling.
-        if (boss == "Samurai")
-        {
-            Debug.Log("Test");
-        }
-
-        // Now that we're done. We can introduce the boss to view of the player.
+        bossObject.GetComponent<EnemyController>().speed = player.GetComponent<PlayerController>().moveSpeed;
+        rigidBody.velocity = new Vector2(bossObject.GetComponent<EnemyController>().speed, rigidBody.velocity.y);
         settingUp = true;
     }
 
@@ -138,6 +125,7 @@ public class BossController : MonoBehaviour {
     }
     /// <summary>
     /// Resets all neccesary booleans and animator booleans.
+    /// Todo: Detect what boss is loaded and what animations are part of it?
     /// </summary>
     public void Reset()
     {
@@ -153,7 +141,9 @@ public class BossController : MonoBehaviour {
     }
 
     
-
+    /// <summary>
+    /// Probably not used anymore.
+    /// </summary>
     private void changeSpeed()
     {
         if (bossObject.transform.position.x > bossIdleLocation.transform.position.x)
@@ -178,6 +168,11 @@ public class BossController : MonoBehaviour {
         return new Vector2(x, y);
     }
 
+    /// <summary>
+    /// When the boss is hit by a weapon, this method is called from the weapon entity.
+    /// </summary>
+    /// <param name="weapon"></param>
+    /// <returns></returns>
     public IEnumerator IsHit(GameObject weapon)
     {
         if (isBlocking)
@@ -203,8 +198,7 @@ public class BossController : MonoBehaviour {
         if (collision.gameObject.tag == "Player" && this.enabled == false)
         {
             this.enabled = true;
-            //todo: If level 4, load samurai, if lvl 7, load... if lvl 10, load... << This might be deprecated.
-            Setup("Samurai");
+            Setup();
         }
     }
 }
