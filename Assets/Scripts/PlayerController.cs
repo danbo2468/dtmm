@@ -132,7 +132,7 @@ public class PlayerController : MonoBehaviour
     {
         animator.SetTrigger("Throwing");
         BulletController bullet = Instantiate(weapon);
-        bullet.transform.position = new Vector2(transform.position.x + 0.8f, transform.position.y + 1.5f);
+        bullet.transform.position = new Vector2(transform.position.x + 1.5f, transform.position.y + 1.5f);
     }
 
     // Apply damage to the character
