@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour {
     public string characterName;
     public float[] levelHighscores;
     public float coins;
+	public bool[] boughtItems;
 
     // Game settings
     public bool backgroundMusic;
@@ -43,7 +44,8 @@ public class GameManager : MonoBehaviour {
     void Start()
     {
         heartCount = 2;
-        levelHighscores = new float[14];
+		levelHighscores = new float[14];
+		boughtItems = new bool[2];
         //worldNode = new Vector3(0, 0, 0);
         //levelNode = new Vector3(0, 0, 0);
 
@@ -91,6 +93,11 @@ public class GameManager : MonoBehaviour {
         heartCount++;
     }
 
+	public void BoughtItem(int productID)
+	{
+		boughtItems[productID] = true;
+	}
+
     // Save the game status
     public void Save()
     {
@@ -100,7 +107,7 @@ public class GameManager : MonoBehaviour {
         FileStream file = File.Create(Application.persistentDataPath + "/saveProfile" + this.saveProfileNumber + ".dat");
 
         // Save the data to the file
-        SaveData saveData = new SaveData(this.saveProfileNumber, this.characterGender, this.characterName, this.levelHighscores, this.coins, Vector3ToArray(this.worldNode), Vector3ToArray(this.levelNode), heartCount);
+		SaveData saveData = new SaveData(this.saveProfileNumber, this.characterGender, this.characterName, this.levelHighscores, this.coins, this.boughtItems, Vector3ToArray(this.worldNode), Vector3ToArray(this.levelNode), heartCount);
 
         // Close the file
         formatter.Serialize(file, saveData);
@@ -219,17 +226,19 @@ class SaveData
     public string characterName;
     public float[] levelHighscores;
     public float coins;
+	public bool[] boughtItems;
     public float[] worldNode;
     public float[] levelNode;
     public int heartCount;
 
-    public SaveData(int saveProfileNumber, string characterGender, string characterName, float[] levelHighscores, float coins, float[] worldNode, float[] levelNode, int heartCount)
+	public SaveData(int saveProfileNumber, string characterGender, string characterName, float[] levelHighscores, float coins, bool[] boughtItems, float[] worldNode, float[] levelNode, int heartCount)
     {
         this.saveProfileNumber = saveProfileNumber;
         this.characterGender = characterGender;
         this.characterName = characterName;
         this.levelHighscores = levelHighscores;
         this.coins = coins;
+		this.boughtItems = boughtItems;
         this.worldNode = worldNode;
         this.levelNode = levelNode;
         this.heartCount = heartCount;
