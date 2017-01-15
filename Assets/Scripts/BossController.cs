@@ -22,6 +22,8 @@ public class BossController : MonoBehaviour {
     public GameObject infrontOfPlayer;
     public GameObject blockLocation;
 
+    public BoxCollider2D weaponCollider;
+
     private List<BoxCollider2D> colliders;
 
     private Rigidbody2D rigidBody;
@@ -32,6 +34,7 @@ public class BossController : MonoBehaviour {
 
     void Start () {
         this.enabled = false;
+        weaponCollider.enabled = false;
         rigidBody = bossObject.GetComponent<Rigidbody2D>();
         animator = bossObject.GetComponent<Animator>();
 	}
@@ -44,10 +47,10 @@ public class BossController : MonoBehaviour {
         {
             isBusy = true;
             Move(bossObject, infrontOfPlayer, 5f);
+            weaponCollider.enabled = true;
             if(bossObject.transform.position == infrontOfPlayer.transform.position)
             {
                 // todo: play animation for attack and eventually set isBusy and attack1 to false.
-                isBusy = false;
                 Reset();
             }
         }
@@ -55,10 +58,10 @@ public class BossController : MonoBehaviour {
         {
             isBusy = true;
             Move(bossObject, infrontOfPlayer, 5f);
+            weaponCollider.enabled = true;
             if (bossObject.transform.position == infrontOfPlayer.transform.position)
             {
                 // todo: play animation for attack and eventually set isBusy and attack1 to false.
-                isBusy = false;
                 Reset();
             }
         }
@@ -66,15 +69,11 @@ public class BossController : MonoBehaviour {
         {
             isBusy = true;
             Move(bossObject, blockLocation, 10f);
-            // Enable first collider.
             if (bossObject.transform.position == blockLocation.transform.position)
             {
                 isBlocking = true;
                 animator.SetBool("isBlocking", true);
             }
-                
-            // start block animation
-            // blocks next incoming attack
         }
         else if (charge)
         {
@@ -122,6 +121,11 @@ public class BossController : MonoBehaviour {
         {
             charge = true;
         }
+
+        if(tag == "WeaponCollider")
+        {
+            // We've hit the player, apply damage. Ask daniel how the best way to approach.
+        }
     }
     /// <summary>
     /// Resets all neccesary booleans and animator booleans.
@@ -138,6 +142,7 @@ public class BossController : MonoBehaviour {
         animator.SetBool("isBlocking", false);
         animator.SetBool("isAttacking1", false);
         animator.SetBool("isAttacking2", false);
+        weaponCollider.enabled = false;
     }
 
     
