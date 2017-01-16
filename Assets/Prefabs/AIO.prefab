@@ -2072,6 +2072,7 @@ MonoBehaviour:
   currentLayer: 0
   rock: {fileID: 114000010185211830, guid: 286454bb2b448a847a0167901178d9d7, type: 2}
   spray: {fileID: 114000010185211830, guid: fb56461dc1b54894bb099321058a2012, type: 2}
+  timeBetweenAttacks: 35
   initialHealth: 4
   health: 0
   healthCanvas: {fileID: 1000010702655234}

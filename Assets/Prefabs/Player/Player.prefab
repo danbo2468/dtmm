@@ -133,22 +133,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialMoveSpeed: 7
+  moveSpeed: 0
   jumpForce: 20
   ground:
     serializedVersion: 2
     m_Bits: 256
   groundChecker: {fileID: 4000012238737754}
   groundCheckerRadius: 0.15
-  weapon: {fileID: 114000010185211830, guid: 286454bb2b448a847a0167901178d9d7, type: 2}
-  bgImage: {fileID: 0}
-  fgImage: {fileID: 0}
-  healthBarLength: 0
+  currentLayer: 0
+  rock: {fileID: 114000010185211830, guid: 286454bb2b448a847a0167901178d9d7, type: 2}
+  spray: {fileID: 114000010185211830, guid: fb56461dc1b54894bb099321058a2012, type: 2}
+  timeBetweenAttacks: 0
   initialHealth: 0
   health: 0
   healthCanvas: {fileID: 0}
   hearts: []
-  boyAnimation: {fileID: 0}
-  girlAnimation: {fileID: 0}
+  boyShortSleevedAnimation: {fileID: 9100000, guid: 8be22d67909647640a7be1abb61e373d,
+    type: 2}
+  girlShortSleevedAnimation: {fileID: 9100000, guid: 6e3007d13d062964fbf0ee1aecc6fef5,
+    type: 2}
+  boyLongSleevedAnimation: {fileID: 9100000, guid: b910e6e6ca97d184cb7e31873157bf78,
+    type: 2}
+  girlLongSleevedAnimation: {fileID: 9100000, guid: 6947d8b522ad57145a9ba0769372b581,
+    type: 2}
 --- !u!212 &212000011300493458
 SpriteRenderer:
   m_ObjectHideFlags: 1
