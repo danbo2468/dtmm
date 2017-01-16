@@ -233,7 +233,7 @@ GameObject:
   - 114: {fileID: 114000012191795646}
   - 212: {fileID: 212000011072106334}
   m_Layer: 0
-  m_Name: Woods 2
+  m_Name: Empty
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -320,7 +320,7 @@ GameObject:
   - 114: {fileID: 114000012569718248}
   - 212: {fileID: 212000010234794246}
   m_Layer: 0
-  m_Name: Mountains
+  m_Name: Empty
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -337,7 +337,7 @@ GameObject:
   - 114: {fileID: 114000014227263266}
   - 212: {fileID: 212000013370826036}
   m_Layer: 0
-  m_Name: Woods 1
+  m_Name: Street
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -512,7 +512,7 @@ GameObject:
   - 114: {fileID: 114000010406849604}
   - 212: {fileID: 212000013832281772}
   m_Layer: 0
-  m_Name: Mountains (1)
+  m_Name: Empty
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -547,7 +547,7 @@ GameObject:
   - 114: {fileID: 114000011715061254}
   - 212: {fileID: 212000012059024250}
   m_Layer: 0
-  m_Name: Woods 1 (1)
+  m_Name: Street
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -631,7 +631,7 @@ GameObject:
   - 114: {fileID: 114000013985126610}
   - 212: {fileID: 212000011631236340}
   m_Layer: 0
-  m_Name: Woods 2 (1)
+  m_Name: Empty
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -928,7 +928,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013059607386}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 43.65, y: 0.3, z: 15}
+  m_LocalPosition: {x: 43.65, y: -1.8, z: 15}
   m_LocalScale: {x: 1.4650462, y: 1.7031171, z: 1.7031171}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -1038,7 +1038,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011581084630}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6.2952046, y: 0.3, z: 15}
+  m_LocalPosition: {x: 6.2952046, y: -1.8, z: 15}
   m_LocalScale: {x: 1.4650462, y: 1.7031171, z: 1.7031171}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -1345,7 +1345,7 @@ Animator:
   m_GameObject: {fileID: 1000011306442124}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 6e3007d13d062964fbf0ee1aecc6fef5, type: 2}
+  m_Controller: {fileID: 9100000, guid: 6947d8b522ad57145a9ba0769372b581, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -2070,13 +2070,20 @@ MonoBehaviour:
   groundChecker: {fileID: 4000013425265266}
   groundCheckerRadius: 0.15
   currentLayer: 0
-  weapon: {fileID: 114000010185211830, guid: 286454bb2b448a847a0167901178d9d7, type: 2}
+  rock: {fileID: 114000010185211830, guid: 286454bb2b448a847a0167901178d9d7, type: 2}
+  spray: {fileID: 114000010185211830, guid: fb56461dc1b54894bb099321058a2012, type: 2}
   initialHealth: 4
   health: 0
   healthCanvas: {fileID: 1000010702655234}
   hearts: []
-  boyAnimation: {fileID: 9100000, guid: 8be22d67909647640a7be1abb61e373d, type: 2}
-  girlAnimation: {fileID: 9100000, guid: 6e3007d13d062964fbf0ee1aecc6fef5, type: 2}
+  boyShortSleevedAnimation: {fileID: 9100000, guid: 8be22d67909647640a7be1abb61e373d,
+    type: 2}
+  girlShortSleevedAnimation: {fileID: 9100000, guid: 6e3007d13d062964fbf0ee1aecc6fef5,
+    type: 2}
+  boyLongSleevedAnimation: {fileID: 9100000, guid: b910e6e6ca97d184cb7e31873157bf78,
+    type: 2}
+  girlLongSleevedAnimation: {fileID: 9100000, guid: 6947d8b522ad57145a9ba0769372b581,
+    type: 2}
 --- !u!114 &114000013756962406
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2116,7 +2123,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoreText: {fileID: 114000011276713754}
   highscoreText: {fileID: 114000012853684840}
-  level: 4
+  level: 3
   levelEnd: {fileID: 1000013832594466}
   isFinished: 0
   isGameOver: 0
@@ -2320,6 +2327,7 @@ MonoBehaviour:
   characterName: 
   levelHighscores: []
   coins: 0
+  boughtItems: 
   backgroundMusic: 0
   soundEffects: 0
   levelManager: {fileID: 0}
@@ -2479,7 +2487,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 760b01c1d15472a45a14bd199e5b9719, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2545,7 +2553,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: a32afc34f9288aa4c813531de182bad7, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2710,7 +2718,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: a32afc34f9288aa4c813531de182bad7, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2743,7 +2751,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 3ede59be4df8c2242b3884d385e7988c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8da114128c1589a42883ee29e1fe7f26, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2875,7 +2883,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 3ede59be4df8c2242b3884d385e7988c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8da114128c1589a42883ee29e1fe7f26, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2941,7 +2949,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 760b01c1d15472a45a14bd199e5b9719, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -3599,7 +3607,7 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 11803, y: -33855.008}
+  m_AnchoredPosition: {x: 9775, y: -33855.008}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224000014129792482

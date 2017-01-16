@@ -1,0 +1,227 @@
+fileFormatVersion: 2
+guid: 6e3883f44ed9661418d118ffc30f9d60
+timeCreated: 1484567307
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Boy_Throwing_0
+    21300002: Boy_Throwing_1
+    21300004: Boy_Throwing_2
+    21300006: Boy_Throwing_3
+    21300008: Boy_Throwing_4
+    21300010: Boy_Throwing_5
+    21300012: Boy_Throwing_6
+    21300014: Boy_Throwing_7
+    21300016: Boy_Throwing_8
+    21300018: Boy_Throwing_9
+    21300020: Boy_Throwing_10
+    21300022: Boy_Throwing_11
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Boy_Throwing_0
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 201
+        width: 102
+        height: 137
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Boy_Throwing_1
+      rect:
+        serializedVersion: 2
+        x: 201
+        y: 196
+        width: 99
+        height: 144
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Boy_Throwing_2
+      rect:
+        serializedVersion: 2
+        x: 379
+        y: 203
+        width: 105
+        height: 136
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Boy_Throwing_3
+      rect:
+        serializedVersion: 2
+        x: 554
+        y: 200
+        width: 106
+        height: 134
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Boy_Throwing_4
+      rect:
+        serializedVersion: 2
+        x: 732
+        y: 197
+        width: 96
+        height: 136
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Boy_Throwing_5
+      rect:
+        serializedVersion: 2
+        x: 908
+        y: 198
+        width: 83
+        height: 136
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Boy_Throwing_6
+      rect:
+        serializedVersion: 2
+        x: 1087
+        y: 199
+        width: 96
+        height: 135
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Boy_Throwing_7
+      rect:
+        serializedVersion: 2
+        x: 1267
+        y: 196
+        width: 110
+        height: 143
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Boy_Throwing_8
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 12
+        width: 110
+        height: 138
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Boy_Throwing_9
+      rect:
+        serializedVersion: 2
+        x: 205
+        y: 8
+        width: 96
+        height: 142
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Boy_Throwing_10
+      rect:
+        serializedVersion: 2
+        x: 378
+        y: 8
+        width: 83
+        height: 137
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Boy_Throwing_11
+      rect:
+        serializedVersion: 2
+        x: 557
+        y: 11
+        width: 92
+        height: 133
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -797,83 +797,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4000011163241342, guid: 8f6d6729914bf324fb23042aab71121a, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: -159.33
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000014067806640, guid: 8f6d6729914bf324fb23042aab71121a,
+    - target: {fileID: 114000013732984214, guid: 8f6d6729914bf324fb23042aab71121a,
         type: 2}
-      propertyPath: m_AnchoredPosition.x
-      value: 9775
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000013852708026, guid: 8f6d6729914bf324fb23042aab71121a,
-        type: 2}
-      propertyPath: level
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 212000011072106334, guid: 8f6d6729914bf324fb23042aab71121a,
-        type: 2}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 212000011631236340, guid: 8f6d6729914bf324fb23042aab71121a,
-        type: 2}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 212000010234794246, guid: 8f6d6729914bf324fb23042aab71121a,
-        type: 2}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 212000013832281772, guid: 8f6d6729914bf324fb23042aab71121a,
-        type: 2}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1000012948966722, guid: 8f6d6729914bf324fb23042aab71121a, type: 2}
-      propertyPath: m_Name
-      value: Empty
-      objectReference: {fileID: 0}
-    - target: {fileID: 1000011415453796, guid: 8f6d6729914bf324fb23042aab71121a, type: 2}
-      propertyPath: m_Name
-      value: Empty
-      objectReference: {fileID: 0}
-    - target: {fileID: 1000013249478734, guid: 8f6d6729914bf324fb23042aab71121a, type: 2}
-      propertyPath: m_Name
-      value: Empty
-      objectReference: {fileID: 0}
-    - target: {fileID: 1000011251278250, guid: 8f6d6729914bf324fb23042aab71121a, type: 2}
-      propertyPath: m_Name
-      value: Empty
-      objectReference: {fileID: 0}
-    - target: {fileID: 1000013059607386, guid: 8f6d6729914bf324fb23042aab71121a, type: 2}
-      propertyPath: m_Name
-      value: Street
-      objectReference: {fileID: 0}
-    - target: {fileID: 1000011581084630, guid: 8f6d6729914bf324fb23042aab71121a, type: 2}
-      propertyPath: m_Name
-      value: Street
-      objectReference: {fileID: 0}
-    - target: {fileID: 212000013370826036, guid: 8f6d6729914bf324fb23042aab71121a,
-        type: 2}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 8da114128c1589a42883ee29e1fe7f26,
-        type: 3}
-    - target: {fileID: 212000012059024250, guid: 8f6d6729914bf324fb23042aab71121a,
-        type: 2}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 8da114128c1589a42883ee29e1fe7f26,
-        type: 3}
-    - target: {fileID: 4000010802709336, guid: 8f6d6729914bf324fb23042aab71121a, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: -1.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000011304488040, guid: 8f6d6729914bf324fb23042aab71121a, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: -1.8
+      propertyPath: timeBetweenAttacks
+      value: 35
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8f6d6729914bf324fb23042aab71121a, type: 2}

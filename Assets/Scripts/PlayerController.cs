@@ -25,7 +25,10 @@ public class PlayerController : MonoBehaviour
     private bool tutorialMode;
 
     // Weapons
-    public BulletController weapon;
+    public BulletController rock;
+    public BulletController spray;
+    private int waitBeforeNextAttack;
+    public int timeBetweenAttacks;
 
     // Player health
     public float initialHealth;
@@ -34,8 +37,10 @@ public class PlayerController : MonoBehaviour
     public List<Transform> hearts;
 
     // Character gender
-    public RuntimeAnimatorController boyAnimation;
-    public RuntimeAnimatorController girlAnimation;
+    public RuntimeAnimatorController boyShortSleevedAnimation;
+    public RuntimeAnimatorController girlShortSleevedAnimation;
+    public RuntimeAnimatorController boyLongSleevedAnimation;
+    public RuntimeAnimatorController girlLongSleevedAnimation;
 
 
     // Use this for initialization
@@ -62,11 +67,24 @@ public class PlayerController : MonoBehaviour
         // Set the character animation depending on the chosen gender
         if (GameManager.gameManager.characterGender == "Female")
         {
-            animator.runtimeAnimatorController = girlAnimation;
+            if (GameManager.gameManager.boughtItems[1])
+            {
+                animator.runtimeAnimatorController = girlLongSleevedAnimation;
+            } else
+            {
+                animator.runtimeAnimatorController = girlShortSleevedAnimation;
+            }
         }
         else
         {
-            animator.runtimeAnimatorController = boyAnimation;
+            if (GameManager.gameManager.boughtItems[1])
+            {
+                animator.runtimeAnimatorController = boyLongSleevedAnimation;
+            }
+            else
+            {
+                animator.runtimeAnimatorController = boyShortSleevedAnimation;
+            }
         }
     }
 
@@ -78,6 +96,12 @@ public class PlayerController : MonoBehaviour
         if (health <= 0)
         {
             GameManager.gameManager.levelManager.GameOver();
+        }
+
+        // Decrease the shoot wait time
+        if (waitBeforeNextAttack > 0)
+        {
+            waitBeforeNextAttack--;
         }
 
         //Check if the tutorialmode is on
@@ -130,9 +154,20 @@ public class PlayerController : MonoBehaviour
     // Let the character shoot
     public void Shoot()
     {
-        animator.SetTrigger("Throwing");
-        BulletController bullet = Instantiate(weapon);
-        bullet.transform.position = new Vector2(transform.position.x + 1.5f, transform.position.y + 1.5f);
+        if (waitBeforeNextAttack == 0) {
+            animator.SetTrigger("Throwing");
+            BulletController bullet;
+            if (GameManager.gameManager.boughtItems[0])
+            {
+                bullet = Instantiate(spray);
+            } else
+            {
+                bullet = Instantiate(rock);
+            }
+            bullet.transform.position = new Vector2(transform.position.x + 1.5f, transform.position.y + 1.5f);
+
+            waitBeforeNextAttack = timeBetweenAttacks;
+        }
     }
 
     // Apply damage to the character
