@@ -53,7 +53,6 @@ public class BulletController : MonoBehaviour {
         if(other.gameObject.tag == "Samurai")
         {
             GameObject.FindGameObjectWithTag("Trigger").SendMessage("IsHit", this.gameObject);
-
         }
     }
 }

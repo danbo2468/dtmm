@@ -24,6 +24,7 @@ public class EnemyController : MonoBehaviour {
     // Apply damage to the enemy
     void ApplyDamage(float damage)
     {
+        Debug.Log("We are hit! damage points: " + damage);
         health -= damage;
         if (health <= 0)
         {
