@@ -40,7 +40,7 @@ GameObject:
   - 114: {fileID: 114000010216123614}
   m_Layer: 0
   m_Name: Trigger
-  m_TagString: Untagged
+  m_TagString: Trigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -55,6 +55,22 @@ GameObject:
   - 4: {fileID: 4000010060336922}
   m_Layer: 0
   m_Name: BossControler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1000012685453286
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 4000012734207912}
+  - 61: {fileID: 61000012568241808}
+  m_Layer: 0
+  m_Name: Weaponcollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -158,7 +174,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013437662416}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 3.24, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -174,8 +190,22 @@ Transform:
   m_LocalPosition: {x: 12.2, y: -7.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_Children: []
+  m_Children:
+  - {fileID: 4000012734207912}
   m_Father: {fileID: 4000010060336922}
+  m_RootOrder: 0
+--- !u!4 &4000012734207912
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012685453286}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 4000012072359452}
   m_RootOrder: 0
 --- !u!4 &4000012999802948
 Transform:
@@ -210,7 +240,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010787938242}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 23.53, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -223,7 +253,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013382149632}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 16.22, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -252,7 +282,7 @@ BoxCollider2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013467436236}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
@@ -266,7 +296,7 @@ BoxCollider2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010787938242}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
@@ -280,7 +310,7 @@ BoxCollider2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013382149632}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
@@ -297,11 +327,25 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_Offset: {x: 0.14, y: 0}
+  m_Offset: {x: -0.6, y: 0}
   serializedVersion: 2
   m_Size: {x: 0.11, y: 2.15}
+--- !u!61 &61000012568241808
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012685453286}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: -1, y: 0}
+  serializedVersion: 2
+  m_Size: {x: 1.68, y: 0.19}
 --- !u!61 &61000012959561060
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -325,11 +369,11 @@ BoxCollider2D:
   m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -1, y: 0}
   serializedVersion: 2
-  m_Size: {x: 1.08, y: 2.15}
+  m_Size: {x: 1.68, y: 0.19}
 --- !u!61 &61000013999252000
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -384,17 +428,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6fac93b7fc032041aab1ee77b1664aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  setup: 0
+  settingUp: 0
   isBusy: 0
   attack1: 0
   attack2: 0
   block: 0
+  isBlocking: 0
   charge: 0
   bossObject: {fileID: 1000012915329432}
-  rigidBody: {fileID: 0}
   player: {fileID: 0}
   bossIdleLocation: {fileID: 0}
-  boss: 
+  chargeLocation: {fileID: 0}
+  spawnLocation: {fileID: 0}
+  infrontOfPlayer: {fileID: 0}
+  blockLocation: {fileID: 0}
+  weaponCollider: {fileID: 61000012568241808}
 --- !u!114 &114000011347185656
 MonoBehaviour:
   m_ObjectHideFlags: 1
