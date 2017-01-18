@@ -6,8 +6,8 @@ public class SoundController : MonoBehaviour {
 
     AudioSource soundtrack;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         soundtrack = GetComponent<AudioSource>();
         Debug.Log(GameManager.gameManager.backgroundMusic);
 	}
@@ -17,7 +17,6 @@ public class SoundController : MonoBehaviour {
         if (GameManager.gameManager.backgroundMusic)
         {
             soundtrack.volume = 1;
-            Debug.Log("FUCKING SONG SHOULD PLAY");
         } else {
             soundtrack.volume = 0;
         }
