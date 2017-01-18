@@ -26,6 +26,9 @@ public class LevelManager : MonoBehaviour {
     public GameObject finishedMenu;
     private PlayerController player;
 
+    // Still Water Mosquitoes
+    public StillWaterMosquito[] stillWaterMosquitoes;
+
     // Hearts
     public Transform heart1;
     public Transform heart2;
@@ -45,6 +48,7 @@ public class LevelManager : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        stillWaterMosquitoes = FindObjectsOfType<StillWaterMosquito>();
         player = FindObjectOfType<PlayerController>();
         currentScore = 0;
         collectedCoins = 0;
@@ -100,6 +104,31 @@ public class LevelManager : MonoBehaviour {
             newScoreText.text = "Score: " + (int) calculateScore();
         }
     }
+
+    // Play an animation for mosquitoes attacking the character after falling into still water
+    public void AttackPlayer()
+    {
+        for (int i = 0; i < stillWaterMosquitoes.Length; i++)
+        {
+            stillWaterMosquitoes[i].GameOver();
+        }
+    }
+
+    public void StillWaterGameOver()
+    {
+        StartCoroutine(ShowStillWaterGameOver());
+    }
+
+    // Show gameover menu after falling into still water
+    System.Collections.IEnumerator ShowStillWaterGameOver()
+    {
+        AttackPlayer();
+        isGameOver = true;
+        player.SetMoveSpeed(0);
+        yield return new WaitForSeconds(2);
+        gameOverMenu.SetActive(true);
+    }
+
 
     // Add a certain amount of coins to the score
     public void AddToScore(float points)

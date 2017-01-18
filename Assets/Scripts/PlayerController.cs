@@ -354,7 +354,7 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.tag == "Water")
         {
-            GameManager.gameManager.levelManager.GameOver();
+            GameManager.gameManager.levelManager.StillWaterGameOver();
         }
     }
 
