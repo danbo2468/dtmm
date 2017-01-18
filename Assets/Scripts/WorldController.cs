@@ -154,6 +154,11 @@ public class WorldController : MonoBehaviour
         {
             beginPosition.position = new Vector2(-7.78f, -12.08f);
         }
+
+        if (SceneManager.GetActiveScene().name == "Street")
+        {
+            beginPosition.position = new Vector2(-20.8f, -10.4f);
+        }
     }
 
     /// <summary>
@@ -201,6 +206,7 @@ public class WorldController : MonoBehaviour
                     targetWayPoint = null;
                     isMoving = false;
                     ShowEnterLevelCanvas(playerIsAtNode);
+                    
 
                     if (IsOverworld()) // step 6
                     {
@@ -364,18 +370,19 @@ public class WorldController : MonoBehaviour
                 if (ScoreIsSet(levelHighscores, 5))
                 {
                     script.setLevelCompleted(script.GetNodeOfScene(2));
-                    script.setLevelUncompleted(script.GetNodeOfScene(3));
-                }
-
-                if (ScoreIsSet(levelHighscores, 6))
-                {
                     script.setLevelCompleted(script.GetNodeOfScene(3));
                     script.setLevelUncompleted(script.GetNodeOfScene(4));
                 }
 
-                if (ScoreIsSet(levelHighscores, 7))
+                if (ScoreIsSet(levelHighscores, 6))
                 {
                     script.setLevelCompleted(script.GetNodeOfScene(4));
+                    script.setLevelUncompleted(script.GetNodeOfScene(5));
+                }
+
+                if (ScoreIsSet(levelHighscores, 7))
+                {
+                    script.setLevelCompleted(script.GetNodeOfScene(5));
                 }
             }
 
@@ -553,9 +560,18 @@ public class WorldController : MonoBehaviour
             }
             else
             {
+                
                 textFields[0].text = SceneManager.GetActiveScene().name + " - " + node.name;
-                textFields[1].text = "Score: " + GetScoreOfLevel(playerIsAtNode.GetComponent<Level>().level).ToString();
-                textFields[2].text = "Play";
+                if (playerIsAtNode.GetComponent<Level>().level == 1337)
+                {
+                    textFields[1].text = "";
+                    textFields[2].text = "Enter shop";
+                }
+                else
+                {
+                    textFields[1].text = "Score: " + GetScoreOfLevel(playerIsAtNode.GetComponent<Level>().level).ToString();
+                    textFields[2].text = "Play";
+                }
             }
         Popup.SetActive(true);
         }

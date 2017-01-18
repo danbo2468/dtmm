@@ -1117,6 +1117,7 @@ GameObject:
   - 4: {fileID: 857670287}
   - 212: {fileID: 857670288}
   - 58: {fileID: 857670289}
+  - 114: {fileID: 857670290}
   m_Layer: 0
   m_Name: Market
   m_TagString: LevelUnreachable
@@ -1192,6 +1193,18 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 2.56
+--- !u!114 &857670290
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 857670286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb87108b2c270c04fb731037ff9e7b91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levels: 050000000600000007000000
 --- !u!1 &888547259
 GameObject:
   m_ObjectHideFlags: 0
@@ -2467,6 +2480,7 @@ MonoBehaviour:
   characterName: 
   levelHighscores: []
   coins: 0
+  boughtItems: 
   backgroundMusic: 0
   soundEffects: 0
   levelManager: {fileID: 0}

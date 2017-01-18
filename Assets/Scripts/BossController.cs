@@ -89,7 +89,7 @@ public class BossController : MonoBehaviour {
                     
                     animator.SetBool("isAttacking2", true);
                     Debug.Log("Setting the bool to true");
-                    Debug.Log(animator.GetBool("isAttacking2");
+                    Debug.Log(animator.GetBool("isAttacking2"));
                 }
             }
             Debug.Log(animator.GetBool("isAttacking2"));
