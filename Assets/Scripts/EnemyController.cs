@@ -49,6 +49,10 @@ public class EnemyController : MonoBehaviour {
     {
         if (other.gameObject.tag == "Player" && health > 0)
         {
+            if (GameObject.Find("JumpObject") != null)
+            {
+                Destroy(GameObject.Find("JumpObject"));
+            }
             other.gameObject.SendMessage("ApplyDamage", touchDamage);
         }
     }

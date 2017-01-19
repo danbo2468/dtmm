@@ -9,6 +9,9 @@ public class BossController : MonoBehaviour {
 
     public bool attack1 = false;
     public bool attack2 = false;
+    public bool motherattack1;
+    public bool motherattack2;
+    public float motherhealth;
 
     public bool block = false;
     public bool isBlocking = false;
@@ -28,7 +31,8 @@ public class BossController : MonoBehaviour {
 
     private Rigidbody2D rigidBody;
     private Animator animator;
-    
+    private GameObject spawnedMosquito;
+    private int transformCounter = 0;
 
     private string boss;
 
@@ -103,6 +107,36 @@ public class BossController : MonoBehaviour {
                 }
             }
         }
+        if (motherattack1)
+        {
+            if (spawnedMosquito.transform.position.x <= bossObject.transform.position.x)
+            {
+                animator.SetBool("isOrdering", false);
+                motherattack1 = false;
+            }
+        }
+        else if (motherattack2)
+        {
+            if (spawnedMosquito.transform.position.x <= bossObject.transform.position.x)
+            {
+                animator.SetBool("isOrdering", false);
+                motherattack2 = false;
+            }
+        }
+        if (GameObject.Find("Mother") != null)
+        {
+            if (motherhealth != GameObject.Find("Mother").GetComponent<EnemyController>().health)
+            {
+                motherhealth = GameObject.Find("Mother").GetComponent<EnemyController>().health;
+                animator.SetTrigger("isDamaged");
+                transformCounter++;
+                animator.SetInteger("TransformCounter", transformCounter);
+                if (transformCounter == 3)
+                {
+
+                }
+            }
+        }
 
         if (!isBusy)
         {
@@ -149,6 +183,39 @@ public class BossController : MonoBehaviour {
         if(tag == "WeaponCollider")
         {
             // We've hit the player, apply damage. Ask daniel how the best way to approach.
+        }
+        if (tag == "MotherAttack1")
+        {
+            spawnedMosquito = Instantiate(Resources.Load("Flying Mosquito")) as GameObject;
+            spawnedMosquito.transform.position = spawnLocation.transform.position;
+            if (transformCounter >= 3)
+            {
+                spawnedMosquito = Instantiate(Resources.Load("Flying Mosquito")) as GameObject;
+                spawnedMosquito.transform.position = new Vector3(spawnLocation.transform.position.x, spawnLocation.transform.position.y + 4, spawnLocation.transform.position.z);
+            }
+            animator.SetBool("isOrdering", true);
+            motherattack1 = true;
+        }
+        if (tag == "MotherAttack2")
+        {
+            if (transformCounter < 3)
+            {
+                spawnedMosquito = Instantiate(Resources.Load("Jumper")) as GameObject;
+                spawnedMosquito.transform.position = spawnLocation.transform.position;
+                spawnedMosquito.transform.GetChild(0).SetParent(spawnedMosquito.transform.parent);
+            }
+            else
+            {
+                spawnedMosquito = Instantiate(Resources.Load("Flying Mosquito")) as GameObject;
+                spawnedMosquito.transform.position = spawnLocation.transform.position;
+                spawnedMosquito = Instantiate(Resources.Load("Jumper")) as GameObject;
+                spawnedMosquito.transform.position = new Vector3(spawnLocation.transform.position.x + 4, spawnLocation.transform.position.y, spawnLocation.transform.position.z);
+                spawnedMosquito.transform.GetChild(0).SetParent(spawnedMosquito.transform.parent);
+                spawnedMosquito = Instantiate(Resources.Load("Flying Mosquito")) as GameObject;
+                spawnedMosquito.transform.position = new Vector3(spawnLocation.transform.position.x + 8, spawnLocation.transform.position.y, spawnLocation.transform.position.z);
+            }
+            animator.SetBool("isOrdering", true);
+            motherattack2 = true;
         }
     }
     /// <summary>

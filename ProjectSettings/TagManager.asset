@@ -37,6 +37,8 @@ TagManager:
   - Charge
   - Samurai
   - Trigger
+  - MotherAttack1
+  - MotherAttack2
   layers:
   - Default
   - TransparentFX
