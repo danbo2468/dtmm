@@ -164,6 +164,7 @@ public class LevelManager : MonoBehaviour {
     {
         finishedMenu.SetActive(true);
         player.SetMoveSpeed(0);
+        player.jumpForce = 0;
         isFinished = true;
         oldScoreText.text = currentScore.ToString();
         
@@ -173,6 +174,7 @@ public class LevelManager : MonoBehaviour {
     {
         mainMenu.SetActive(false);
         player.SetMoveSpeed(player.initialMoveSpeed);
+        player.jumpForce = 20;
     }
 
     public void Menu()
