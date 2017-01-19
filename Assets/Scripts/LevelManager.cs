@@ -24,6 +24,7 @@ public class LevelManager : MonoBehaviour {
     // Dialogs
     public GameObject gameOverMenu;
     public GameObject finishedMenu;
+    public GameObject mainMenu;
     private PlayerController player;
 
     // Still Water Mosquitoes
@@ -166,6 +167,18 @@ public class LevelManager : MonoBehaviour {
         isFinished = true;
         oldScoreText.text = currentScore.ToString();
         
+    }
+
+    public void Continue()
+    {
+        mainMenu.SetActive(false);
+        player.SetMoveSpeed(player.initialMoveSpeed);
+    }
+
+    public void Menu()
+    {
+        player.SetMoveSpeed(0);
+        mainMenu.SetActive(true);
     }
 
     // Restart this level
