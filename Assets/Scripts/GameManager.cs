@@ -215,6 +215,8 @@ public class GameManager : MonoBehaviour {
     {
         this.levelNode = position;
     }
+
+    
 }
 
 // The format of save files

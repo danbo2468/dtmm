@@ -171,13 +171,17 @@ public class LevelManager : MonoBehaviour {
 
     public void Continue()
     {
+        player.canShoot = true;
         mainMenu.SetActive(false);
         player.SetMoveSpeed(player.initialMoveSpeed);
+        player.jumpForce = 20;
     }
 
     public void Menu()
     {
+        player.canShoot = false;
         player.SetMoveSpeed(0);
+        player.jumpForce = 0;
         mainMenu.SetActive(true);
     }
 

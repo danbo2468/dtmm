@@ -30,6 +30,8 @@ public class PlayerController : MonoBehaviour
     private int waitBeforeNextAttack;
     public int timeBetweenAttacks;
 
+    public bool canShoot;
+
     // Player health
     public float initialHealth;
     public float health;
@@ -46,6 +48,7 @@ public class PlayerController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        canShoot = true;
         Transform[] heartsTemp = healthCanvas.GetComponentsInChildren<Transform>();
         hearts = new List<Transform>();
 
@@ -91,7 +94,6 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         // Check the player health
         if (health <= 0)
         {
@@ -154,19 +156,24 @@ public class PlayerController : MonoBehaviour
     // Let the character shoot
     public void Shoot()
     {
-        if (waitBeforeNextAttack == 0) {
-            animator.SetTrigger("Throwing");
-            BulletController bullet;
-            if (GameManager.gameManager.boughtItems[0])
+        if (canShoot)
+        {
+            if (waitBeforeNextAttack == 0)
             {
-                bullet = Instantiate(spray);
-            } else
-            {
-                bullet = Instantiate(rock);
-            }
-            bullet.transform.position = new Vector2(transform.position.x + 1.5f, transform.position.y + 1.5f);
+                animator.SetTrigger("Throwing");
+                BulletController bullet;
+                if (GameManager.gameManager.boughtItems[0])
+                {
+                    bullet = Instantiate(spray);
+                }
+                else
+                {
+                    bullet = Instantiate(rock);
+                }
+                bullet.transform.position = new Vector2(transform.position.x + 1.5f, transform.position.y + 1.5f);
 
-            waitBeforeNextAttack = timeBetweenAttacks;
+                waitBeforeNextAttack = timeBetweenAttacks;
+            }
         }
     }
 
