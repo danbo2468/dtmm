@@ -32,8 +32,16 @@ public class MovieController : MonoBehaviour {
     void Update () {
         if (!movie.isPlaying)
         {
-            gameObject.SetActive(false);
-            GameManager.gameManager.levelManager.Resume();
+            if (GameManager.gameManager.levelManager.isFinished)
+            {
+                GameManager.gameManager.levelManager.finishedMenu.SetActive(true);
+                gameObject.SetActive(false);
+            }
+            else
+            {
+                gameObject.SetActive(false);
+                GameManager.gameManager.levelManager.Resume();
+            }
         }
 	}
 

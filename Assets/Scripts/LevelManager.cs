@@ -188,9 +188,16 @@ public class LevelManager : MonoBehaviour {
     // Show a finish dialog
     public void Finished()
     {
-        finishedMenu.SetActive(true);
         player.SetMoveSpeed(0);
         isFinished = true;
+        if (cutsceneAfter != null)
+        {
+            cutsceneAfter.Play();
+        }
+        else
+        {
+            finishedMenu.SetActive(true);
+        }
         oldScoreText.text = currentScore.ToString();
         
     }
