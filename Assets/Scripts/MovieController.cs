@@ -6,23 +6,21 @@ using UnityEngine;
 
 public class MovieController : MonoBehaviour {
 
-    public int movieToBePlayed;
-    public MovieTexture[] movies;
+    public MovieTexture movieMale;
+    public MovieTexture movieFemale;
+    private MovieTexture movie;
     private AudioSource audio;
-    public string gender;
 
     // Use this for initialization
     void Start()
     {
-        int movieToPlay;
-        if(gender == "Male")
+        if(GameManager.gameManager.characterGender == "Male")
         {
-            movieToPlay = (movieToBePlayed - 1) * 2;
-        } else
-        {
-            movieToPlay = ((movieToBePlayed - 1) * 2) + 1;
+            movie = movieMale;
+        } else {
+            movie = movieFemale;
         }
-        MovieTexture movie = movies[movieToPlay] as MovieTexture;
+
         GetComponent<RawImage>().texture = movie;
         audio = GetComponent<AudioSource>();
         audio.clip = movie.audioClip;
@@ -32,6 +30,16 @@ public class MovieController : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-		
+        if (!movie.isPlaying)
+        {
+            gameObject.SetActive(false);
+            GameManager.gameManager.levelManager.Resume();
+        }
 	}
+
+    // Play the file
+    public void Play()
+    {
+        gameObject.SetActive(true);
+    }
 }
