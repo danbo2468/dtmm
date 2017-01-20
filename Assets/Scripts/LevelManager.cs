@@ -38,6 +38,7 @@ public class LevelManager : MonoBehaviour {
     public Transform heart5;
 
     // Shrinking hearts
+    public bool makeHeartsShrink;
     public bool shrinking;
     public float targetScale = 1.9f;
     public float shrinkSpeed = 2.0f;
@@ -46,6 +47,10 @@ public class LevelManager : MonoBehaviour {
     public Text oldScoreText;
     public Text newScoreText;
     public List<Transform> heartCountList;
+
+    // Cutscenes
+    public MovieController cutsceneBefore;
+    public MovieController cutsceneAfter;
 
     // Use this for initialization
     void Start () {
@@ -56,6 +61,12 @@ public class LevelManager : MonoBehaviour {
         highScore = GameManager.gameManager.levelHighscores[level];
         GameManager.gameManager.SetLevelManager(this);
         highscoreText.text = "Highest score: " + (int)highScore;
+
+        if (cutsceneBefore != null)
+        {
+            Pause();
+            cutsceneBefore.Play();
+        }
     }
 
     // Call this every frame
@@ -70,7 +81,7 @@ public class LevelManager : MonoBehaviour {
             Finished();
         }
 
-        if (isFinished)
+        if (isFinished && makeHeartsShrink)
         {
             heartCountList = player.hearts;
             Transform target = heart1;
@@ -151,6 +162,22 @@ public class LevelManager : MonoBehaviour {
         GameManager.gameManager.Save();
     }
 
+    // Pause the game
+    public void Pause()
+    {
+        player.SetMoveSpeed(0);
+        player.canShoot = false;
+        player.jumpForce = 0;
+    }
+
+    // Resume the game
+    public void Resume()
+    {
+        player.SetMoveSpeed(player.initialMoveSpeed);
+        player.canShoot = true;
+        player.jumpForce = 20;
+    }
+
     // Show a Game Over dialog
     public void GameOver()
     {
@@ -162,26 +189,29 @@ public class LevelManager : MonoBehaviour {
     // Show a finish dialog
     public void Finished()
     {
-        finishedMenu.SetActive(true);
         player.SetMoveSpeed(0);
         isFinished = true;
+        if (cutsceneAfter != null)
+        {
+            cutsceneAfter.Play();
+        }
+        else
+        {
+            finishedMenu.SetActive(true);
+        }
         oldScoreText.text = currentScore.ToString();
         
     }
 
     public void Continue()
     {
-        player.canShoot = true;
         mainMenu.SetActive(false);
-        player.SetMoveSpeed(player.initialMoveSpeed);
-        player.jumpForce = 20;
+        Resume();
     }
 
     public void Menu()
     {
-        player.canShoot = false;
-        player.SetMoveSpeed(0);
-        player.jumpForce = 0;
+        Pause();
         mainMenu.SetActive(true);
     }
 
