@@ -38,6 +38,7 @@ public class LevelManager : MonoBehaviour {
     public Transform heart5;
 
     // Shrinking hearts
+    public bool makeHeartsShrink;
     public bool shrinking;
     public float targetScale = 1.9f;
     public float shrinkSpeed = 2.0f;
@@ -80,7 +81,7 @@ public class LevelManager : MonoBehaviour {
             Finished();
         }
 
-        if (isFinished)
+        if (isFinished && makeHeartsShrink)
         {
             heartCountList = player.hearts;
             Transform target = heart1;

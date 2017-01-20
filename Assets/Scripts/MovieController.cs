@@ -35,6 +35,7 @@ public class MovieController : MonoBehaviour {
             if (GameManager.gameManager.levelManager.isFinished)
             {
                 GameManager.gameManager.levelManager.finishedMenu.SetActive(true);
+                GameManager.gameManager.levelManager.makeHeartsShrink = true;
                 gameObject.SetActive(false);
             }
             else
