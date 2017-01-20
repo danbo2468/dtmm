@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Collections.Generic;
 using System.IO;
 
 public class GameManager : MonoBehaviour {
@@ -216,7 +217,54 @@ public class GameManager : MonoBehaviour {
         this.levelNode = position;
     }
 
-    
+    public List<string> GetNames()
+    {
+        List<string> names = new List<string>();
+        for (int i = 1; i <= 4; i++)
+        {
+            if (File.Exists(Application.persistentDataPath + "/saveProfile" + i + ".dat"))
+            {
+                BinaryFormatter formatter = new BinaryFormatter();
+                FileStream file = File.Open(Application.persistentDataPath + "/saveProfile" + i + ".dat", FileMode.Open);
+                SaveData saveData = (SaveData)formatter.Deserialize(file);
+                names.Add(saveData.characterName);
+                file.Dispose();
+            }
+            else
+            {
+                names.Add("Kosong");
+            }
+        } 
+        return names;
+    }
+
+    public List<float> GetHighscores()
+    {
+        List<float> highscores = new List<float>();
+        float[] temp = new float[14];
+        for (int i = 1; i <= 4; i++)
+        {
+            if (File.Exists(Application.persistentDataPath + "/saveProfile" + i + ".dat"))
+            {
+                BinaryFormatter formatter = new BinaryFormatter();
+                FileStream file = File.Open(Application.persistentDataPath + "/saveProfile" + i + ".dat", FileMode.Open);
+                SaveData saveData = (SaveData)formatter.Deserialize(file);
+                temp = saveData.levelHighscores;
+                float score = 0;
+                foreach (float x in temp)
+                {
+                    score += x;
+                }
+                highscores.Add(score);
+                file.Dispose();
+            }
+            else
+            {
+                highscores.Add(0);
+            }
+        }
+        return highscores; 
+    }
 }
 
 // The format of save files
