@@ -113,6 +113,7 @@ public class WorldController : MonoBehaviour
         }
         Debug.Log(script.findNodeOnPosition(playerIsAtNode.position));
         // after all evaluation is done, set the nodes to the correct values.
+        ShowEnterLevelCanvas(playerIsAtNode);
         SetLevels();    
     }
 

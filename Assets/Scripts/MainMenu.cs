@@ -10,6 +10,7 @@ public class MainMenu : MonoBehaviour {
     // Input field for the name
     public InputField nameInputField;
 
+    // Textfields for highscore
     public Text nr1name;
     public Text nr2name;
     public Text nr3name;
