@@ -20,6 +20,14 @@ public class WorldController : MonoBehaviour
 
     public GameObject Popup;
 
+    public string tutorial = "Tutorial";
+    public string house = "House";
+    public string street = "Street";
+    public string market = "Market";
+    public string school = "School";
+    public string jungle = "Jungle";
+
+
 
     public Path script;
 
@@ -140,19 +148,19 @@ public class WorldController : MonoBehaviour
 
     public void BugFix()
     {
-        if (SceneManager.GetActiveScene().name == "House")
+        if (SceneManager.GetActiveScene().name == house)
         {
-            beginPosition.position = new Vector2(-8, 4);
+            beginPosition.position = new Vector2(-13, 8);
         }
 
-        if (SceneManager.GetActiveScene().name == "Street")
+        if (SceneManager.GetActiveScene().name == street)
         {
-            beginPosition.position = new Vector2(-7.78f, -12.08f);
+            beginPosition.position = new Vector2(-11.6f, -1.6f);
         }
 
-        if (SceneManager.GetActiveScene().name == "Street")
+        if (SceneManager.GetActiveScene().name == school)
         {
-            beginPosition.position = new Vector2(-20.8f, -10.4f);
+            beginPosition.position = new Vector2(-14.7f, -1.5f);
         }
     }
 
@@ -609,6 +617,16 @@ public class WorldController : MonoBehaviour
 
     public void enableMenu(GameObject menu)
     {
-        menu.SetActive(true);
+        menu.SetActive(true); 
+    }
+
+    public void enablePlayer()
+    {
+        player.SetActive(true);
+    }
+
+    public void disablePlayer()
+    {
+        player.SetActive(false);
     }
 }
