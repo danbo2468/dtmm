@@ -7,7 +7,6 @@ public class CameraController : MonoBehaviour {
     private PlayerController character;
 
     // Layer information
-    private float previousLayer;
     private float currentLayer;
     private Vector3 bottomCameraPosition;
 
@@ -30,7 +29,6 @@ public class CameraController : MonoBehaviour {
         lastVerticalCharacterPosition = character.transform.position;
 
         // Set the layer information
-        previousLayer = character.currentLayer;
         currentLayer = character.currentLayer;
         bottomCameraPosition = transform.position;
     }
@@ -43,7 +41,6 @@ public class CameraController : MonoBehaviour {
         // Check if the character has entered another layer
         if(currentLayer != character.currentLayer)
         {
-            previousLayer = currentLayer;
             currentLayer = character.currentLayer;
 
             // The character is running in the bottom layer
