@@ -605,4 +605,14 @@ public class WorldController : MonoBehaviour
     {
         SceneManager.LoadScene("Welcome Screen");
     }
+
+    public void disableMenu(GameObject menu)
+    {
+        menu.SetActive(false);
+    }
+
+    public void enableMenu(GameObject menu)
+    {
+        menu.SetActive(true);
+    }
 }
