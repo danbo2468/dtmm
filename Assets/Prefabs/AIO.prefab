@@ -537,7 +537,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4000013358092878}
   m_Layer: 0
-  m_Name: InfrontOfPlayer
+  m_Name: InfrontOfPlayerCharge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -606,7 +606,7 @@ GameObject:
   - component: {fileID: 114000011715061254}
   - component: {fileID: 212000012059024250}
   m_Layer: 0
-  m_Name: Street
+  m_Name: Street (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -952,6 +952,21 @@ GameObject:
   m_Layer: 5
   m_Name: Heart2
   m_TagString: Heart2
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1075883092419666
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4559756037665264}
+  m_Layer: 0
+  m_Name: InfrontOfPlayer
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1341,7 +1356,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013059607386}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 43.65, y: -1.8, z: 15}
+  m_LocalPosition: {x: 43.65, y: -1.76, z: 15}
   m_LocalScale: {x: 1.4650462, y: 1.7031171, z: 1.7031171}
   m_Children: []
   m_Father: {fileID: 4000012687808286}
@@ -1433,7 +1448,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011984904416}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 239.99997, y: 160, z: 0}
+  m_LocalPosition: {x: 457, y: 160, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 224000011858479028}
@@ -1451,7 +1466,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011581084630}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6.2952046, y: -1.8, z: 15}
+  m_LocalPosition: {x: 6.2952046, y: -1.79, z: 15}
   m_LocalScale: {x: 1.4650462, y: 1.7031171, z: 1.7031171}
   m_Children: []
   m_Father: {fileID: 4000012687808286}
@@ -1598,10 +1613,11 @@ Transform:
   m_LocalScale: {x: 1.0153555, y: 1.1803514, z: 1.1803514}
   m_Children:
   - {fileID: 4000013038568440}
-  - {fileID: 4000013358092878}
+  - {fileID: 4559756037665264}
   - {fileID: 4000012633796824}
   - {fileID: 4000012628698982}
   - {fileID: 4000012179991434}
+  - {fileID: 4000013358092878}
   m_Father: {fileID: 4000013529752834}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1672,12 +1688,12 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012045808142}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -232.05, y: -157.75, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -229.85, y: -157.75, z: 0}
+  m_LocalScale: {x: 1.0000001, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4000012879826692}
-  m_RootOrder: 1
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4000013425265266
 Transform:
@@ -1825,6 +1841,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4497957072167722}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4559756037665264
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1075883092419666}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -232.05, y: -157.75, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4000012879826692}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4695753649432476
 Transform:
@@ -2812,6 +2841,7 @@ MonoBehaviour:
   rock: {fileID: 114000010185211830, guid: 286454bb2b448a847a0167901178d9d7, type: 2}
   spray: {fileID: 114000010185211830, guid: fb56461dc1b54894bb099321058a2012, type: 2}
   timeBetweenAttacks: 35
+  canShoot: 0
   initialHealth: 4
   health: 0
   healthCanvas: {fileID: 1000010702655234}
@@ -2876,12 +2906,15 @@ MonoBehaviour:
   heart3: {fileID: 4000010681225722}
   heart4: {fileID: 4000011815860394}
   heart5: {fileID: 4000010496173978}
+  makeHeartsShrink: 0
   shrinking: 0
   targetScale: 1.9
   shrinkSpeed: 2
   oldScoreText: {fileID: 114000011029751972}
   newScoreText: {fileID: 114000011547674238}
   heartCountList: []
+  cutsceneBefore: {fileID: 0}
+  cutsceneAfter: {fileID: 0}
 --- !u!114 &114000013903012740
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5165,7 +5198,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 23177, y: -33855.008}
+  m_AnchoredPosition: {x: 23585.021, y: -33855.008}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224000014129792482

@@ -211,10 +211,6 @@ public class Path : MonoBehaviour {
                 route.Add(previousNode);
             }
         }
-        foreach(Transform location in route)
-        {
-            Debug.Log(location.position);
-        }
         return route;
     }
 

@@ -410,7 +410,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4000011611929182
 Transform:
   m_ObjectHideFlags: 1
@@ -474,8 +474,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1243769786933742}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -10, z: -2}
-  m_LocalScale: {x: 79.45, y: 131.54121, z: 3.61748}
+  m_LocalPosition: {x: -6, y: 4.8, z: -2}
+  m_LocalScale: {x: 62.8, y: 70.8, z: 3.61748}
   m_Children: []
   m_Father: {fileID: 224893598930648736}
   m_RootOrder: 0
@@ -1379,6 +1379,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 1
+      - m_Target: {fileID: 114000011276739056}
+        m_MethodName: HideEnterLevelCanvas
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &114662678201851676
@@ -1426,6 +1437,17 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 1921865997958316}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 114000011276739056}
+        m_MethodName: ShowEnterLevelCanvas
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1481,7 +1503,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: cf8be26301a7d80479612b33c8d46e0d, type: 3}
-    m_FontSize: 32
+    m_FontSize: 24
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -1934,7 +1956,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1632149282495428}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.00027737662}
+  m_LocalPosition: {x: 0, y: 0, z: 0.98}
   m_LocalScale: {x: 2.5, y: 2, z: 1.0001078}
   m_Children:
   - {fileID: 224893598930648736}
@@ -1962,7 +1984,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 55, y: 50}
+  m_AnchoredPosition: {x: 49, y: 119}
   m_SizeDelta: {x: 72, y: 45}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224571756736787720
@@ -1980,7 +2002,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -60}
+  m_AnchoredPosition: {x: 0, y: -129}
   m_SizeDelta: {x: 329, y: 81}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224735485475310950
@@ -1999,7 +2021,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -54, y: 50}
+  m_AnchoredPosition: {x: -60, y: 119}
   m_SizeDelta: {x: 72, y: 45}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224849211118301356

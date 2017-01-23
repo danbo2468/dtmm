@@ -24,6 +24,7 @@ public class BossController : MonoBehaviour {
     public GameObject spawnLocation;
     public GameObject infrontOfPlayer;
     public GameObject blockLocation;
+    public GameObject infrontOfPlayerCharge;
 
     public BoxCollider2D weaponCollider;
 
@@ -42,7 +43,7 @@ public class BossController : MonoBehaviour {
         rigidBody = bossObject.GetComponent<Rigidbody2D>();
         animator = bossObject.GetComponent<Animator>();
 	}
-	
+
 	// Update is called once per frame
 	void Update ()
     {    
@@ -54,7 +55,6 @@ public class BossController : MonoBehaviour {
             if(bossObject.transform.position == infrontOfPlayer.transform.position)
             {
                 animator.SetBool("isAttacking1", true);
-                Wait(1);
                 Reset();
             }
         }
@@ -66,8 +66,6 @@ public class BossController : MonoBehaviour {
             if (bossObject.transform.position == infrontOfPlayer.transform.position)
             {
                 animator.SetBool("isAttacking2", true);
-                Wait(1);
-                Reset();
             }
         }
         else if (block)
@@ -78,8 +76,6 @@ public class BossController : MonoBehaviour {
             {
                 isBlocking = true;
                 animator.SetBool("isBlocking", true);
-                Wait(3); // Reset after 3 seconds.
-                Reset();
             }
         }
         else if (charge)
@@ -87,8 +83,8 @@ public class BossController : MonoBehaviour {
             isBusy = true;
             if (!animator.GetBool("isAttacking2"))
             {
-                Move(bossObject, infrontOfPlayer, 20f);
-                if (bossObject.transform.position == infrontOfPlayer.transform.position)
+                Move(bossObject, infrontOfPlayerCharge, 20f);
+                if (bossObject.transform.position == infrontOfPlayerCharge.transform.position)
                 {
                     
                     animator.SetBool("isAttacking2", true);
@@ -97,7 +93,7 @@ public class BossController : MonoBehaviour {
                 }
             }
             Debug.Log(animator.GetBool("isAttacking2"));
-            if (animator.GetBool("IsAttacking2"))
+            if (animator.GetBool("isAttacking2"))
             {
                 Move(bossObject, chargeLocation, 20f);
                 if (bossObject.transform.position == chargeLocation.transform.position)
@@ -142,6 +138,9 @@ public class BossController : MonoBehaviour {
         {
             animator.SetBool("isFlying", true);
             Move(bossObject, bossIdleLocation, 5f);
+        } else if(isBusy)
+        {
+            animator.SetBool("isFlying", false);
         }
         
     }
@@ -264,26 +263,21 @@ public class BossController : MonoBehaviour {
         return new Vector2(x, y);
     }
 
-    public IEnumerator Wait(float time)
-    {
-        yield return new WaitForSeconds(time);
-    }
-
     /// <summary>
     /// When the boss is hit by a weapon, this method is called from the weapon entity.
     /// </summary>
     /// <param name="weapon"></param>
     /// <returns></returns>
-    public void IsHit(GameObject weapon)
+    public IEnumerator IsHit(GameObject weapon)
     {
         Debug.Log("We are hit, sending message to cenemy controller hopefully");
         if (isBlocking)
         {
             weapon.SendMessage("Deflect");
-            Wait(0.1f);
+            yield return new WaitForSeconds(0.1f);
             isBlocking = false;
             Reset();
-            Wait(0.1f);
+            yield return new WaitForSeconds(0.1f);
             Destroy(weapon);
             animator.SetBool("isBlocking", false);
         }else
