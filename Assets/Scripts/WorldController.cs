@@ -66,11 +66,8 @@ public class WorldController : MonoBehaviour
         // if the nodes are 0,0,0 it means they aren't set and we should set a default one, preferably the first node of the scene.
         if (GameManager.gameManager.worldNode.x == 0 && GameManager.gameManager.worldNode.y == 0 && GameManager.gameManager.worldNode.z == 0)
         {
-            Debug.Log("First time playing this game!");
             playerIsAtNode = script.GetNodeOfScene(1);
-            Debug.Log(playerIsAtNode.position);
             SetOverworldPosition(playerIsAtNode.position);
-            Debug.Log(GetOverworldPosition());
         }
         // The overworld node is not 0,0,0 meaning there should be a node saved in the player profile.
         else
@@ -79,7 +76,6 @@ public class WorldController : MonoBehaviour
             // After the node has been found, set the position of the player to that node and 'teleport' the player to it.
             if (IsOverworld())
             {
-                Debug.Log("Getting data! player was at this node: " + script.findNodeOnPosition(GetOverworldPosition()));
                 playerIsAtNode = script.findNodeOnPosition(GetOverworldPosition());
                 playerIsAtNode.position = GetOverworldPosition();
                 player.transform.position = playerIsAtNode.position;
@@ -101,7 +97,6 @@ public class WorldController : MonoBehaviour
                 if(script.GetLevelID(playerIsAtNode) == 1)
                 {                    
                     moveNext = true;
-                    Debug.Log("We loaded the scene, moving to next level.");
                 }
 
                 // If player is at the last node -> Load overworld;
@@ -111,7 +106,6 @@ public class WorldController : MonoBehaviour
                 }
             }
         }
-        Debug.Log(script.findNodeOnPosition(playerIsAtNode.position));
         // after all evaluation is done, set the nodes to the correct values.
         ShowEnterLevelCanvas(playerIsAtNode);
         SetLevels();    
@@ -233,7 +227,6 @@ public class WorldController : MonoBehaviour
 
         if (movePrevious)
         {
-            Debug.Log("We are moving back!");
             HideEnterLevelCanvas();
             List<Transform> route = script.GetRoute(playerIsAtNode, false);
             if (route.Count > 0)
@@ -273,7 +266,6 @@ public class WorldController : MonoBehaviour
                         SetLevelPosition(playerIsAtNode.position);
                         if (playerIsAtNode.tag == "AreaBegin")
                         {
-                            Debug.Log("LOADING OVERWORLD");
                             SceneManager.LoadScene("Overworld");
                         }
                     }
@@ -538,11 +530,15 @@ public class WorldController : MonoBehaviour
         return GameObject.FindGameObjectWithTag(tag).GetComponentsInChildren<Button>();
     }
 
+    public void ShowEnterLevelCanvas()
+    {
+        ShowEnterLevelCanvas(playerIsAtNode);
+    }
     /// <summary>
     /// Displays the popup above the player when idling at a level/area node.
     /// </summary>
     /// <param name="node"></param>
-    private void ShowEnterLevelCanvas(Transform node)
+    public void ShowEnterLevelCanvas(Transform node)
     {
         int compare = 1;
         if (IsOverworld())
@@ -581,7 +577,7 @@ public class WorldController : MonoBehaviour
     /// <summary>
     /// Hides the popup above the player when moving in the area/overworld;
     /// </summary>
-    private void HideEnterLevelCanvas()
+    public void HideEnterLevelCanvas()
     {
         Popup.SetActive(false);
     }
