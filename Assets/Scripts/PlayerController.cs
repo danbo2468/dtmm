@@ -160,7 +160,7 @@ public class PlayerController : MonoBehaviour
         {
             if (waitBeforeNextAttack == 0)
             {
-                animator.SetTrigger("Throwing");
+                //animator.SetTrigger("Throwing");
                 BulletController bullet;
                 if (GameManager.gameManager.boughtItems[0])
                 {
