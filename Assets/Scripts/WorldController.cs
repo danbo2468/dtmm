@@ -622,11 +622,11 @@ public class WorldController : MonoBehaviour
 
     public void enablePlayer()
     {
-        player.SetActive(true);
+        player.GetComponent<SpriteRenderer>().enabled = true;
     }
 
     public void disablePlayer()
     {
-        player.SetActive(false);
+        player.GetComponent<SpriteRenderer>().enabled = false;
     }
 }
