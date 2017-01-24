@@ -77,8 +77,8 @@ public class LevelManager : MonoBehaviour {
 
         // Check if the level is finished
         if (player.transform.position.x > levelEnd.transform.position.x && !isFinished)
-        {  
-            Finished();
+        {
+                Finished();
         }
 
         if (isFinished && (makeHeartsShrink || (cutsceneAfter == null)))
