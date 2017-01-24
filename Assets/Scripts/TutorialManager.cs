@@ -45,6 +45,12 @@ public class TutorialManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+        // Give the user a spray
+        if (GameManager.gameManager.levelManager.isFinished)
+        {
+            GameManager.gameManager.boughtItems[0] = true;
+        }
+
         // Check if not finished and not game over
         if (!GameManager.gameManager.levelManager.isGameOver && !GameManager.gameManager.levelManager.isFinished)
         {
