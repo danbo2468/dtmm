@@ -219,7 +219,7 @@ public class Path : MonoBehaviour {
         if (node.tag != "LevelCompleted")
         {
             node.tag = "LevelCompleted";
-            node.GetComponent<SpriteRenderer>().sprite = Resources.Load("Placeholder - GreenCircle", typeof(Sprite)) as Sprite;
+            //node.GetComponent<SpriteRenderer>().sprite = Resources.Load("Placeholder - GreenCircle", typeof(Sprite)) as Sprite;
         }
     }
 
@@ -228,7 +228,7 @@ public class Path : MonoBehaviour {
         if (node.tag != "LevelUncompleted")
         {
             node.tag = "LevelUncompleted";
-            node.GetComponent<SpriteRenderer>().sprite = Resources.Load("Placeholder - RedCircle", typeof(Sprite)) as Sprite;
+            //node.GetComponent<SpriteRenderer>().sprite = Resources.Load("Placeholder - RedCircle", typeof(Sprite)) as Sprite;
         }
     }
 

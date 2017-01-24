@@ -49,7 +49,10 @@ public class GameManager : MonoBehaviour {
 		boughtItems = new bool[2];
         //worldNode = new Vector3(0, 0, 0);
         //levelNode = new Vector3(0, 0, 0);
-
+        for(int i = 0; i < 14; i++)
+        {
+            levelHighscores[i] = 1;
+        }
         // ssLoad the Player Prefs
         if (PlayerPrefs.HasKey("Background Music"))
         {

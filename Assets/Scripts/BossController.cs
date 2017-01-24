@@ -66,6 +66,7 @@ public class BossController : MonoBehaviour {
             if (bossObject.transform.position == infrontOfPlayer.transform.position)
             {
                 animator.SetBool("isAttacking2", true);
+                StartCoroutine(Wait(0.5f));
             }
         }
         else if (block)
@@ -145,6 +146,11 @@ public class BossController : MonoBehaviour {
         
     }
 
+    public IEnumerator Wait(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        Reset();
+    }
     public void Move(GameObject obj, GameObject target, float speed)
     {
         obj.transform.position = Vector2.MoveTowards(new Vector2(obj.transform.position.x, obj.transform.position.y), new Vector2(target.transform.position.x, target.transform.position.y), speed * Time.deltaTime);
