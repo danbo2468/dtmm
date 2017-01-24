@@ -81,7 +81,7 @@ public class LevelManager : MonoBehaviour {
             Finished();
         }
 
-        if (isFinished && makeHeartsShrink)
+        if (isFinished && (makeHeartsShrink || (cutsceneAfter == null)))
         {
             heartCountList = player.hearts;
             Transform target = heart1;
