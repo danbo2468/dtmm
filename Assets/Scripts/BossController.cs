@@ -30,6 +30,7 @@ public class BossController : MonoBehaviour {
 
     private List<BoxCollider2D> colliders;
 
+    private EnemyController enemyController;
     private Rigidbody2D rigidBody;
     private Animator animator;
     private GameObject spawnedMosquito;
@@ -42,106 +43,114 @@ public class BossController : MonoBehaviour {
         weaponCollider.enabled = false;
         rigidBody = bossObject.GetComponent<Rigidbody2D>();
         animator = bossObject.GetComponent<Animator>();
+        enemyController = bossObject.GetComponent<EnemyController>();
 	}
 
 	// Update is called once per frame
 	void Update ()
-    {    
-        if (attack1)
+    {
+        if (enemyController.health > 0)
         {
-            isBusy = true;
-            Move(bossObject, infrontOfPlayer, 5f);
-            weaponCollider.enabled = true;
-            if(bossObject.transform.position == infrontOfPlayer.transform.position)
+
+
+            if (attack1)
             {
-                animator.SetBool("isAttacking1", true);
-                Reset();
-            }
-        }
-        else if (attack2)
-        {
-            isBusy = true;
-            Move(bossObject, infrontOfPlayer, 5f);
-            weaponCollider.enabled = true;
-            if (bossObject.transform.position == infrontOfPlayer.transform.position)
-            {
-                animator.SetBool("isAttacking2", true);
-                StartCoroutine(Wait(0.5f));
-            }
-        }
-        else if (block)
-        {
-            isBusy = true;
-            Move(bossObject, blockLocation, 10f);
-            if (bossObject.transform.position == blockLocation.transform.position)
-            {
-                isBlocking = true;
-                animator.SetBool("isBlocking", true);
-            }
-        }
-        else if (charge)
-        {
-            isBusy = true;
-            if (!animator.GetBool("isAttacking2"))
-            {
-                Move(bossObject, infrontOfPlayerCharge, 20f);
-                if (bossObject.transform.position == infrontOfPlayerCharge.transform.position)
+                isBusy = true;
+                Move(bossObject, infrontOfPlayer, 5f);
+                weaponCollider.enabled = true;
+                if (bossObject.transform.position == infrontOfPlayer.transform.position)
                 {
-                    
-                    animator.SetBool("isAttacking2", true);
-                    Debug.Log("Setting the bool to true");
-                    Debug.Log(animator.GetBool("isAttacking2"));
-                }
-            }
-            Debug.Log(animator.GetBool("isAttacking2"));
-            if (animator.GetBool("isAttacking2"))
-            {
-                Move(bossObject, chargeLocation, 20f);
-                if (bossObject.transform.position == chargeLocation.transform.position)
-                {
-                    bossObject.transform.position = spawnLocation.transform.position;
+                    animator.SetBool("isAttacking1", true);
                     Reset();
                 }
             }
-        }
-        if (motherattack1)
-        {
-            if (spawnedMosquito.transform.position.x <= bossObject.transform.position.x)
+            else if (attack2)
             {
-                animator.SetBool("isOrdering", false);
-                motherattack1 = false;
-            }
-        }
-        else if (motherattack2)
-        {
-            if (spawnedMosquito.transform.position.x <= bossObject.transform.position.x)
-            {
-                animator.SetBool("isOrdering", false);
-                motherattack2 = false;
-            }
-        }
-        if (GameObject.Find("Mother") != null)
-        {
-            if (motherhealth != GameObject.Find("Mother").GetComponent<EnemyController>().health)
-            {
-                motherhealth = GameObject.Find("Mother").GetComponent<EnemyController>().health;
-                animator.SetTrigger("isDamaged");
-                transformCounter++;
-                animator.SetInteger("TransformCounter", transformCounter);
-                if (transformCounter == 3)
+                isBusy = true;
+                Move(bossObject, infrontOfPlayer, 5f);
+                weaponCollider.enabled = true;
+                if (bossObject.transform.position == infrontOfPlayer.transform.position)
                 {
-
+                    animator.SetBool("isAttacking2", true);
+                    StartCoroutine(Wait(0.5f));
                 }
             }
-        }
+            else if (block)
+            {
+                isBusy = true;
+                Move(bossObject, blockLocation, 10f);
+                if (bossObject.transform.position == blockLocation.transform.position)
+                {
+                    isBlocking = true;
+                    animator.SetBool("isBlocking", true);
+                }
+            }
+            else if (charge)
+            {
+                isBusy = true;
+                if (!animator.GetBool("isAttacking2"))
+                {
+                    Move(bossObject, infrontOfPlayerCharge, 20f);
+                    if (bossObject.transform.position == infrontOfPlayerCharge.transform.position)
+                    {
 
-        if (!isBusy)
-        {
-            animator.SetBool("isFlying", true);
-            Move(bossObject, bossIdleLocation, 5f);
-        } else if(isBusy)
-        {
-            animator.SetBool("isFlying", false);
+                        animator.SetBool("isAttacking2", true);
+                        Debug.Log("Setting the bool to true");
+                        Debug.Log(animator.GetBool("isAttacking2"));
+                    }
+                }
+                Debug.Log(animator.GetBool("isAttacking2"));
+                if (animator.GetBool("isAttacking2"))
+                {
+                    Move(bossObject, chargeLocation, 20f);
+                    if (bossObject.transform.position == chargeLocation.transform.position)
+                    {
+                        bossObject.transform.position = spawnLocation.transform.position;
+                        Reset();
+                    }
+                }
+            }
+            if (motherattack1)
+            {
+                if (spawnedMosquito.transform.position.x <= bossObject.transform.position.x)
+                {
+                    animator.SetBool("isOrdering", false);
+                    motherattack1 = false;
+                }
+            }
+            else if (motherattack2)
+            {
+                if (spawnedMosquito.transform.position.x <= bossObject.transform.position.x)
+                {
+                    animator.SetBool("isOrdering", false);
+                    motherattack2 = false;
+                }
+            }
+            if (GameObject.Find("Mother") != null)
+            {
+                if (motherhealth != GameObject.Find("Mother").GetComponent<EnemyController>().health)
+                {
+                    motherhealth = GameObject.Find("Mother").GetComponent<EnemyController>().health;
+                    animator.SetTrigger("isDamaged");
+                    transformCounter++;
+                    animator.SetInteger("TransformCounter", transformCounter);
+                    if (transformCounter == 3)
+                    {
+
+                    }
+                }
+            }
+
+            if (!isBusy)
+            {
+                animator.SetBool("isFlying", true);
+                Move(bossObject, bossIdleLocation, 5f);
+            }
+            else if (isBusy)
+            {
+                animator.SetBool("isFlying", false);
+            }
+
         }
         
     }
@@ -276,7 +285,6 @@ public class BossController : MonoBehaviour {
     /// <returns></returns>
     public IEnumerator IsHit(GameObject weapon)
     {
-        Debug.Log("We are hit, sending message to cenemy controller hopefully");
         if (isBlocking)
         {
             weapon.SendMessage("Deflect");
@@ -290,6 +298,7 @@ public class BossController : MonoBehaviour {
         {
             Debug.Log("We are hit, sending message to cenemy controller hopefully");
             bossObject.GetComponent<EnemyController>().SendMessage("ApplyDamage", 1);
+            Destroy(weapon);
         }
     }
 

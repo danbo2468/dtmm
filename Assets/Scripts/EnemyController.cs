@@ -11,6 +11,7 @@ public class EnemyController : MonoBehaviour {
 
     // Dying
     public float timeAfterDeath;
+    public bool isBoss;
 
     // Use this for initialization
     void Start () {
@@ -24,7 +25,7 @@ public class EnemyController : MonoBehaviour {
     // Apply damage to the enemy
     void ApplyDamage(float damage)
     {
-        Debug.Log("We are hit! damage points: " + damage);
+        Debug.Log("EnemyController: We are hit! damage points: " + damage);
         health -= damage;
         if (health <= 0)
         {
@@ -32,14 +33,23 @@ public class EnemyController : MonoBehaviour {
             GetComponent<Animator>().SetBool("Killed", true);
             GetComponent<BoxCollider2D>().enabled = false;
             GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
-            Destroy(gameObject, timeAfterDeath);
+            StartCoroutine(Dead(timeAfterDeath));
         }
+    }
+
+    public IEnumerator Dead(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        if (isBoss) {
+            GameManager.gameManager.levelManager.Finished();
+        }
+        Destroy(gameObject);
     }
 
     // Check if there is a collision
     void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.tag == "Player" && health > 0)
+        if (other.gameObject.tag == "Player" && health > 0 && !isBoss)
         {
             other.gameObject.SendMessage("ApplyDamage", touchDamage);
         }
