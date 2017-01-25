@@ -56,7 +56,7 @@ public class BossController : MonoBehaviour {
             if (attack1)
             {
                 isBusy = true;
-                Move(bossObject, infrontOfPlayer, 5f);
+                Move(bossObject, infrontOfPlayer, 10f);
                 weaponCollider.enabled = true;
                 if (bossObject.transform.position == infrontOfPlayer.transform.position)
                 {
@@ -67,7 +67,7 @@ public class BossController : MonoBehaviour {
             else if (attack2)
             {
                 isBusy = true;
-                Move(bossObject, infrontOfPlayer, 5f);
+                Move(bossObject, infrontOfPlayer, 10f);
                 weaponCollider.enabled = true;
                 if (bossObject.transform.position == infrontOfPlayer.transform.position)
                 {
@@ -78,7 +78,7 @@ public class BossController : MonoBehaviour {
             else if (block)
             {
                 isBusy = true;
-                Move(bossObject, blockLocation, 10f);
+                Move(bossObject, blockLocation, 15f);
                 if (bossObject.transform.position == blockLocation.transform.position)
                 {
                     isBlocking = true;
@@ -90,7 +90,7 @@ public class BossController : MonoBehaviour {
                 isBusy = true;
                 if (!animator.GetBool("isAttacking2"))
                 {
-                    Move(bossObject, infrontOfPlayerCharge, 20f);
+                    Move(bossObject, infrontOfPlayerCharge, 25f);
                     if (bossObject.transform.position == infrontOfPlayerCharge.transform.position)
                     {
 
@@ -102,7 +102,7 @@ public class BossController : MonoBehaviour {
                 Debug.Log(animator.GetBool("isAttacking2"));
                 if (animator.GetBool("isAttacking2"))
                 {
-                    Move(bossObject, chargeLocation, 20f);
+                    Move(bossObject, chargeLocation, 25f);
                     if (bossObject.transform.position == chargeLocation.transform.position)
                     {
                         bossObject.transform.position = spawnLocation.transform.position;
@@ -144,7 +144,7 @@ public class BossController : MonoBehaviour {
             if (!isBusy)
             {
                 animator.SetBool("isFlying", true);
-                Move(bossObject, bossIdleLocation, 5f);
+                Move(bossObject, bossIdleLocation, 10f);
             }
             else if (isBusy)
             {
