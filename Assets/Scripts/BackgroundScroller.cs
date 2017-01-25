@@ -26,7 +26,14 @@ public class BackgroundScroller : MonoBehaviour {
 
         // Move the image at a certain speed
         Vector3 newPosition = transform.position;
-        newPosition.x -= Time.deltaTime * scrollSpeed * player.GetComponent<Rigidbody2D>().velocity.x;
+        if (player.GetComponent<Rigidbody2D>().velocity.x > 1)
+        {
+            newPosition.x -= Time.deltaTime * scrollSpeed * player.initialMoveSpeed;
+        }
+        else
+        {
+            newPosition.x -= Time.deltaTime * scrollSpeed * player.GetComponent<Rigidbody2D>().velocity.x;
+        }
         transform.position = newPosition;
 
         // Check if the image is out of the camera's view
