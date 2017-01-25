@@ -1433,6 +1433,7 @@ GameObject:
   - component: {fileID: 1939324979}
   - component: {fileID: 1939324980}
   - component: {fileID: 1939324981}
+  - component: {fileID: 1939324982}
   m_Layer: 0
   m_Name: School
   m_TagString: LevelUnreachable
@@ -1506,6 +1507,18 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 2.56
+--- !u!114 &1939324982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1939324978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb87108b2c270c04fb731037ff9e7b91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levels: 08000000090000000a000000
 --- !u!1 &2050426431
 GameObject:
   m_ObjectHideFlags: 0
