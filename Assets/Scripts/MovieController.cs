@@ -8,7 +8,9 @@ public class MovieController : MonoBehaviour {
 
     #if UNITY_ANDROID
         public int movieNumber;
-    #else
+    #endif
+
+    #if UNITY_EDITOR
         public MovieTexture movieMale;
         public MovieTexture movieFemale;
         private MovieTexture movie;
@@ -27,7 +29,9 @@ public class MovieController : MonoBehaviour {
                 file = "Girl" + movieNumber + ".mp4";
             }
             Handheld.PlayFullScreenMovie(file);
-        #else
+        #endif
+
+        #if UNITY_EDITOR
             if(GameManager.gameManager.characterGender == "Male")
             {
                 movie = movieMale;
@@ -47,7 +51,9 @@ public class MovieController : MonoBehaviour {
     void Update () {
         #if UNITY_ANDROID
         
-        #else
+        #endif
+
+        #if UNITY_EDITOR
             if (!movie.isPlaying)
             {
                 if (GameManager.gameManager.levelManager.isFinished)
