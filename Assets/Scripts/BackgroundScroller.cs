@@ -26,7 +26,7 @@ public class BackgroundScroller : MonoBehaviour {
 
         // Move the image at a certain speed
         Vector3 newPosition = transform.position;
-        if (player.GetComponent<Rigidbody2D>().velocity.x > 1)
+        if (player.GetComponent<Rigidbody2D>().velocity.x > 0)
         {
             newPosition.x -= Time.deltaTime * scrollSpeed * player.initialMoveSpeed;
         }
