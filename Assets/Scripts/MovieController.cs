@@ -6,19 +6,19 @@ using UnityEngine;
 
 public class MovieController : MonoBehaviour {
 
-#if UNITY_EDITOR
-    public MovieTexture movieMale;
-    public MovieTexture movieFemale;
-    private MovieTexture movie;
-#endif
-    public int movieNumber;
-    private AudioSource audio;
+    #if UNITY_ANDROID
+        public int movieNumber;
+    #else
+        public MovieTexture movieMale;
+        public MovieTexture movieFemale;
+        private MovieTexture movie;
+        private AudioSource audio;
+    #endif
 
     // Use this for initialization
     void Start()
     {
-
-#if UNITY_ANDROID
+        #if UNITY_ANDROID
             string file;
             if (GameManager.gameManager.characterGender == "Male")
             {
@@ -27,32 +27,27 @@ public class MovieController : MonoBehaviour {
                 file = "Girl" + movieNumber + ".mp4";
             }
             Handheld.PlayFullScreenMovie(file);
-#endif
-
-#if UNITY_EDITOR
-                if(GameManager.gameManager.characterGender == "Male")
-        {
-            movie = movieMale;
-        } else {
-            movie = movieFemale;
-        }
+        #else
+            if(GameManager.gameManager.characterGender == "Male")
+            {
+                movie = movieMale;
+            } else {
+                movie = movieFemale;
+            }
 
             GetComponent<RawImage>().texture = movie;
             audio = GetComponent<AudioSource>();
             audio.clip = movie.audioClip;
             movie.Play();
             audio.Play();
-#endif
+        #endif
     }
 
     // Update is called once per frame
     void Update () {
-
-#if UNITY_ANDROID
+        #if UNITY_ANDROID
         
-#endif
-
-#if UNITY_EDITOR
+        #else
             if (!movie.isPlaying)
             {
                 if (GameManager.gameManager.levelManager.isFinished)
@@ -67,8 +62,7 @@ public class MovieController : MonoBehaviour {
                     GameManager.gameManager.levelManager.Resume();
                 }
             }
-#endif
-
+        #endif
     }
 
     // Play the file
