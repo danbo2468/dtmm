@@ -6,23 +6,19 @@ using UnityEngine;
 
 public class MovieController : MonoBehaviour {
 
+#if UNITY_EDITOR
     public MovieTexture movieMale;
     public MovieTexture movieFemale;
-    public int movieNumber;
     private MovieTexture movie;
+#endif
+    public int movieNumber;
     private AudioSource audio;
 
     // Use this for initialization
     void Start()
     {
-        if(GameManager.gameManager.characterGender == "Male")
-        {
-            movie = movieMale;
-        } else {
-            movie = movieFemale;
-        }
 
-        #if UNITY_ANDROID
+#if UNITY_ANDROID
             string file;
             if (GameManager.gameManager.characterGender == "Male")
             {
@@ -31,25 +27,32 @@ public class MovieController : MonoBehaviour {
                 file = "Girl" + movieNumber + ".mp4";
             }
             Handheld.PlayFullScreenMovie(file);
-        #endif
+#endif
 
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
+                if(GameManager.gameManager.characterGender == "Male")
+        {
+            movie = movieMale;
+        } else {
+            movie = movieFemale;
+        }
+
             GetComponent<RawImage>().texture = movie;
             audio = GetComponent<AudioSource>();
             audio.clip = movie.audioClip;
             movie.Play();
             audio.Play();
-        #endif
+#endif
     }
 
     // Update is called once per frame
     void Update () {
 
-        #if UNITY_ANDROID
+#if UNITY_ANDROID
         
-        #endif
+#endif
 
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
             if (!movie.isPlaying)
             {
                 if (GameManager.gameManager.levelManager.isFinished)
@@ -64,7 +67,7 @@ public class MovieController : MonoBehaviour {
                     GameManager.gameManager.levelManager.Resume();
                 }
             }
-        #endif
+#endif
 
     }
 
