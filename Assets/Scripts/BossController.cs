@@ -25,6 +25,8 @@ public class BossController : MonoBehaviour {
     public GameObject infrontOfPlayer;
     public GameObject blockLocation;
     public GameObject infrontOfPlayerCharge;
+    public GameObject up;
+    public GameObject down;
 
     public BoxCollider2D weaponCollider;
 
@@ -38,21 +40,27 @@ public class BossController : MonoBehaviour {
 
     private string boss;
 
+    private float initialHeight;
+
     void Start () {
+        
         this.enabled = false;
         weaponCollider.enabled = false;
         rigidBody = bossObject.GetComponent<Rigidbody2D>();
         animator = bossObject.GetComponent<Animator>();
         enemyController = bossObject.GetComponent<EnemyController>();
-	}
+        initialHeight = bossIdleLocation.transform.position.y;
+        down.transform.position = bossIdleLocation.transform.position;
+        StartCoroutine(Move(1f, true));
+    }
 
 	// Update is called once per frame
 	void Update ()
     {
+       
+
         if (enemyController.health > 0)
         {
-
-
             if (attack1)
             {
                 isBusy = true;
@@ -153,6 +161,42 @@ public class BossController : MonoBehaviour {
 
         }
         
+    }
+
+    private void ChangeHeight()
+    {
+
+        
+        /*
+        if(bossIdleLocation.transform.position.y <= initialHeight && bossIdleLocation.transform.position.y <= up.transform.position.y)
+        {
+            Debug.Log("Going up");
+            Move(bossIdleLocation, up, 0.5f);
+        }
+        if(bossIdleLocation.transform.position.y > initialHeight && bossIdleLocation.transform.position.y >= down.transform.position.y)
+        {
+            Debug.Log("Going down");
+            Move(bossIdleLocation, down, 0.5f);
+        }
+        */
+    }
+
+    public IEnumerator Move(float seconds, bool direction)
+    {
+        
+        if (direction)
+        {
+            bossIdleLocation.transform.position = new Vector2(up.transform.position.x, up.transform.position.y);
+            Debug.Log("Going up");
+        }
+        else if (!direction)
+        {
+            bossIdleLocation.transform.position = new Vector2(down.transform.position.x, down.transform.position.y);
+            Debug.Log("Going down");
+        }
+
+        yield return new WaitForSeconds(seconds);
+        StartCoroutine(Move(seconds, !direction));
     }
 
     public IEnumerator Wait(float seconds)

@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour {
         //levelNode = new Vector3(0, 0, 0);
         for(int i = 0; i < 14; i++)
         {
-            levelHighscores[i] = 1;
+            levelHighscores[i] = 0;
         }
         // ssLoad the Player Prefs
         if (PlayerPrefs.HasKey("Background Music"))
