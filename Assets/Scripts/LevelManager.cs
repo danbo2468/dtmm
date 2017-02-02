@@ -49,8 +49,10 @@ public class LevelManager : MonoBehaviour {
     public List<Transform> heartCountList;
 
     // Cutscenes
-    public MovieController cutsceneBefore;
-    public MovieController cutsceneAfter;
+    public MovieController cutsceneBeforeHandheld;
+    public MovieController cutsceneAfterHandheld;
+    public MovieControllerEditor cutsceneBeforeEditor;
+    public MovieControllerEditor cutsceneAfterEditor;
 
     // Use this for initialization
     void Start () {
@@ -62,11 +64,21 @@ public class LevelManager : MonoBehaviour {
         GameManager.gameManager.SetLevelManager(this);
         highscoreText.text = "Highest score: " + (int)highScore;
 
-        if (cutsceneBefore != null)
-        {
-            Pause();
-            cutsceneBefore.Play();
-        }
+        #if UNITY_EDITOR
+            if (cutsceneBeforeEditor != null)
+            {
+                Pause();
+                cutsceneBeforeEditor.Play();
+            }
+        #endif
+
+        #if UNITY_ANDROID
+            if (cutsceneBeforeHandheld != null)
+                {
+                    Pause();
+                    cutsceneBeforeHandheld.Play();
+                }
+        #endif
     }
 
     // Call this every frame
@@ -81,7 +93,7 @@ public class LevelManager : MonoBehaviour {
                 Finished();
         }
 
-        if (isFinished && (makeHeartsShrink || (cutsceneAfter == null)))
+        if (isFinished && (makeHeartsShrink || (cutsceneAfterEditor == null)))
         {
             heartCountList = player.hearts;
             Transform target = heart1;
@@ -191,14 +203,26 @@ public class LevelManager : MonoBehaviour {
     {
         player.SetMoveSpeed(0);
         isFinished = true;
-        if (cutsceneAfter != null)
-        {
-            cutsceneAfter.Play();
-        }
-        else
-        {
-            finishedMenu.SetActive(true);
-        }
+
+        #if UNITY_EDITOR
+            if (cutsceneAfterEditor != null)
+            {
+                cutsceneAfterEditor.Play();
+            }
+            else
+            {
+                finishedMenu.SetActive(true);
+            }
+        #endif
+
+        #if UNITY_ANDROID
+            if (cutsceneAfterHandheld != null)
+            {
+                cutsceneAfterHandheld.Play();
+                finishedMenu.SetActive(true);
+                makeHeartsShrink = true;
+            }
+        #endif
         oldScoreText.text = currentScore.ToString();
         
     }
