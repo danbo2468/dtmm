@@ -4,12 +4,21 @@ using UnityEngine;
 
 public class MovieController : MonoBehaviour {
 
+#if UNITY_ANDROID
+
     public int movieNumber;
 
     // Use this for initialization
     void Start()
     {
-        string file;
+
+    }
+
+    // Play the file
+    public void Play()
+    {
+        gameObject.SetActive(true);
+            string file;
         if (GameManager.gameManager.characterGender == "Male")
         {
             file = "Boy" + movieNumber + ".mp4";
@@ -19,9 +28,5 @@ public class MovieController : MonoBehaviour {
         Handheld.PlayFullScreenMovie(file);
     }
 
-    // Play the file
-    public void Play()
-    {
-        gameObject.SetActive(true);
-    }
+#endif
 }

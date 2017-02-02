@@ -64,21 +64,20 @@ public class LevelManager : MonoBehaviour {
         GameManager.gameManager.SetLevelManager(this);
         highscoreText.text = "Highest score: " + (int)highScore;
 
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
             if (cutsceneBeforeEditor != null)
             {
                 Pause();
                 cutsceneBeforeEditor.Play();
             }
-        #endif
+#endif
 
-        #if UNITY_ANDROID
+#if UNITY_ANDROID
             if (cutsceneBeforeHandheld != null)
                 {
-                    Pause();
                     cutsceneBeforeHandheld.Play();
                 }
-        #endif
+#endif
     }
 
     // Call this every frame

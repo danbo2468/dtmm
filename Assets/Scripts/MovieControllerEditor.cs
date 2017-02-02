@@ -6,6 +6,8 @@ using UnityEngine;
 
 public class MovieControllerEditor : MonoBehaviour {
 
+#if UNITY_EDITOR
+
     public MovieTexture movieMale;
     public MovieTexture movieFemale;
     private MovieTexture movie;
@@ -51,4 +53,6 @@ public class MovieControllerEditor : MonoBehaviour {
     {
         gameObject.SetActive(true);
     }
+
+#endif
 }
