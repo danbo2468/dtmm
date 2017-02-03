@@ -162,6 +162,11 @@ public class WorldController : MonoBehaviour
         {
             beginPosition.position = new Vector2(-14.7f, -1.5f);
         }
+
+        if (SceneManager.GetActiveScene().name == market)
+        {
+            beginPosition.position = new Vector2(-16.8f, -1.3f);
+        }
     }
 
     /// <summary>
@@ -174,7 +179,8 @@ public class WorldController : MonoBehaviour
     /// Step 5: At somepoint we've reached our destination and it will reset some values
     /// Step 6: Check if the player is at the overworld, if yes save the location, if not save the level location. 
     /// Step 7: Upon reaching the destination, the popup with levelname + score will show again. Also the buttons will be enabled again.
-    /// TODO: Refactor
+    /// TODO: Refactor 
+    /// TODO: LOL No time to refactor.
     /// </summary>
     private void Movement()
     {
