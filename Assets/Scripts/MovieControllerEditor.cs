@@ -17,34 +17,54 @@ public class MovieControllerEditor : MonoBehaviour {
     void Start()
     {
         if(GameManager.gameManager.characterGender == "Male")
-        {
-            movie = movieMale;
+        {   
+            if(movieMale != null){
+                movie = movieMale;
+            }
         } else {
-            movie = movieFemale;
+            if(movieFemale != null){
+                movie = movieFemale;
+            }
         }
 
-        GetComponent<RawImage>().texture = movie;
-        audio = GetComponent<AudioSource>();
-        audio.clip = movie.audioClip;
-        movie.Play();
-        audio.Play();
+        if(movie != null){
+            GetComponent<RawImage>().texture = movie;
+            audio = GetComponent<AudioSource>();
+            audio.clip = movie.audioClip;
+            movie.Play();
+            audio.Play();
+        }
     }
 
     // Update is called once per frame
     void Update () {
-        if (!movie.isPlaying)
-        {
-            if (GameManager.gameManager.levelManager.isFinished)
+        if(movie != null){
+            if (!movie.isPlaying)
             {
-                GameManager.gameManager.levelManager.finishedMenu.SetActive(true);
-                GameManager.gameManager.levelManager.makeHeartsShrink = true;
-                gameObject.SetActive(false);
+                if (GameManager.gameManager.levelManager.isFinished)
+                {
+                    GameManager.gameManager.levelManager.finishedMenu.SetActive(true);
+                    GameManager.gameManager.levelManager.makeHeartsShrink = true;
+                    gameObject.SetActive(false);
+                }
+                else
+                {
+                    gameObject.SetActive(false);
+                    GameManager.gameManager.levelManager.Resume();
+                }
             }
-            else
-            {
-                gameObject.SetActive(false);
-                GameManager.gameManager.levelManager.Resume();
-            }
+        } else {
+             if (GameManager.gameManager.levelManager.isFinished)
+             {
+                 GameManager.gameManager.levelManager.finishedMenu.SetActive(true);
+                 GameManager.gameManager.levelManager.makeHeartsShrink = true;
+                 gameObject.SetActive(false);
+             
+             }else
+             {
+                 gameObject.SetActive(false);
+                 GameManager.gameManager.levelManager.Resume();
+             }
         }
     }
 
