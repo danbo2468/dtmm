@@ -21,9 +21,9 @@ public class MovieController : MonoBehaviour {
             string file;
         if (GameManager.gameManager.characterGender == "Male")
         {
-            file = "Boy" + movieNumber + ".mp4";
+            file = "Boy" + movieNumber + ".3gp";
         } else {
-            file = "Girl" + movieNumber + ".mp4";
+            file = "Girl" + movieNumber + ".3gp";
         }
         Handheld.PlayFullScreenMovie(file);
     }
