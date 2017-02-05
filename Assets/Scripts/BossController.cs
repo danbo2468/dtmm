@@ -51,7 +51,7 @@ public class BossController : MonoBehaviour {
         enemyController = bossObject.GetComponent<EnemyController>();
         initialHeight = bossIdleLocation.transform.position.y;
         down.transform.position = bossIdleLocation.transform.position;
-        StartCoroutine(Move(1f, true));
+        //StartCoroutine(Move(1f, true));
     }
 
 	// Update is called once per frame
@@ -259,7 +259,7 @@ public class BossController : MonoBehaviour {
             if (transformCounter < 3)
             {
                 spawnedMosquito = Instantiate(Resources.Load("Jumper")) as GameObject;
-                spawnedMosquito.transform.position = spawnLocation.transform.position;
+                spawnedMosquito.transform.position = new Vector3(spawnLocation.transform.position.x,1, spawnLocation.transform.position.z);
                 spawnedMosquito.transform.GetChild(0).SetParent(spawnedMosquito.transform.parent);
             }
             else
@@ -267,7 +267,7 @@ public class BossController : MonoBehaviour {
                 spawnedMosquito = Instantiate(Resources.Load("Flying Mosquito")) as GameObject;
                 spawnedMosquito.transform.position = spawnLocation.transform.position;
                 spawnedMosquito = Instantiate(Resources.Load("Jumper")) as GameObject;
-                spawnedMosquito.transform.position = new Vector3(spawnLocation.transform.position.x + 4, spawnLocation.transform.position.y, spawnLocation.transform.position.z);
+                spawnedMosquito.transform.position = new Vector3(spawnLocation.transform.position.x + 4,1, spawnLocation.transform.position.z);
                 spawnedMosquito.transform.GetChild(0).SetParent(spawnedMosquito.transform.parent);
                 spawnedMosquito = Instantiate(Resources.Load("Flying Mosquito")) as GameObject;
                 spawnedMosquito.transform.position = new Vector3(spawnLocation.transform.position.x + 8, spawnLocation.transform.position.y, spawnLocation.transform.position.z);
