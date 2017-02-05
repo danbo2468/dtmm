@@ -27,6 +27,8 @@ public class BossController : MonoBehaviour {
     public GameObject infrontOfPlayerCharge;
     public GameObject up;
     public GameObject down;
+    public GameObject audioSource;
+    public AudioClip audioClip;
 
     public BoxCollider2D weaponCollider;
 
@@ -358,6 +360,8 @@ public class BossController : MonoBehaviour {
         {
             this.enabled = true;
             Setup();
+            audioSource.GetComponent<AudioSource>().clip = audioClip;
+            audioSource.GetComponent<AudioSource>().Play();
         }
     }
 }
