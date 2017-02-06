@@ -53,7 +53,7 @@ public class BossController : MonoBehaviour {
         enemyController = bossObject.GetComponent<EnemyController>();
         initialHeight = bossIdleLocation.transform.position.y;
         down.transform.position = bossIdleLocation.transform.position;
-        //StartCoroutine(Move(1f, true));
+        StartCoroutine(Move(1f, true));
     }
 
 	// Update is called once per frame
