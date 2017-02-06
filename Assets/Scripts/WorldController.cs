@@ -577,9 +577,9 @@ public class WorldController : MonoBehaviour
         {
             if (IsOverworld())
             {
-                textFields[0].text = "World - " + node.name;
-                textFields[1].text = "Total Score: " + GetScoreOfArea();
-                textFields[2].text = "Enter";
+                textFields[0].text = "Dunia - " + node.name;
+                textFields[1].text = "Skor total: " + GetScoreOfArea();
+                textFields[2].text = "Masuk";
             }
             else
             {
@@ -588,12 +588,12 @@ public class WorldController : MonoBehaviour
                 if (playerIsAtNode.GetComponent<Level>().level == 1337)
                 {
                     textFields[1].text = "";
-                    textFields[2].text = "Enter shop";
+                    textFields[2].text = "Masuk toko";
                 }
                 else
                 {
-                    textFields[1].text = "Score: " + GetScoreOfLevel(playerIsAtNode.GetComponent<Level>().level).ToString();
-                    textFields[2].text = "Play";
+                    textFields[1].text = "Skor: " + GetScoreOfLevel(playerIsAtNode.GetComponent<Level>().level).ToString();
+                    textFields[2].text = "Mulai";
                 }
             }
         Popup.SetActive(true);

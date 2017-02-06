@@ -56,14 +56,13 @@ public class LevelManager : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        GameManager.gameManager.SetLevelManager(this);
         stillWaterMosquitoes = FindObjectsOfType<StillWaterMosquito>();
         player = FindObjectOfType<PlayerController>();
-        player.setAnimation();
         currentScore = 0;
         collectedCoins = 0;
         highScore = GameManager.gameManager.levelHighscores[level];
-        highscoreText.text = "Highest score: " + (int)highScore;
+        GameManager.gameManager.SetLevelManager(this);
+        highscoreText.text = "Skor tertinggi: " + (int)highScore;
         GameManager.gameManager.ManualUpdate();
 
 #if UNITY_EDITOR
@@ -86,7 +85,7 @@ public class LevelManager : MonoBehaviour {
     void Update()
     {
         // Update the score
-        scoreText.text = "Score: " + (int) currentScore;
+        scoreText.text = "Skor: " + (int) currentScore;
 
         // Check if the level is finished
         if (player.transform.position.x > levelEnd.transform.position.x && !isFinished)
@@ -126,7 +125,7 @@ public class LevelManager : MonoBehaviour {
                 SaveScore();
                 scoreSaved = true;
             } 
-            newScoreText.text = "Score: " + (int) calculateScore();
+            newScoreText.text = "Skor: " + (int) calculateScore();
         }
     }
 

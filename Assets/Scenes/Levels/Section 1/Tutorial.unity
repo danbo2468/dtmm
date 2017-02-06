@@ -707,9 +707,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Oh no, a mosquito!
-
-    Kill it with a rock!'
+  m_Text: "Oh tidak, sebuah nyamuk! \nMenyerang dengan batu!"
 --- !u!222 &128231351
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1251,12 +1249,12 @@ MonoBehaviour:
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 0
+    m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Tap
+  m_Text: 'Tekan
 
-    Left'
+    Kiri'
 --- !u!222 &280527650
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1582,7 +1580,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Go to the world
+  m_Text: Pergi ke dunia
 --- !u!222 &318594169
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2158,12 +2156,10 @@ MonoBehaviour:
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 0
+    m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Tap
-
-    Left'
+  m_Text: "Tekan \nKiri"
 --- !u!222 &380333579
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2324,7 +2320,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Oh look, coins! \nGrab them!"
+  m_Text: "Oh Lihat, koin! \nAmbil cepat!"
 --- !u!222 &404214508
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2709,7 +2705,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: You survived!
+  m_Text: Anda selamat!
 --- !u!222 &521203550
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2990,7 +2986,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Watch out, still water! Press jump cross it.
+  m_Text: Awas, masih air! Tekan melompat menyeberang.
 --- !u!222 &619472490
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4922,10 +4918,10 @@ MonoBehaviour:
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 0
+    m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Restart
+  m_Text: Mengulang kembali
 --- !u!222 &1225521093
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5550,9 +5546,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Another mosquito high up in the sky!
-
-    Jump and throw a rock to kill it!'
+  m_Text: Nyamuk lain tinggi di langit! Langsung dan melemparkan batu untuk menyerang!
 --- !u!222 &1467438167
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6096,12 +6090,12 @@ MonoBehaviour:
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 0
+    m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Tap
+  m_Text: 'Tekan
 
-    Left'
+    Kiri'
 --- !u!222 &1628366921
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6172,12 +6166,12 @@ MonoBehaviour:
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 0
+    m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Tap
+  m_Text: 'Tekan
 
-    Right'
+    Kanan'
 --- !u!222 &1630413793
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6454,10 +6448,10 @@ MonoBehaviour:
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 0
+    m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Restart
+  m_Text: Mengulang kembali
 --- !u!222 &1683289346
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6664,10 +6658,10 @@ MonoBehaviour:
     m_Alignment: 1
     m_AlignByGeometry: 1
     m_RichText: 1
-    m_HorizontalOverflow: 0
+    m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Game Over
+  m_Text: Permainan telah berakhir
 --- !u!222 &1716411457
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7138,7 +7132,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Score: 0'
+  m_Text: 'Skor: 0'
 --- !u!114 &1856921239
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7276,7 +7270,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Highest score: 0'
+  m_Text: 'Skor tertinggi: 0'
 --- !u!114 &1856921246
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7310,7 +7304,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Score: 0'
+  m_Text: 'Skor: 0'
 --- !u!1 &1856921247
 GameObject:
   m_ObjectHideFlags: 0
@@ -8096,7 +8090,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Go to the world
+  m_Text: Pergi ke dunia
 --- !u!222 &2112401754
 CanvasRenderer:
   m_ObjectHideFlags: 0

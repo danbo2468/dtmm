@@ -2686,7 +2686,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Go to the world
+  m_Text: Pergi ke dunia
 --- !u!114 &114000010868340780
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2802,10 +2802,10 @@ MonoBehaviour:
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 0
+    m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Retry
+  m_Text: Mencoba kembali
 --- !u!114 &114000011276713754
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2838,7 +2838,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Score: 0'
+  m_Text: 'Skor: 0'
 --- !u!114 &114000011411440660
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3062,7 +3062,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: You survived!
+  m_Text: Anda selamat!
 --- !u!114 &114000012191795646
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3133,7 +3133,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Highest score: 0'
+  m_Text: 'Skor tertinggi: 0'
 --- !u!114 &114000012871424758
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3503,7 +3503,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Go to the world
+  m_Text: Pergi ke dunia
 --- !u!114 &114000013985126610
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3900,10 +3900,10 @@ MonoBehaviour:
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 0
+    m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Restart
+  m_Text: Mengulang kembali
 --- !u!114 &114286710671722870
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4049,10 +4049,10 @@ MonoBehaviour:
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 0
+    m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Restart
+  m_Text: Mengulang kembali
 --- !u!114 &114452137707701894
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4082,10 +4082,10 @@ MonoBehaviour:
     m_Alignment: 1
     m_AlignByGeometry: 1
     m_RichText: 1
-    m_HorizontalOverflow: 0
+    m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Game Over
+  m_Text: Permainan telah berakhir
 --- !u!114 &114473906070184848
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4462,7 +4462,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Go to the world
+  m_Text: Pergi ke dunia
 --- !u!114 &114912477411867130
 MonoBehaviour:
   m_ObjectHideFlags: 1
