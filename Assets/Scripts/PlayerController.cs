@@ -313,7 +313,7 @@ public class PlayerController : MonoBehaviour
             setFullHeart(2);
             setFullHeart(3);
             setFullHeart(4);
-            setHalfHeart(4);
+            setHalfHeart(5);
         }
         else if (health == 10)
         {
