@@ -71,6 +71,12 @@ public class MainMenu : MonoBehaviour {
         SceneManager.LoadScene("Welcome Screen");
     }
 
+    // Exit the Shop
+    public void ExitShop()
+    {
+        SceneManager.LoadScene("Market");
+    }
+
     // Exit the game
     public void QuitGame()
     {

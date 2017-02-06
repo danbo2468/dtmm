@@ -1020,6 +1020,16 @@ Prefab:
       propertyPath: cutsceneAfterEditor
       value: 
       objectReference: {fileID: 1376850867}
+    - target: {fileID: 95000011109417906, guid: 8f6d6729914bf324fb23042aab71121a,
+        type: 2}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 6e3007d13d062964fbf0ee1aecc6fef5, type: 2}
+    - target: {fileID: 95000011109417906, guid: 8f6d6729914bf324fb23042aab71121a,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8f6d6729914bf324fb23042aab71121a, type: 2}
   m_IsPrefabParent: 0

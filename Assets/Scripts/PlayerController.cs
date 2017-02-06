@@ -43,6 +43,10 @@ public class PlayerController : MonoBehaviour
     public RuntimeAnimatorController girlShortSleevedAnimation;
     public RuntimeAnimatorController boyLongSleevedAnimation;
     public RuntimeAnimatorController girlLongSleevedAnimation;
+    public RuntimeAnimatorController boyYellowAnimation;
+    public RuntimeAnimatorController girlYellowAnimation;
+    public RuntimeAnimatorController boyBlueAnimation;
+    public RuntimeAnimatorController girlBlueAnimation;
 
 
     // Use this for initialization
