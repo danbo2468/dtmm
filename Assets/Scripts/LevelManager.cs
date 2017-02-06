@@ -62,7 +62,7 @@ public class LevelManager : MonoBehaviour {
         collectedCoins = 0;
         highScore = GameManager.gameManager.levelHighscores[level];
         GameManager.gameManager.SetLevelManager(this);
-        highscoreText.text = "Highest score: " + (int)highScore;
+        highscoreText.text = "Skor tertinggi: " + (int)highScore;
         GameManager.gameManager.ManualUpdate();
 
 #if UNITY_EDITOR
@@ -85,7 +85,7 @@ public class LevelManager : MonoBehaviour {
     void Update()
     {
         // Update the score
-        scoreText.text = "Score: " + (int) currentScore;
+        scoreText.text = "Skor: " + (int) currentScore;
 
         // Check if the level is finished
         if (player.transform.position.x > levelEnd.transform.position.x && !isFinished)
@@ -125,7 +125,7 @@ public class LevelManager : MonoBehaviour {
                 SaveScore();
                 scoreSaved = true;
             } 
-            newScoreText.text = "Score: " + (int) calculateScore();
+            newScoreText.text = "Skor: " + (int) calculateScore();
         }
     }
 
