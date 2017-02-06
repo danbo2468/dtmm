@@ -56,15 +56,14 @@ public class LevelManager : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        GameManager.gameManager.SetLevelManager(this);
         stillWaterMosquitoes = FindObjectsOfType<StillWaterMosquito>();
         player = FindObjectOfType<PlayerController>();
         player.setAnimation();
         currentScore = 0;
         collectedCoins = 0;
         highScore = GameManager.gameManager.levelHighscores[level];
-        GameManager.gameManager.SetLevelManager(this);
-        highscoreText.text = "Skor tertinggi: " + (int)highScore;
-        GameManager.gameManager.ManualUpdate();
+        
 
 
 #if UNITY_EDITOR
@@ -81,11 +80,14 @@ public class LevelManager : MonoBehaviour {
                     cutsceneBeforeHandheld.Play();
                 }
 #endif
+        highscoreText.text = "Skor tertinggi: " + (int)highScore;
+        GameManager.gameManager.ManualUpdate();
     }
 
     // Call this every frame
     void Update()
     {
+        
         // Update the score
         scoreText.text = "Skor: " + (int) currentScore;
 
@@ -221,10 +223,11 @@ public class LevelManager : MonoBehaviour {
             if (cutsceneAfterHandheld != null)
             {
                 cutsceneAfterHandheld.Play();
-                finishedMenu.SetActive(true);
-                makeHeartsShrink = true;
+                
             }
-        #endif
+#endif
+        finishedMenu.SetActive(true);
+        makeHeartsShrink = true;
         oldScoreText.text = currentScore.ToString();
         
     }

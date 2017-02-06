@@ -3306,6 +3306,11 @@ Prefab:
       propertyPath: numberOfLevels
       value: 14
       objectReference: {fileID: 0}
+    - target: {fileID: 114000012145700480, guid: fd4d45cab4259da4bae74d265d704c13,
+        type: 2}
+      propertyPath: levelManager
+      value: 
+      objectReference: {fileID: 113612200}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fd4d45cab4259da4bae74d265d704c13, type: 2}
   m_IsPrefabParent: 0

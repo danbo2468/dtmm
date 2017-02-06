@@ -75,7 +75,7 @@ public class PlayerController : MonoBehaviour
 
     // Set the character animation depending on the chosen gender
     public void setAnimation(){
-                if (GameManager.gameManager.characterGender == "Female")
+        if (GameManager.gameManager.characterGender == "Female")
         {
             if (GameManager.gameManager.boughtItems[0])
             {

@@ -215,6 +215,7 @@ public class GameManager : MonoBehaviour {
     // Set the highscore for a certain level
     public void SetLevelHigschore(int level, float highscore)
     {
+        Debug.Log(level + " LEVEL || Highscore " + highscore);
         if (highscore > levelHighscores[level])
         {
             levelHighscores[level] = highscore;

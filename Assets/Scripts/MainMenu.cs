@@ -36,6 +36,10 @@ public class MainMenu : MonoBehaviour {
     // Set the chosen name
     public void SetName()
     {
+        if(GameManager.gameManager.characterGender != "Female" && GameManager.gameManager.characterGender != "Male")
+        {
+            SetGender("Female");
+        }
         GameManager.gameManager.characterName = nameInputField.text;
     }
 
