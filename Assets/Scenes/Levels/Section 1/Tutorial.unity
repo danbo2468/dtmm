@@ -5454,6 +5454,16 @@ Prefab:
       propertyPath: healthCanvas
       value: 
       objectReference: {fileID: 1856921249}
+    - target: {fileID: 114000012816778314, guid: bd07e137744cabf4fbba9c4769df02b4,
+        type: 2}
+      propertyPath: girlYellowAnimation
+      value: 
+      objectReference: {fileID: 9100000, guid: 9fc819f3e2a1d2542be230c8ed823330, type: 2}
+    - target: {fileID: 114000012816778314, guid: bd07e137744cabf4fbba9c4769df02b4,
+        type: 2}
+      propertyPath: girlBlueAnimation
+      value: 
+      objectReference: {fileID: 9100000, guid: ab095423b95bcc84a825aaac0a0e4dfb, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bd07e137744cabf4fbba9c4769df02b4, type: 2}
   m_IsPrefabParent: 0

@@ -58,12 +58,14 @@ public class LevelManager : MonoBehaviour {
     void Start () {
         stillWaterMosquitoes = FindObjectsOfType<StillWaterMosquito>();
         player = FindObjectOfType<PlayerController>();
+        player.setAnimation();
         currentScore = 0;
         collectedCoins = 0;
         highScore = GameManager.gameManager.levelHighscores[level];
         GameManager.gameManager.SetLevelManager(this);
         highscoreText.text = "Skor tertinggi: " + (int)highScore;
         GameManager.gameManager.ManualUpdate();
+
 
 #if UNITY_EDITOR
             if (cutsceneBeforeEditor != null)
