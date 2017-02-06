@@ -22,7 +22,7 @@ public class BackgroundScroller : MonoBehaviour {
     }
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
 
         // Move the image at a certain speed
         Vector3 newPosition = transform.position;

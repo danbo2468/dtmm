@@ -167,6 +167,11 @@ public class WorldController : MonoBehaviour
         {
             beginPosition.position = new Vector2(-16.8f, -1.3f);
         }
+
+        if (SceneManager.GetActiveScene().name == jungle)
+        {
+            beginPosition.position = new Vector2(-12.5f, -3f);
+        }
     }
 
     /// <summary>
