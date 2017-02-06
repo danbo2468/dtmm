@@ -71,10 +71,20 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         health = initialHealth;
 
-        // Set the character animation depending on the chosen gender
-        if (GameManager.gameManager.characterGender == "Female")
+    }
+
+    // Set the character animation depending on the chosen gender
+    public void setAnimation(){
+                if (GameManager.gameManager.characterGender == "Female")
         {
-            if (GameManager.gameManager.boughtItems[1])
+            if (GameManager.gameManager.boughtItems[0])
+            {
+                animator.runtimeAnimatorController = girlYellowAnimation;
+            } else if (GameManager.gameManager.boughtItems[1])
+            {
+                animator.runtimeAnimatorController = girlBlueAnimation;
+            }
+            else if (GameManager.gameManager.levelHighscores[5] > 0)
             {
                 animator.runtimeAnimatorController = girlLongSleevedAnimation;
             } else
@@ -84,7 +94,15 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            if (GameManager.gameManager.boughtItems[1])
+            if (GameManager.gameManager.boughtItems[0])
+            {
+                animator.runtimeAnimatorController = boyYellowAnimation;
+            }
+            else if (GameManager.gameManager.boughtItems[1])
+            {
+                animator.runtimeAnimatorController = boyBlueAnimation;
+            }
+            else if (GameManager.gameManager.levelHighscores[5] > 0)
             {
                 animator.runtimeAnimatorController = boyLongSleevedAnimation;
             }
@@ -166,7 +184,7 @@ public class PlayerController : MonoBehaviour
             {
                 //animator.SetTrigger("Throwing");
                 BulletController bullet;
-                if (GameManager.gameManager.boughtItems[0])
+                if (GameManager.gameManager.boughtItems[2])
                 {
                     bullet = Instantiate(spray);
                 }

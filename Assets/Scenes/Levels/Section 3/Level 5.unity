@@ -671,7 +671,7 @@ Transform:
   m_LocalScale: {x: 1.0153556, y: 1.1803514, z: 1.1803514}
   m_Children: []
   m_Father: {fileID: 501844872}
-  m_RootOrder: 8
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &364457236
 MonoBehaviour:
@@ -1024,11 +1024,29 @@ Prefab:
         type: 2}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: 6e3007d13d062964fbf0ee1aecc6fef5, type: 2}
+      objectReference: {fileID: 9100000, guid: 9fc819f3e2a1d2542be230c8ed823330, type: 2}
     - target: {fileID: 95000011109417906, guid: 8f6d6729914bf324fb23042aab71121a,
         type: 2}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4896624955311756, guid: 8f6d6729914bf324fb23042aab71121a, type: 2}
+      propertyPath: m_RootOrder
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 224269825538312772, guid: 8f6d6729914bf324fb23042aab71121a,
+        type: 2}
+      propertyPath: m_RootOrder
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 4409379847179286, guid: 8f6d6729914bf324fb23042aab71121a, type: 2}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 224979910875405894, guid: 8f6d6729914bf324fb23042aab71121a,
+        type: 2}
+      propertyPath: m_RootOrder
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8f6d6729914bf324fb23042aab71121a, type: 2}

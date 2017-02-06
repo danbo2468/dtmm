@@ -62,7 +62,7 @@ public class GameManager : MonoBehaviour {
     {
         heartCount = 2;
 		levelHighscores = new float[14];
-		boughtItems = new bool[2];
+		boughtItems = new bool[3];
         //worldNode = new Vector3(0, 0, 0);
         //levelNode = new Vector3(0, 0, 0);
         for(int i = 0; i < 14; i++)

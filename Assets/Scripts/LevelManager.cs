@@ -56,12 +56,13 @@ public class LevelManager : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        GameManager.gameManager.SetLevelManager(this);
         stillWaterMosquitoes = FindObjectsOfType<StillWaterMosquito>();
         player = FindObjectOfType<PlayerController>();
+        player.setAnimation();
         currentScore = 0;
         collectedCoins = 0;
         highScore = GameManager.gameManager.levelHighscores[level];
-        GameManager.gameManager.SetLevelManager(this);
         highscoreText.text = "Highest score: " + (int)highScore;
         GameManager.gameManager.ManualUpdate();
 
