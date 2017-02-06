@@ -158,7 +158,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Profile 3
+  m_Text: Profil 3
 --- !u!222 &69587245
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -362,7 +362,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Credits
+  m_Text: Kredit
 --- !u!222 &76293060
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -852,7 +852,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Start the adventure
+  m_Text: Mulai petualangan
 --- !u!222 &182984094
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1907,7 +1907,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Highscores
+  m_Text: Skor tertinggi
 --- !u!222 &381783241
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2052,7 +2052,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Exit
+  m_Text: Keluar
 --- !u!222 &433503541
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2847,7 +2847,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -9}
+  m_AnchoredPosition: {x: 0, y: -3}
   m_SizeDelta: {x: 213, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &635156614
@@ -3013,7 +3013,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Credits
+  m_Text: Kredit
 --- !u!222 &653505416
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3087,7 +3087,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Start
+  m_Text: Mulai
 --- !u!222 &657110322
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3405,7 +3405,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Settings
+  m_Text: Pengaturan
 --- !u!222 &682833061
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3826,7 +3826,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Next
+  m_Text: Berikut
 --- !u!222 &743010350
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4043,7 +4043,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Exit
+  m_Text: Keluar
 --- !u!222 &772502562
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4801,7 +4801,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Profile 4
+  m_Text: Profil 4
 --- !u!222 &963022461
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4875,7 +4875,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Profile 1
+  m_Text: Profil 1
 --- !u!222 &1002869672
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5333,7 +5333,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -60}
+  m_AnchoredPosition: {x: 0, y: -79}
   m_SizeDelta: {x: 322, y: 83}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1116836859
@@ -5368,7 +5368,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Choose the name of your character
+  m_Text: Memilih nama
 --- !u!222 &1116836860
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5619,10 +5619,10 @@ MonoBehaviour:
     m_Alignment: 1
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 0
+    m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Choose save game
+  m_Text: Pilih menyimpan lokasi
 --- !u!222 &1233405197
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6286,7 +6286,7 @@ RectTransform:
   m_GameObject: {fileID: 1464267400}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.6000175, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1511807822}
   m_RootOrder: 0
@@ -6325,10 +6325,10 @@ MonoBehaviour:
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 0
+    m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Save
+  m_Text: Menyimpan
 --- !u!222 &1464267403
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6648,7 +6648,7 @@ RectTransform:
   m_GameObject: {fileID: 1511807821}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.6143475, y: 1, z: 1}
   m_Children:
   - {fileID: 1464267401}
   m_Father: {fileID: 1657555611}
@@ -7115,7 +7115,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Profile 2
+  m_Text: Profil 2
 --- !u!222 &1626602701
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7898,7 +7898,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Highscores
+  m_Text: Skor tertinggi
 --- !u!222 &1847379108
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -8729,7 +8729,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Sound Effects
+  m_Text: Efek suara
 --- !u!222 &1956655139
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -9323,7 +9323,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Background Music
+  m_Text: Latarbelakang musik
 --- !u!222 &2017873507
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -9397,7 +9397,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Start a new adventure
+  m_Text: Memulai petualangan baru
 --- !u!222 &2055477032
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -9471,7 +9471,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Choose the gender of your character
+  m_Text: Memilih jenis kelamin
 --- !u!222 &2091373003
 CanvasRenderer:
   m_ObjectHideFlags: 0
