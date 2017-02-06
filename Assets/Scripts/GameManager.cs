@@ -42,6 +42,22 @@ public class GameManager : MonoBehaviour {
         }
 	}
 
+    void ManualUpdate()
+    {
+        if (levelHighscores[4] > 0)
+        {
+            heartCount = 3;
+        }
+        if (levelHighscores[5] > 0)
+        {
+            heartCount = 4;
+        }
+
+        if (levelHighscores[10] > 0)
+        {
+            heartCount = 5;
+        }
+    }
     void Start()
     {
         heartCount = 2;
@@ -53,6 +69,20 @@ public class GameManager : MonoBehaviour {
         {
             levelHighscores[i] = 0;
         }
+        if(levelHighscores[4] > 0)
+        {
+            heartCount = 3;
+        }
+        if(levelHighscores[5] > 0)
+        {
+            heartCount = 4;
+        }
+
+        if (levelHighscores[10] > 0)
+        {
+            heartCount = 5;
+        }
+
         // ssLoad the Player Prefs
         if (PlayerPrefs.HasKey("Background Music"))
         {
