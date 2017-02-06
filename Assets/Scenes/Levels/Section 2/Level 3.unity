@@ -3329,7 +3329,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoreText: {fileID: 1248660008}
   highscoreText: {fileID: 1006500084}
-  level: 5
+  level: 3
   levelEnd: {fileID: 1065853102}
   isFinished: 0
   isGameOver: 0

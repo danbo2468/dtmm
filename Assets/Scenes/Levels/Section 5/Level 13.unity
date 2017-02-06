@@ -5037,7 +5037,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoreText: {fileID: 74615955}
   highscoreText: {fileID: 1835268503}
-  level: 4
+  level: 13
   levelEnd: {fileID: 2058826086}
   isFinished: 0
   isGameOver: 0
@@ -8973,6 +8973,10 @@ MonoBehaviour:
     type: 2}
   girlLongSleevedAnimation: {fileID: 9100000, guid: 6947d8b522ad57145a9ba0769372b581,
     type: 2}
+  boyYellowAnimation: {fileID: 0}
+  girlYellowAnimation: {fileID: 0}
+  boyBlueAnimation: {fileID: 0}
+  girlBlueAnimation: {fileID: 0}
 --- !u!50 &1572602669
 Rigidbody2D:
   serializedVersion: 4
