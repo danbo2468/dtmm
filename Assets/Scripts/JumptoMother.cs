@@ -18,8 +18,9 @@ public class JumptoMother : MonoBehaviour {
     {
         if (collision.gameObject.tag == "Player")
         {
-
+            collision.gameObject.GetComponent<PlayerController>().jumpForce += 4;
             collision.gameObject.GetComponent<PlayerController>().Jump();
+            collision.gameObject.GetComponent<PlayerController>().jumpForce -= 4;
             GameObject.Find("Jumper(Clone)").GetComponent<EnemyController>().SendMessage("ApplyDamage",15);
             Destroy(this.gameObject);
         }
