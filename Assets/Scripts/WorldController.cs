@@ -115,8 +115,11 @@ public class WorldController : MonoBehaviour
             }
         }
         // after all evaluation is done, set the nodes to the correct values.
+        
+
         ShowEnterLevelCanvas(playerIsAtNode);
-        SetLevels();    
+        SetLevels();
+        
     }
 
     void Update()
@@ -296,6 +299,11 @@ public class WorldController : MonoBehaviour
                 movePrevious = false;
                 ShowEnterLevelCanvas(playerIsAtNode);
             }   
+        }
+        Debug.Log(script.GetLevelID(playerIsAtNode));
+        if (script.GetLevelID(playerIsAtNode) == 4 && SceneManager.GetActiveScene().name == jungle)
+        {
+            GameObject.FindGameObjectWithTag("LevelButtons").GetComponent<Button>().interactable = false;
         }
     }
 
@@ -564,7 +572,6 @@ public class WorldController : MonoBehaviour
             compare = 0;
 
         Text[] textFields = Popup.GetComponentsInChildren<Text>();
-        float score = Mathf.Round(UnityEngine.Random.Range(100f, 1000f)); // Load score from file or load manager. 
 
         if (script.GetLevelID(node) != compare && script.GetLevelID(node) != script.GetAllCoreNodes().Count)
         {
