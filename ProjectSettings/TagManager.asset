@@ -6,6 +6,39 @@ TagManager:
   tags:
   - Weapon
   - Enemy
+  - Water
+  - LevelCompleted
+  - LevelUncompleted
+  - LevelUnreachable
+  - Path
+  - LevelButtons
+  - LevelCanvas
+  - PreviousLevel
+  - LevelText
+  - ScoreText
+  - EnterLevel
+  - Popup
+  - EnterLevelText
+  - WorldCanvas
+  - AreaBegin
+  - AreaEnd
+  - HealthCanvas
+  - Heart1
+  - Heart2
+  - Heart3
+  - Heart4
+  - Heart5
+  - Attack1
+  - Attack2
+  - Attack3
+  - Attack4
+  - Attack5
+  - Block
+  - Charge
+  - Samurai
+  - Trigger
+  - MotherAttack1
+  - MotherAttack2
   layers:
   - Default
   - TransparentFX
@@ -42,4 +75,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: test
+    uniqueID: 1948124327
     locked: 0

@@ -2,30 +2,104 @@
 using System.Collections;
 using UnityEngine.SceneManagement;
 
+using System.Collections.Generic;
+using UnityEngine.UI;
+
 public class MainMenu : MonoBehaviour {
 
-    public void ChooseGame()
+    // Input field for the name
+    public InputField nameInputField;
+
+    // Textfields for highscore
+    public Text nr1name;
+    public Text nr2name;
+    public Text nr3name;
+    public Text nr4name;
+
+    public Text nr1score;
+    public Text nr2score;
+    public Text nr3score;
+    public Text nr4score;
+
+    // Activate or De-activate a certain panel
+    public void TogglePanel(GameObject panel)
     {
-        SceneManager.LoadScene("Choose Game");
+        panel.SetActive(!panel.activeSelf);
     }
 
-    public void ChooseGender()
+    // Set the chosen gender
+    public void SetGender(string gender)
     {
-        SceneManager.LoadScene("Gender Selection");
+        GameManager.gameManager.characterGender = gender;
     }
 
-    public void ChooseName()
+    // Set the chosen name
+    public void SetName()
     {
-        SceneManager.LoadScene("Name Selection");
+        if(GameManager.gameManager.characterGender != "Female" && GameManager.gameManager.characterGender != "Male")
+        {
+            SetGender("Female");
+        }
+        GameManager.gameManager.characterName = nameInputField.text;
     }
 
-    public void LoadLevel()
+    // Save the player data
+    public void SaveData()
     {
+        GameManager.gameManager.Save();
         SceneManager.LoadScene("Tutorial");
     }
 
+    // Set save profile number
+    public void SetSaveProfile(int saveProfile)
+    {
+        GameManager.gameManager.saveProfileNumber = saveProfile;
+    }
+    
+    // Load the player data
+    public void LoadGame(int saveProfile)
+    {
+        GameManager.gameManager.LoadSaveProfile(saveProfile);
+        SceneManager.LoadScene("Overworld");
+    }
+
+    // Delete the player data
+    public void DeleteSaveProfile(int saveProfile)
+    {
+        GameManager.gameManager.DeleteSaveProfile(saveProfile);
+    }
+
+    // Save the game settings
+    public void SaveSettings()
+    {
+        SceneManager.LoadScene("Welcome Screen");
+    }
+
+    // Exit the Shop
+    public void ExitShop()
+    {
+        SceneManager.LoadScene("Market");
+    }
+
+    // Exit the game
     public void QuitGame()
     {
+        Debug.Log("test");
         Application.Quit();
+    }
+
+    public void UpdateHighscores()
+    {
+        List<float> scores = GameManager.gameManager.GetHighscores();
+        List<string> names = GameManager.gameManager.GetNames();
+        nr1name.text = names[0];
+        nr2name.text = names[1];
+        nr3name.text = names[2];
+        nr4name.text = names[3];
+
+        nr1score.text = scores[0].ToString();
+        nr2score.text = scores[1].ToString();
+        nr3score.text = scores[2].ToString();
+        nr4score.text = scores[3].ToString();
     }
 }
