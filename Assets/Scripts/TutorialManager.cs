@@ -48,7 +48,7 @@ public class TutorialManager : MonoBehaviour {
         // Give the user a spray
         if (GameManager.gameManager.levelManager.isFinished)
         {
-            GameManager.gameManager.boughtItems[0] = true;
+            GameManager.gameManager.boughtItems[2] = true;
         }
 
         // Check if not finished and not game over
