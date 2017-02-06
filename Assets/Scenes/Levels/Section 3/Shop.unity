@@ -1480,8 +1480,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 842111bceb8fd874693ca41fd37a9fab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spray: {fileID: 0}
-  clothes: {fileID: 2115095733}
+  yellow: {fileID: 2115095733}
+  blue: {fileID: 468632664}
   coinsText: {fileID: 2045457591}
 --- !u!1001 &1808752772
 Prefab:

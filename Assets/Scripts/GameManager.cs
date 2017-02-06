@@ -181,6 +181,7 @@ public class GameManager : MonoBehaviour {
             this.worldNode = SetArrayToTransform(saveData.worldNode);
             this.levelNode = SetArrayToTransform(saveData.levelNode);
             this.heartCount = saveData.heartCount;
+            this.boughtItems = saveData.boughtItems;
             if (levelHighscores[4] > 0)
             {
                 heartCount = 3;

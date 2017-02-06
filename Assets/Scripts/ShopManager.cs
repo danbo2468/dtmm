@@ -3,8 +3,8 @@ using UnityEngine.UI;
 
 public class ShopManager : MonoBehaviour {
 
-    public Button spray;
-    public Button clothes;
+    public Button yellow;
+    public Button blue;
     private Button[] items;
 
     public Text coinsText;
@@ -12,8 +12,8 @@ public class ShopManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         items = new Button[2];
-        items[0] = spray;
-        items[1] = clothes;
+        items[0] = yellow;
+        items[1] = blue;
         for(int i = 0; i < GameManager.gameManager.boughtItems.Length; i++)
         {
             if (GameManager.gameManager.boughtItems[i])
