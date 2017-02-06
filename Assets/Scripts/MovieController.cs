@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MovieController : MonoBehaviour {
 
-#if UNITY_ANDROID
+//#if UNITY_ANDROID
 
     public int movieNumber;
 
@@ -28,5 +28,5 @@ public class MovieController : MonoBehaviour {
         Handheld.PlayFullScreenMovie(file);
     }
 
-#endif
+//#endif
 }
