@@ -63,6 +63,7 @@ public class LevelManager : MonoBehaviour {
         highScore = GameManager.gameManager.levelHighscores[level];
         GameManager.gameManager.SetLevelManager(this);
         highscoreText.text = "Highest score: " + (int)highScore;
+        GameManager.gameManager.ManualUpdate();
 
 #if UNITY_EDITOR
             if (cutsceneBeforeEditor != null)
